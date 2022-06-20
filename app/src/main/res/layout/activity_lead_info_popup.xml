@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.policyboss.policybosspro.loan_fm.popup.LeadInfoPopupActivity">
+    tools:context="com.policyboss.policybossproelite.loan_fm.popup.LeadInfoPopupActivity">
 
     <include layout="@layout/content_lead_info_popup" />
 

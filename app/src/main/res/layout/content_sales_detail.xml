@@ -7,7 +7,7 @@
     android:background="@color/bg1"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.policyboss.policybosspro.salesmaterial.SalesDetailActivity"
+    tools:context="com.policyboss.policybossproelite.salesmaterial.SalesDetailActivity"
     tools:showIn="@layout/activity_sales_detail">
 
     <LinearLayout

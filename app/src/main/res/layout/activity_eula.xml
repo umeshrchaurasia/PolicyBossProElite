@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.policyboss.policybosspro.introslider.EulaActivity">
+    tools:context="com.policyboss.policybossproelite.introslider.EulaActivity">
 
     <!--<android.support.design.widget.AppBarLayout-->
         <!--android:layout_width="match_parent"-->

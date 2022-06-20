@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.policyboss.policybosspro.introslider.EulaActivity"
+    tools:context="com.policyboss.policybossproelite.introslider.EulaActivity"
     tools:showIn="@layout/activity_eula">
 
 

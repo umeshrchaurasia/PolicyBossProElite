@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/bg_white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.policyboss.policybosspro.loan_fm.popup.LeadInfoPopupActivity"
+    tools:context="com.policyboss.policybossproelite.loan_fm.popup.LeadInfoPopupActivity"
     tools:showIn="@layout/activity_lead_info_popup">
 
 

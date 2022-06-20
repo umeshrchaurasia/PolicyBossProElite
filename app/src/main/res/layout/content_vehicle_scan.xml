@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.policyboss.policybosspro.scan_vehicle.VehicleScanActivity"
+    tools:context="com.policyboss.policybossproelite.scan_vehicle.VehicleScanActivity"
     tools:showIn="@layout/activity_vehicle_scan">
 
     <ImageView

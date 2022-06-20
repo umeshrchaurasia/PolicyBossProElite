@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/divider"
     android:orientation="vertical"
-    tools:context="com.policyboss.policybosspro.health.compare.HealthCompareActivity">
+    tools:context="com.policyboss.policybossproelite.health.compare.HealthCompareActivity">
 
     <TextView
         style="@style/TextStyle.Title"

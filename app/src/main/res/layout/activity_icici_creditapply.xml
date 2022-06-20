@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context="com.policyboss.policybosspro.creditcard.ICICICreditApplyActivity">
+    tools:context="com.policyboss.policybossproelite.creditcard.ICICICreditApplyActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="false"
-    tools:context="com.policyboss.policybosspro.webviews.SyncWebViewActivity">
+    tools:context="com.policyboss.policybossproelite.webviews.SyncWebViewActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

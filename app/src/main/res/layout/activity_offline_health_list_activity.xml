@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.policyboss.policybosspro.offline_quotes.OfflineQuoteForm.health.OfflineHealthListActivity">
+    tools:context="com.policyboss.policybossproelite.offline_quotes.OfflineQuoteForm.health.OfflineHealthListActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

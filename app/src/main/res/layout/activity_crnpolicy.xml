@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.policyboss.policybosspro.crnpolicy.crnpolicyActivity">
+    tools:context="com.policyboss.policybossproelite.crnpolicy.crnpolicyActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"

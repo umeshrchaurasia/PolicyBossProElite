@@ -30,7 +30,7 @@
 
     <fragment
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:name="com.policyboss.policybosspro.posp.POSPListFragment"
+        android:name="com.policyboss.policybossproelite.posp.POSPListFragment"
         android:id="@+id/fooFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg1"
-    tools:context="com.policyboss.policybosspro.salesmaterial.SalesMaterialActivity">
+    tools:context="com.policyboss.policybossproelite.salesmaterial.SalesMaterialActivity">
 
     <ImageView
         android:id="@+id/imgBackground"

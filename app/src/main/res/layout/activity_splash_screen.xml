@@ -6,7 +6,7 @@
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
     android:background="@drawable/splash_bg"
-    tools:context="com.policyboss.policybosspro.splashscreen.SplashScreenActivity">
+    tools:context="com.policyboss.policybossproelite.splashscreen.SplashScreenActivity">
 
     <ImageView
         android:id="@+id/imageView3"

@@ -5,7 +5,7 @@
 
     android:background="@color/bg_dashboard"
     android:orientation="vertical"
-    tools:context="com.policyboss.policybosspro.ultralaksha.ultralakshya.fragment.quote.content.UltraLakshayScenarioOfBenefitsDeath">
+    tools:context="com.policyboss.policybossproelite.ultralaksha.ultralakshya.fragment.quote.content.UltraLakshayScenarioOfBenefitsDeath">
 
     <ScrollView
         android:layout_width="match_parent"

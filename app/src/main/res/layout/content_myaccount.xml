@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:animateLayoutChanges="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.policyboss.policybosspro.myaccount.MyAccountActivity"
+    tools:context="com.policyboss.policybossproelite.myaccount.MyAccountActivity"
     tools:showIn="@layout/activity_myaccount">
 
     <ScrollView

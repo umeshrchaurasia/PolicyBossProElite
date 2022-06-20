@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.policyboss.policybosspro.healthcheckupplans.HealthCheckUpPopUpActivity">
+    tools:context="com.policyboss.policybossproelite.healthcheckupplans.HealthCheckUpPopUpActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

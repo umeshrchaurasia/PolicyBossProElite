@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/dashboard_bg"
-    tools:context="com.policyboss.policybosspro.term.termselection.TermSelectionActivity">
+    tools:context="com.policyboss.policybossproelite.term.termselection.TermSelectionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

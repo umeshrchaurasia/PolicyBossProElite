@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.policyboss.policybosspro.motor.privatecar.activity.PrivateCarDetailActivity">
+    tools:context="com.policyboss.policybossproelite.motor.privatecar.activity.PrivateCarDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"

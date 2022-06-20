@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:id="@+id/llIncome_Cal"
-    tools:context="com.policyboss.policybosspro.IncomeCalculator.IncomeCalculatorActivity">
+    tools:context="com.policyboss.policybossproelite.IncomeCalculator.IncomeCalculatorActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout

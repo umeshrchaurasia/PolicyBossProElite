@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_festival_share">
 
 
-    <com.policyboss.policybosspro.utility.TouchImageView
+    <com.policyboss.policybossproelite.utility.TouchImageView
         android:id="@+id/ivProduct"
         android:src="@drawable/finmart_user_icon"
         android:layout_width="match_parent"

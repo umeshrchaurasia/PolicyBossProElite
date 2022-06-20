@@ -7,14 +7,14 @@
     android:background="@color/bg1"
     android:orientation="horizontal">
 
-    <com.policyboss.policybosspro.design.CustomImageView
+    <com.policyboss.policybossproelite.design.CustomImageView
         android:layout_margin="8dp"
         android:id="@+id/ivProduct"
         android:minHeight="200dp"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.policyboss.policybosspro.design.CustomImageView>
+    </com.policyboss.policybossproelite.design.CustomImageView>
 
 
 </LinearLayout>

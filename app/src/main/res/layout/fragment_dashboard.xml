@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.policyboss.policybosspro.dashboard.DashboardFragment">
+    tools:context="com.policyboss.policybossproelite.dashboard.DashboardFragment">
 
     <!--<include layout="@layout/layout_dashboard_header" />-->
 

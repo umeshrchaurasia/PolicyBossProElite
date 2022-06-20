@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.policyboss.policybosspro.helpfeedback.aboutus.AboutUsActivity">
+    tools:context="com.policyboss.policybossproelite.helpfeedback.aboutus.AboutUsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

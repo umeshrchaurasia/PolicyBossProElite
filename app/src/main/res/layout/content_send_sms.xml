@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.policyboss.policybosspro.sendTemplateSms.SendTemplateSmsActivity"
+    tools:context="com.policyboss.policybossproelite.sendTemplateSms.SendTemplateSmsActivity"
     tools:showIn="@layout/activity_send_sms">
 
 

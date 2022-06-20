@@ -8,7 +8,7 @@ android:layout_height="match_parent"
 android:gravity="center"
 android:orientation="vertical"
 android:weightSum="100"
-tools:context="com.policyboss.policybosspro.onlineexpressloan.EarlySalaryActivity">
+tools:context="com.policyboss.policybossproelite.onlineexpressloan.EarlySalaryActivity">
 
 
 <com.google.android.material.appbar.AppBarLayout
