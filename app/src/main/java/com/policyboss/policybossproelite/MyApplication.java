@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 //import com.crashlytics.android.Crashlytics;
+import com.github.tamir7.contacts.Contacts;
 import com.policyboss.policybossproelite.analytics.AnalyticsTrackers;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -31,6 +32,7 @@ public class MyApplication extends Application {
         super.onCreate();
         //   Fabric.with(this, new Crashlytics());       // temp 05 commented
 
+        Contacts.initialize(this);
         //region Realm Initialization
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()

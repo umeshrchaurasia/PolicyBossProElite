@@ -366,4 +366,6 @@ public class Constants {
     public static boolean CHECKED_LEFT_CLICK=false;
     public static boolean CHECKED_RIGHT_CLICK=false;
     public static boolean CHECKED_GLASS_CLICK=false;
+
+
 }

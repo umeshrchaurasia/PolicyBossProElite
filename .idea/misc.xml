@@ -8,6 +8,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/drawable/custom_progress_bg.xml" value="0.1" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/activity_sales_detail.xml" value="0.1921875" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/activity_sync_contact.xml" value="0.1921875" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/content_sales_detail.xml" value="0.14375" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/content_sync_contact.xml" value="0.14375" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/menu/nav_menu_drawer.xml" value="0.1765625" />
         <entry key="..\:/Umesh/PolicyBossPro_2022_NEW/app/src/main/res/layout/layout_posp_amount_popup.xml" value="0.1" />
       </map>
     </option>
