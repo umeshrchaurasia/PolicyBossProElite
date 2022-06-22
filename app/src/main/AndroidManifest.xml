@@ -14,9 +14,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <queries>
 
@@ -83,15 +82,26 @@
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_policyboss"
-        android:label="PolicyBoss Pro"
+        android:label="PolicyBoss ProElite"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_policyboss_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".syncContact.Worker.WelcomeSyncContactActivity"
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+        </activity>
+        <activity
             android:name=".syncContact.Worker.SyncContactActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+        </activity>
         <activity
             android:name=".homeMainKotlin.HomeListProductActivity"
             android:label="Home Product"

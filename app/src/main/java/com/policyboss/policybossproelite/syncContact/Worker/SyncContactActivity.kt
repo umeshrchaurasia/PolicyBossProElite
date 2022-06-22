@@ -10,13 +10,17 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.work.*
 import com.google.android.material.snackbar.Snackbar
 import com.policyboss.policybossproelite.BaseActivity
+import com.policyboss.policybossproelite.R
 import com.policyboss.policybossproelite.databinding.ActivitySyncContactBinding
+import com.policyboss.policybossproelite.knowledgeguru.KnowledgeGuruActivity
 import com.policyboss.policybossproelite.utility.Constant
 import com.policyboss.policybossproelite.utility.NetworkUtils
+import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
 import com.utility.finmartcontact.home.Worker.CallLogWorkManager
 import com.utility.finmartcontact.home.Worker.ContactLogWorkManager
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController
@@ -62,31 +66,47 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
 
         binding.includedSyncContact.CvSync.setOnClickListener(this)
 
+        binding.includedSyncContact.CvLeaddashboard.setOnClickListener(this)
+
     }
 
     override fun onClick(view: View?) {
+        when(view!!.id){
 
-        if (!checkPermission()) {
-            if (checkRationalePermission()) {
-                requestPermission()
+
+        R.id.CvSync -> {
+
+            if (!checkPermission()) {
+                if (checkRationalePermission()) {
+                    requestPermission()
+                } else {
+                    permissionAlert()
+                }
             } else {
-                permissionAlert()
-            }
-        } else {
 
-            // syncContactNumber()
-            // API For Contact
+                // syncContactNumber()
+                // API For Contact
 
-            if (NetworkUtils.isNetworkAvailable(this@SyncContactActivity)) {
-                initData()
-                setOneTimeRequestWithCoroutine()
-            } else {
-                Snackbar.make( binding.includedSyncContact.CvSync, "No Internet Connection", Snackbar.LENGTH_SHORT).show()
+                if (NetworkUtils.isNetworkAvailable(this@SyncContactActivity)) {
+                    initData()
+                    setOneTimeRequestWithCoroutine()
+                } else {
+                    Snackbar.make( binding.includedSyncContact.CvSync, "No Internet Connection", Snackbar.LENGTH_SHORT).show()
+                }
+
+
             }
+
+        }
+        R.id.CvLeaddashboard -> {
+            startActivity(Intent(this, CommonWebViewActivity::class.java) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
+                .putExtra("URL", "" + userConstantEntity.leadDashUrl)
+                .putExtra("NAME", "" + "Lead DashBoard")
+                .putExtra("TITLE", "" + "Lead DashBoard"))
+        }
 
 
         }
-
     }
 
 
@@ -143,7 +163,7 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
     fun permissionAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Need  Permission")
-        builder.setMessage("This App Required Contact Permissions.")
+        builder.setMessage("This App Required Contact & Call Log Permissions.")
         //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->

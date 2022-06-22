@@ -16,7 +16,7 @@
         android:layout_width="300dp"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pb_splash_bg" />
+        android:src="@mipmap/pb                                                                                                                                                                                                                                                                                                               _splash_bg" />
 
     <TextView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:layout_marginRight="@dimen/fab_margin"
         android:gravity="center"
         android:padding="4dp"
-        android:text="END-USER LICENSE AGREEMENT – PolicyBoss Pro (EULA)"
+        android:text="END-USER LICENSE AGREEMENT – PolicyBoss ProElite (EULA)"
         android:textAllCaps="true"
         android:textAppearance="@style/TextStyle.Title" />
 
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Please read carefully. This is a legal agreement ('Agreement') between Datacomp Web Technologies (I) Pvt. Ltd. ('We') and you ('User'). You agree to be bound by the terms and conditions of this agreement if you:
-                \n(a) Install or use any part of the PolicyBoss Pro App; or
+                \n(a) Install or use any part of the PolicyBoss ProElite App; or
                 \n(b) Click the ACCEPT button on the electronic version of this agreement.
                 "
             android:textAppearance="@style/TextStyle.TextMedium" />
@@ -120,7 +120,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="\nPolicyBoss Pro is an online platform (the “Platform”) aggregating various service providers into the Platform, to enable their respective products and/or services being available online in the Platform. Access to this Platform is provided by Datacomp Web Technologies (I) Pvt. Ltd., (the “Technology Facilitator”/ “We”). We are only acting as a technology facilitator/aggregator, on behalf of such third party service providers, to the Finmart Business Associates (“FBA” / ”User”) under the following terms:"
+            android:text="\nPolicyBoss ProElite is an online platform (the “Platform”) aggregating various service providers into the Platform, to enable their respective products and/or services being available online in the Platform. Access to this Platform is provided by Datacomp Web Technologies (I) Pvt. Ltd., (the “Technology Facilitator”/ “We”). We are only acting as a technology facilitator/aggregator, on behalf of such third party service providers, to the Finmart Business Associates (“FBA” / ”User”) under the following terms:"
             android:textAppearance="@style/TextStyle.TextMedium" />
 
         <LinearLayout

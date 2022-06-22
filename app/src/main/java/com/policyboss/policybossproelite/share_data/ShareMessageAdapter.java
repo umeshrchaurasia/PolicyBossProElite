@@ -104,7 +104,7 @@ public class ShareMessageAdapter extends RecyclerView.Adapter<ShareMessageAdapte
         String Deeplink;
         //"Look! This can make you look gorgeous from Nykaa";
         Deeplink = Bodymsg + "\n" + link;
-        String prdSubject = "PolicyBoss Pro";
+        String prdSubject = "PolicyBoss ProElite";
 
         String prdDetail = Deeplink;
 

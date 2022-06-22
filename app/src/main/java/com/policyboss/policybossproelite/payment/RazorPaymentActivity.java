@@ -147,7 +147,7 @@ public class RazorPaymentActivity extends BaseActivity implements PaymentResultL
 
         String custname = paymentDetailEntity.getName() + " - " + paymentDetailEntity.getCustID();
         txtCustomerName.setText(custname);
-        txtProdName.setText("Platform for onboarding for PolicyBoss Pro");
+        txtProdName.setText("Platform for onboarding for PolicyBoss ProElite");
         txtDisplayAmount.setText("\u20B9" + " " + paymentDetailEntity.getDisplayamount());
     }
 

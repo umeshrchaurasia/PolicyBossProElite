@@ -51,7 +51,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private NotificationManager mManager;
     private static final String TAG = "MyFirebaseMsgService";
     public static final String CHANNEL_ID = "com.policyboss.policybosspro.NotifyID";
-    public static final String CHANNEL_NAME = "POLICYBOSSPRO CHANNEL";
+    public static final String CHANNEL_NAME = "POLICYBOSSPROElite CHANNEL";
     Bitmap bitmap_image = null;
     String type;
     String WebURL, WebTitle, messageId;
@@ -173,7 +173,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentText(NotifyData.get("body"))
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
-                .setTicker("PolicyBossPro")
+                .setTicker("PolicyBossProElite")
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setWhen(System.currentTimeMillis())
@@ -220,7 +220,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             channel.enableLights(true);
             channel.enableVibration(true);
             channel.setLightColor(Color.BLUE);
-            channel.setDescription("PolicyBossPro");
+            channel.setDescription("PolicyBossProElite");
             // Sets whether notifications posted to this channel appear on the lockscreen or not
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);    // Notification.VISIBILITY_PRIVATE
             getManager().createNotificationChannel(channel);

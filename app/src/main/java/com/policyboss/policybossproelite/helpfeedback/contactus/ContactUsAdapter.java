@@ -74,7 +74,7 @@ public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.What
                 contactUsEntity = (ContactUsEntity) view.getTag(R.id.tvWebsite);
                 context.startActivity(new Intent(context, CommonWebViewActivity.class)
                         .putExtra("URL", "http://" + contactUsEntity.getWebsite())
-                        .putExtra("NAME", "PolicyBoss Pro")
+                        .putExtra("NAME", "PolicyBoss ProElite")
                         .putExtra("TITLE", contactUsEntity.getHeader()));
                 break;
 

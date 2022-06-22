@@ -549,7 +549,7 @@ public class BaseActivity extends AppCompatActivity {
         boolean ret = true;
 
         // external storage.
-        File file = new File(context.getExternalFilesDir( Environment.DIRECTORY_PICTURES), "PolicyBossPro");
+        File file = new File(context.getExternalFilesDir( Environment.DIRECTORY_PICTURES), "PolicyBossProElite");
         if (file.mkdirs()) {
             Log.e("File Log", "Directory not created");
         }
@@ -810,7 +810,7 @@ public class BaseActivity extends AppCompatActivity {
         //"Look! This can make you look gorgeous from Nykaa";
         Deeplink = Bodymsg + "\n" + link;
         if(prdSubject.isEmpty()){
-            prdSubject = "PolicyBoss Pro";
+            prdSubject = "PolicyBoss ProElite";
         }
 
         String prdDetail = Deeplink;
@@ -1020,7 +1020,7 @@ public class BaseActivity extends AppCompatActivity {
 
         Deeplink = Bodymsg + "\n" + link;
         if(prdSubject.isEmpty()){
-            prdSubject = "PolicyBoss Pro";
+            prdSubject = "PolicyBoss ProElite";
         }
 
         String prdDetail = Deeplink;
@@ -1108,7 +1108,7 @@ public class BaseActivity extends AppCompatActivity {
         // Create an image file name
         File temp;
         String timeStamp  =new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File storageDir  = getAppSpecificAlbumStorageDir(this, Environment.DIRECTORY_PICTURES,"PolicyBossPro");
+        File storageDir  = getAppSpecificAlbumStorageDir(this, Environment.DIRECTORY_PICTURES,"PolicyBossProElite");
         try {
             temp =  File.createTempFile(name + timeStamp, /* prefix */
                     ".jpg", /* suffix */

@@ -181,7 +181,7 @@
                     android:id="@+id/nav_contact"
                     android:icon="@drawable/sync_contact_ic"
                     android:orderInCategory="410"
-                    android:title="Create Lead from Contact"
+                    android:title="Sync Contacts"
                     android:visible="true" />
                 <item
                     android:id="@+id/nav_generateLead"

@@ -120,7 +120,7 @@ open class DBMenuRepository() {
 
         fun getMenuMyLeadsList(userConstantEntity: UserConstantEntity, prefManager: PrefManager): MutableList<MenuChild> {
             val menuChild: MutableList<MenuChild> = ArrayList()
-            menuChild.add(MenuChild("nav_contact", "Create Lead from Contact", R.drawable.create_lead_from_contact))
+            menuChild.add(MenuChild("nav_contact", "Sync Contacts", R.drawable.create_lead_from_contact))
 
             if(userConstantEntity?.generateMotorLeadsEnabled?: "" != "0") {
 

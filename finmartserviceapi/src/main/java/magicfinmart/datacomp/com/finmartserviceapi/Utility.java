@@ -191,13 +191,13 @@ public class Utility {
     }
 
     public static String  getImageDirectoryPath() {
-        return Environment.DIRECTORY_PICTURES + File.separator + "PolicyBossPro";
+        return Environment.DIRECTORY_PICTURES + File.separator + "PolicyBossProElite";
     }
 
     public static File createDirIfNotExists() {
         boolean ret = true;
 
-        File file = new File(Environment.getExternalStorageDirectory(), "/PolicyBossPro");
+        File file = new File(Environment.getExternalStorageDirectory(), "/PolicyBossProElite");
         if (!file.exists()) {
             if (!file.mkdirs()) {
                 Log.e("TravellerLog :: ", "Problem creating Image folder");
@@ -210,7 +210,7 @@ public class Utility {
     public static File createShareDirIfNotExists() {
         boolean ret = true;
 
-        File file = new File(Environment.getExternalStorageDirectory(), "/PolicyBossPro/QUOTES");
+        File file = new File(Environment.getExternalStorageDirectory(), "/PolicyBossProElite/QUOTES");
         if (!file.exists()) {
             if (!file.mkdirs()) {
                 Log.e("TravellerLog :: ", "Problem creating Quotes folder");

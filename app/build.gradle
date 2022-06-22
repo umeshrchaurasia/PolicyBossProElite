@@ -65,7 +65,7 @@ android {
         debug {
             debuggable true
             //useProguard false
-            resValue "string", "app_name", "qaPolicybossPro"
+            resValue "string", "app_name", "qaPolicybossProElite"
             buildConfigField "String", "FIRSTHIVE", '"138"'
 
             buildConfigField("long", "VERSION_CODE", "${defaultConfig.versionCode}")
@@ -75,7 +75,7 @@ android {
         uat {
             debuggable true
             //useProguard false
-            resValue "string", "app_name", "uatPolicybossPro"
+            resValue "string", "app_name", "uatPolicybossProElite"
             buildConfigField "String", "FIRSTHIVE", '"138"'
 
             signingConfig signingConfigs.debug

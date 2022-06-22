@@ -3,10 +3,10 @@ apply plugin: 'com.android.library'
 android {
     signingConfigs {
         release {
-            keyAlias 'PolicyBossPro'
-            keyPassword 'PolicyBossPro'
-            storeFile file('PolicyBossPro')
-            storePassword 'PolicyBossPro'
+            keyAlias 'PolicyBossProElite'
+            keyPassword 'PolicyBossProElite'
+            storeFile file('PolicyBossProElite')
+            storePassword 'PolicyBossProElite'
         }
     }
     compileSdkVersion 32

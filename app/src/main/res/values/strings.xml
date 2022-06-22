@@ -68,7 +68,7 @@
     <string name="buyHdfc"> <b><u> BUY HDFC NOW</u></b></string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="motorInfo">  Please insert the Vehicle Number here if you have issued the policy from PolicyBoss Pro last year and are renewing the same. This will enable your proposal form to be auto filled. </string>
+    <string name="motorInfo">  Please insert the Vehicle Number here if you have issued the policy from PolicyBoss ProElite last year and are renewing the same. This will enable your proposal form to be auto filled. </string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_private_car_detail">Motor Insurance</string>
     <string name="title_activity_register">REGISTER AS ASSOCIATE</string>
@@ -115,7 +115,7 @@
     <!--Health relationship-->
     <string name="title_activity_notification">Notification</string>
 
-    <string name="title_activity_under_construction">PolicyBoss Pro</string>
+    <string name="title_activity_under_construction">PolicyBoss ProElite</string>
 
     <string name="title_activity_whats_new">WHAT\'S NEW</string>
 
@@ -166,7 +166,7 @@
     <string name="welcome_slide_1_text">India’s first and most comprehensive business enabling platform for Insurance advisors/Posps</string>
     <string name="title_activity_health_check_up_list">HEALTH CHECK UP PLANS</string>
     <string name="title_activity_early_salary">Early Salary</string>
-    <string name="mps_popup_text">Congratulations and welcome to the PolicyBoss Pro Family. As our privileged associate, you are eligible to an exclusive Magic Platinum Subscription (MPS) for </string>
+    <string name="mps_popup_text">Congratulations and welcome to the PolicyBoss ProElite Family. As our privileged associate, you are eligible to an exclusive Magic Platinum Subscription (MPS) for </string>
     <!--<string name="title_activity_main">ICICI Credit Card</string>-->
     <string name="know_more_mps_desc">Magic Platinum Subscription (MPS) is an exclusive offer from Datatcomp, available to Finmart Business Associates only. In this subscrition you pay ₹
         </string>
@@ -184,7 +184,7 @@
     <!-- <string name="title_activity_home">HomeActivity</string>-->
     <string name="title_activity_income_potential">Income Calculator</string>
     <string name="title_activity_nav_transactionhistory">TRANSACTION HISTORY</string>
-    <string name="title_activity_contact_lead">Create Lead from Contact</string>
+    <string name="title_activity_contact_lead">Sync Contacts</string>
 
     <string name="title_activity_attendance_registraion">Registration</string>
     <!-- region posp-->
@@ -197,7 +197,7 @@
 
     <string name="title_activity_add_offline_quotes">ADD OFFLINE QUOTES</string>
 
-    <string name="Finmart_underline"><u>Know Your PolicyBoss Pro</u>.</string>
+    <string name="Finmart_underline"><u>Know Your PolicyBoss ProElite</u>.</string>
 
 
     <string name="title_activity_messagecenteractivity">Message Center</string>
@@ -206,13 +206,13 @@
     <!--Term lakshya -->
     <string name="txtSyncContacts">
         <b><u>About Creating Contact Lead Feature:</u></b>
-        \nAs part of our continuous efforts in making PolicyBoss Pro more relevant for you, we are launching a new feature - Create Contact Lead. You can use this to generate motor insurance leads by marrying your contacts with our data base. In
+        \nAs part of our continuous efforts in making PolicyBoss ProElite more relevant for you, we are launching a new feature - Create Contact Lead. You can use this to generate motor insurance leads by marrying your contacts with our data base. In
         subsequent app versions, we will make this feature available across other products in the future.
         \n\nOnce you give your consent the application syncs the contacts in your phone book and checks our database for any motor vehicle the customer may have. Once the contact sync is complete you will get an update with the number of matches found in our database
         \n\nUpon syncing your contacts with our database, we will return back the Make/ Model/ Sub-Model/ Date of Expiry and other relevant details, as found for all matched contacts. This is then converted into a lead and listed in the lead module of your app. You can see the leads for every month, 6 weeks prior to their expiry date.
         \n\nPLEASE NOTE: Currently, it takes up to 72 hours for the data to be synced after you have given your permission.
  \n\n<b><u>Data Safety:</u></b>
-         \nAt PolicyBoss Pro, it is our constant endeavour to enable your business and we believe by opening our databases and giving you access to the same, we will be able to help your business grow. So if you are sharing your contact with us, do note that we are also sharing the data of our customers with you, which has been accumulated by us over the last several years. It is a win-win for all.
+         \nAt PolicyBoss ProElite, it is our constant endeavour to enable your business and we believe by opening our databases and giving you access to the same, we will be able to help your business grow. So if you are sharing your contact with us, do note that we are also sharing the data of our customers with you, which has been accumulated by us over the last several years. It is a win-win for all.
    \n\nWhile the customer details are already in our database, it is our strong belief that in a competitive market scenario, multiple people are trying to sell to the same customer. Still the customer buys insurance from you even today. We want to further empower you and increase your product penetration, that will help you in making your business grow better.
 \n\nThe sale is yours if you are able to close it.
 

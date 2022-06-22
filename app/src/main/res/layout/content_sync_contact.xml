@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Sync Contacts:" />
+                android:text="Contact &amp; Call Log :" />
 
 
             <androidx.cardview.widget.CardView
@@ -57,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="SYNC CONTACT"
+                        android:text="SYNC CONTACT &amp; CALL LOG"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
@@ -252,6 +252,35 @@
                 android:text="0"
                 android:textSize="42sp" />
         </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CvLeaddashboard"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardElevation="@dimen/eight"
+            app:cardCornerRadius="35dp"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/fab_margin"
+            android:layout_height="40dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/txtLeaddashboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="View Lead Dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 </LinearLayout>

@@ -138,7 +138,7 @@ public class SalesShareActivity extends BaseActivity implements BaseActivity.Pop
 
     public void showShareProduct() {
         if (combinedImage != null)
-            datashareList(SalesShareActivity.this, combinedImage, "PolicyBoss Pro", "");
+            datashareList(SalesShareActivity.this, combinedImage, "PolicyBoss ProElite", "");
 //        //new shareImageNormal(docsEntity.getImage_path(), "Finmart", "Look what I found on Finmart!").execute();
 
 

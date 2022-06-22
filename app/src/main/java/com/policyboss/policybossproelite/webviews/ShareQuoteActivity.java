@@ -831,7 +831,7 @@ public class ShareQuoteActivity extends BaseActivity implements IResponseSubcrib
 
                 ContentResolver resolver = getContentResolver();
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(MediaStore.Files.FileColumns.DISPLAY_NAME, Utility.getPdfFileName("PolicyBossPRO"));
+                contentValues.put(MediaStore.Files.FileColumns.DISPLAY_NAME, Utility.getPdfFileName("PolicyBossPROElite"));
 
                 Uri collection = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);  // added this line
 

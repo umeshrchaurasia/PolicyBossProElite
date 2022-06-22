@@ -276,7 +276,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
         textViewList = new ArrayList<>();
 
-        toolbar.setTitle("PolicyBoss Pro");
+        toolbar.setTitle("PolicyBoss ProElite");
 
 
 
@@ -393,7 +393,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                         fragment = new DashboardFragment();
                         // getSupportActionBar().setTitle("MAGIC FIN-MART");
                         if (prefManager.getLanguage().equals("")) {
-                            getSupportActionBar().setTitle("PolicyBoss Pro");
+                            getSupportActionBar().setTitle("PolicyBoss ProElite");
                         } else {
                             getSupportActionBar().setTitle(db.getLangData(prefManager.getLanguage(), "Title"));
                         }
@@ -975,7 +975,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
     public void selectHome() {
 
         if (prefManager.getLanguage().equals("")) {
-            getSupportActionBar().setTitle("PolicyBoss Pro");
+            getSupportActionBar().setTitle("PolicyBoss ProElite");
         } else {
             getSupportActionBar().setTitle(db.getLangData(prefManager.getLanguage(), "Title"));
         }
@@ -1656,7 +1656,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
         super.onResume();
 
         // will be upadte everytyime user comes on dashboard
-        toolbar.setTitle("PolicyBoss Pro");
+        toolbar.setTitle("PolicyBoss ProElite");
 
         if (loginResponseEntity != null) {
             new MasterController(this).getConstants(this);
@@ -1912,7 +1912,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
               }
             }*/
 
-            //region comment policyBosspro finbox and finpiece
+            //region comment policyBossproElite finbox and finpiece
             /*
             if (userConstantEntity.getFinboxEnabled() != null && !userConstantEntity.getFinboxEnabled().equals("")) {
 

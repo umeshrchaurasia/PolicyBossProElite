@@ -6,12 +6,16 @@
     android:gravity="center"
     android:orientation="vertical">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center"
+        android:maxLines="2"
         android:padding="5dp"
-        android:text="WHAT Is PolicyBoss ProElite?"
+        android:text="WHY SYNC CONTACTS?"
         android:textAllCaps="true"
         android:textAppearance="@style/TextStyle.Title" />
 
@@ -19,26 +23,34 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerInside"
-        android:src="@drawable/slide_2" />
-
-
+        android:src="@drawable/slide11" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="20dp"
-        android:text="Policyboss ProElite is a single platform from where you can solicit IRDAI Approved insurance products like Motor, Health, Travel &amp; more"
-        android:textAppearance="@style/TextStyle.TextMedium" />
+        android:text="Your phone book contacts are essentially the office directory for you as an insurance agent."
 
+        android:textAppearance="@style/TextStyle.TextMedium" />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:text="@string/sell_everything_digitally"
+        android:text="Once you opt in for Sync Contacts, we will enrich all matches found from our end with vehicle and insurance details."
+
         android:textAppearance="@style/TextStyle.TextMedium" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="20dp"
+        android:text="Now, make the most of your contact book and proactively prospect at the right time, without being pushy."
+
+        android:textAppearance="@style/TextStyle.TextMedium" />
+
 
 </LinearLayout>
