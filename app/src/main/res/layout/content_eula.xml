@@ -16,7 +16,7 @@
         android:layout_width="300dp"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
-        android:src="@mipmap/pb                                                                                                                                                                                                                                                                                                               _splash_bg" />
+        android:src="@mipmap/pb_splash_bg" />
 
     <TextView
         android:layout_width="match_parent"
