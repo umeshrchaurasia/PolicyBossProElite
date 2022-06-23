@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
+import com.policyboss.policybossproelite.webviews.CommonWebViewActivity;
 
 public class WelcomeSyncContactActivity extends BaseActivity implements View.OnClickListener {
     private ViewPager viewPager;
@@ -23,9 +25,12 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
     private TextView[] dots;
     private int[] layouts;
     private Button btnNext;
-    TextView btnSkip;
+    TextView btnSkip,txtprivacy,txtterm;
     ImageView dot1, dot2, dot3;
     int current = 0;
+    CheckBox btnchkagree;
+    LinearLayout ll_term;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +45,13 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
         btnNext.setOnClickListener(this);
+        btnchkagree.setOnClickListener(this);
+        txtprivacy.setOnClickListener(this);
+        txtterm.setOnClickListener(this);
+        ll_term.setOnClickListener(this);
        // btnSkip.setOnClickListener(this);
-
+        ll_term.setVisibility(View.GONE);
+        btnchkagree.setChecked(false);
     }
 
     private void init_widgets() {
@@ -62,6 +72,11 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
       //  btnSkip = (TextView) findViewById(R.id.btn_skip);
         btnNext = (Button) findViewById(R.id.btn_next);
+        txtprivacy = (TextView) findViewById(R.id.txtprivacy);
+        txtterm = (TextView) findViewById(R.id.txtterm);
+        btnchkagree = (CheckBox) findViewById(R.id.chkagree);
+        ll_term= (LinearLayout) findViewById(R.id.ll_term);
+
     }
 
     @Override
@@ -79,6 +94,27 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
             case R.id.btn_skip:
                 startActivity(new Intent(this, SyncContactActivity.class));
                 break;
+            case R.id.txtprivacy:
+                startActivity(new Intent(this, CommonWebViewActivity.class)
+                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro")
+                        .putExtra("NAME", "" + "privacy-policy")
+                        .putExtra("TITLE", "" + "privacy-policy"));
+                break;
+            case R.id.txtterm:
+                startActivity(new Intent(this, CommonWebViewActivity.class)
+                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro")
+                        .putExtra("NAME", "" + "Term & Condition")
+                        .putExtra("TITLE", "" + "Term & Condition"));
+                break;
+            case R.id.chkagree:
+                if (btnchkagree.isChecked()) {
+
+                    btnNext.setVisibility(View.VISIBLE);
+                }else
+                {
+                    btnNext.setVisibility(View.GONE);
+                }
+                break;
         }
     }
 
@@ -94,10 +130,16 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
             if (position == layouts.length - 1) {
                 // last page. make button text to GOT IT
                 btnNext.setText("GET STARTED");
+                btnNext.setVisibility(View.GONE);
+                ll_term.setVisibility(View.VISIBLE);
                // btnSkip.setVisibility(View.VISIBLE);
             } else {
                 // still pages are left
+                ll_term.setVisibility(View.GONE);
+                btnNext.setVisibility(View.VISIBLE);
                 btnNext.setText("NEXT");
+                btnchkagree.setChecked(false);
+              //  btnNext.setVisibility(View.GONE);
                // btnSkip.setVisibility(View.VISIBLE);
             }
         }

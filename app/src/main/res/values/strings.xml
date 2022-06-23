@@ -734,4 +734,11 @@ The system is configured to monitor the number of leads generated, to the conver
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_change_password">Change Password</string>
 
+
+    <string name="term">
+       <u>Term &amp; Condition</u>.
+    </string>
+    <string name="privacy">
+       <u>Privacy Policy</u>.
+    </string>
 </resources>
