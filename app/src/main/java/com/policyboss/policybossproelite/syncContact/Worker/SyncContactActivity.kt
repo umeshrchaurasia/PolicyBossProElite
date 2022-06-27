@@ -11,6 +11,9 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.work.*
@@ -71,7 +74,7 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
 
         binding.includedSyncContact.CvSync.setOnClickListener(this)
 
-        binding.includedSyncContact.CvLeaddashboard.setOnClickListener(this)
+      //  binding.includedSyncContact.CvLeaddashboard.setOnClickListener(this)
 
         if (!checkPermission()) {
             requestPermission()
@@ -118,12 +121,12 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
 
 
         }
-        R.id.CvLeaddashboard -> {
-            startActivity(Intent(this, CommonWebViewActivity::class.java) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
-                .putExtra("URL", "" + userConstantEntity.leadDashUrl)
-                .putExtra("NAME", "" + "Lead DashBoard")
-                .putExtra("TITLE", "" + "Lead DashBoard"))
-        }
+//        R.id.CvLeaddashboard -> {
+//            startActivity(Intent(this, CommonWebViewActivity::class.java) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
+//                .putExtra("URL", "" + userConstantEntity.leadDashUrl)
+//                .putExtra("NAME", "" + "Lead DashBoard")
+//                .putExtra("TITLE", "" + "Lead DashBoard"))
+//        }
 
 
         }
@@ -418,6 +421,36 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
     }
 
 
+    fun successAlert(
+
+    ) {
+        val builder = AlertDialog.Builder(this@SyncContactActivity, R.style.CustomDialog);
+        val btnClose: Button
+        val txtHdr: TextView
+        val txtMessage: TextView
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.layout_success_message, null)
+        builder.setView(dialogView)
+        val alertDialog = builder.create()
+
+        btnClose = dialogView.findViewById(R.id.btnClose)
+        txtMessage = dialogView.findViewById(R.id.txtMessage)
+        txtHdr = dialogView.findViewById(R.id.txtHdr)
+       // txtHdr.text = "" + strhdr
+      //  txtMessage.text = "" + strBody
+
+        btnClose.setOnClickListener {
+            alertDialog.dismiss()
+            startActivity(Intent(this, CommonWebViewActivity::class.java) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
+                .putExtra("URL", "" + userConstantEntity.leadDashUrl)
+                .putExtra("NAME", "" + "Lead DashBoard")
+                .putExtra("TITLE", "" + "Lead DashBoard"))
+
+        }
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+
+    }
     private fun updateProgrees(currentProg : Int , maxProg : Int){
 
         binding.includedSyncContact.progressBar!!.max = maxProg
@@ -431,8 +464,9 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
 
     private fun saveMessage(opMessage : String = "Data Save Successfully..."){
 
-        binding.includedSyncContact.txtMessage.text = opMessage
+      //binding.includedSyncContact.txtMessage.text = opMessage
 
+        successAlert()
         cancelAnimDialog()
 
 //        binding.includedSyncContact.CvSync.isEnabled = true

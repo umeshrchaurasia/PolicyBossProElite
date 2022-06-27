@@ -260,6 +260,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/CvLeaddashboard"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardElevation="@dimen/eight"
             app:cardCornerRadius="35dp"
@@ -268,6 +269,7 @@
             android:layout_height="40dp">
 
             <RelativeLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
