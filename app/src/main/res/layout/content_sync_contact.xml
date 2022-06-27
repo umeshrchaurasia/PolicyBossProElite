@@ -31,6 +31,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:visibility="gone"
                 android:id="@+id/CvSync"
                 app:cardBackgroundColor="@color/colorPrimaryDark"
                 app:cardElevation="@dimen/eight"
@@ -40,6 +41,7 @@
                 android:layout_height="40dp">
 
                 <RelativeLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -95,6 +97,7 @@
                     android:background="@color/gray_divider_color" />
 
                 <ProgressBar
+
                     android:id="@+id/progressBar"
                     android:layout_marginTop="@dimen/fab_margin"
                     style="?android:attr/progressBarStyleHorizontal"
@@ -105,11 +108,12 @@
                     android:layout_marginRight="8dp"
 
 
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
 
                 <RelativeLayout
-                    android:visibility="visible"
+
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
@@ -151,7 +155,8 @@
                         style="@style/TextViewStyle.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total"
+                        android:textSize="17sp"
+                        android:text="Total Contacts"
                         android:textColor="@color/blue" />
 
                     <TextView

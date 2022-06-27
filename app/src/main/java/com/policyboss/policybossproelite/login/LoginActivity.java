@@ -62,8 +62,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     String[] perms = {
             "android.permission.CAMERA",
             "android.permission.WRITE_EXTERNAL_STORAGE",
-            "android.permission.READ_EXTERNAL_STORAGE"
-
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.READ_CONTACTS",
+            "android.permission.READ_CALL_LOG"
     };
 
 
@@ -98,6 +99,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         int WRITE_EXTERNAL = ActivityCompat.checkSelfPermission(getApplicationContext(), perms[1]);
         int READ_EXTERNAL = ActivityCompat.checkSelfPermission(getApplicationContext(), perms[2]);
+        int READ_CONTACTS = ActivityCompat.checkSelfPermission(getApplicationContext(), perms[3]);
+        int READ_CALL_LOG = ActivityCompat.checkSelfPermission(getApplicationContext(), perms[4]);
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
             return camera == PackageManager.PERMISSION_GRANTED
 
@@ -105,8 +108,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }else{
             return camera == PackageManager.PERMISSION_GRANTED
                     &&  WRITE_EXTERNAL == PackageManager.PERMISSION_GRANTED
-                    && READ_EXTERNAL == PackageManager.PERMISSION_GRANTED;
-
+                    && READ_EXTERNAL == PackageManager.PERMISSION_GRANTED
+                    && READ_CONTACTS == PackageManager.PERMISSION_GRANTED
+                    && READ_CALL_LOG == PackageManager.PERMISSION_GRANTED;
         }
 
 
@@ -134,13 +138,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         boolean write_external = ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity.this, perms[1]);
         boolean read_external = ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity.this, perms[2]);
+        boolean read_contacts = ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity.this, perms[3]);
+        boolean read_call_log = ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity.this, perms[4]);
+
         // boolean minSdk29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
 
 
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-            return  camera ||  read_external;
+            return  camera ||  read_external || read_contacts || read_call_log ;
         }else{
-            return  camera ||write_external   || read_external;
+            return  camera ||write_external   || read_external  || read_contacts || read_call_log;
 
         }
     }
@@ -167,8 +174,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     boolean camera = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean writeExternal = grantResults[1] == PackageManager.PERMISSION_GRANTED;
                     boolean readExternal = grantResults[2] == PackageManager.PERMISSION_GRANTED;
-
-                    if (camera && writeExternal && readExternal) {
+                    boolean read_contacts = grantResults[3] == PackageManager.PERMISSION_GRANTED;
+                    boolean read_call_log = grantResults[4] == PackageManager.PERMISSION_GRANTED;
+                    if (camera && writeExternal && readExternal && read_contacts && read_call_log ) {
 
                         // Toast.makeText(this, "All permission granted", Toast.LENGTH_SHORT).show();
                     } else {
@@ -177,7 +185,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
 
-                            showMessageOKCancel("Required permissions to proceed Magic-finmart..!",
+                            showMessageOKCancel("Required permissions to proceed PolicyBossProElite..!",
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {

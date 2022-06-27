@@ -18,7 +18,7 @@
     <color name="secondary_text_color">#9ba0a6</color>
     <color name="tab_color">#00476e</color>
     <color name="off_white">#fafafa</color>
-
+    <color name="dark_overlay">#B3000000</color>
 
     <color name="button_color">@color/colorPrimary</color>
 

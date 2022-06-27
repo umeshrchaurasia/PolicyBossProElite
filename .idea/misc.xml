@@ -8,26 +8,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/drawable/custom_progress_bg.xml" value="0.2195" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/drawable/indicator_active.xml" value="0.2195" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/drawable/unselected_dot.xml" value="0.2195" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/activity_contact_lead.xml" value="0.184375" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/activity_eula.xml" value="0.17864583333333334" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/activity_knowledge_guru.xml" value="0.184375" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/activity_sync_contact.xml" value="0.2125" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/activity_welcome_sync_contact.xml" value="0.12" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/content_contact_lead.xml" value="0.184375" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/content_eula.xml" value="0.1" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/content_knowledge_guru.xml" value="0.184375" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/content_sync_contact.xml" value="0.4657534246575342" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/sync_welcome_slide1.xml" value="0.33" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/sync_welcome_slide2.xml" value="0.25" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/sync_welcome_slide3.xml" value="0.25" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/welcome_slide1.xml" value="0.33" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/welcome_slide2.xml" value="0.2125" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/welcome_slide4.xml" value="0.2125" />
-        <entry key="..\:/Umesh/PolicyBossProElite/app/src/main/res/layout/welcome_slide5.xml" value="0.2125" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/drawable/custom_progress_bg.xml" value="0.1" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/activity_sales_detail.xml" value="0.1921875" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/activity_sync_contact.xml" value="0.1921875" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/content_sales_detail.xml" value="0.14375" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/content_sync_contact.xml" value="0.17" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/layout/dialog_loading.xml" value="0.25" />
+        <entry key="..\:/Rahul Proj/PolicyBossProElite/app/src/main/res/menu/nav_menu_drawer.xml" value="0.1765625" />
         <entry key="..\:/Umesh/PolicyBossPro_2022_NEW/app/src/main/res/layout/layout_posp_amount_popup.xml" value="0.1" />
       </map>
     </option>

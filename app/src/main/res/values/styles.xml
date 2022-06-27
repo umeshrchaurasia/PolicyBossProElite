@@ -364,6 +364,11 @@
 
     </style>
 
+    <style name="LoadingDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
     <style name="CustomDialogAnimation">
         <item name="android:windowEnterAnimation">@anim/slide_left</item>
         <item name="android:windowExitAnimation">@anim/slide_right</item>
