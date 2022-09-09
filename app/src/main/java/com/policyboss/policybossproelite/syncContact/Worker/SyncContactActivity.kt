@@ -342,7 +342,7 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
         builder.setMessage("This App Required Contact & Call Log Permissions.")
         //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+        builder.setPositiveButton("Ok") { dialog, which ->
 
 
             dialog.cancel()

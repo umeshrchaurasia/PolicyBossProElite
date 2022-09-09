@@ -13,7 +13,8 @@ class NetworkUtils {
 
     companion object{
 
-      open  fun isNetworkAvailable(context: Context): Boolean {
+
+        @JvmStatic  open  fun isNetworkAvailable(context: Context): Boolean {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

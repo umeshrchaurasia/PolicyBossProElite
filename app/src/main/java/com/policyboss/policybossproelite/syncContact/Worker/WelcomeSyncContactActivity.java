@@ -94,15 +94,18 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
             case R.id.btn_skip:
                 startActivity(new Intent(this, SyncContactActivity.class));
                 break;
+
             case R.id.txtprivacy:
                 startActivity(new Intent(this, CommonWebViewActivity.class)
-                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro")
+                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite")
                         .putExtra("NAME", "" + "privacy-policy")
                         .putExtra("TITLE", "" + "privacy-policy"));
                 break;
             case R.id.txtterm:
+
+
                 startActivity(new Intent(this, CommonWebViewActivity.class)
-                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro")
+                        .putExtra("URL", "https://www.policyboss.com/terms-condition")
                         .putExtra("NAME", "" + "Term & Condition")
                         .putExtra("TITLE", "" + "Term & Condition"));
                 break;

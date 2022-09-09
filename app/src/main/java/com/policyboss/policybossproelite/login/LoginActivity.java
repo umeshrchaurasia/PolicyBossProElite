@@ -23,12 +23,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.helpfeedback.raiseticketDialog.RaiseTicketDialogActivity;
 import com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity;
 import com.policyboss.policybossproelite.register.RegisterActivity;
 import com.policyboss.policybossproelite.utility.Constants;
+import com.policyboss.policybossproelite.utility.NetworkUtils;
 import com.policyboss.policybossproelite.utility.ReadDeviceID;
 
 import io.realm.Realm;
@@ -271,6 +273,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     //etPassword.setError("Enter Password");
                     return;
                 }
+                if (!NetworkUtils.isNetworkAvailable(this)) {
+
+                    Snackbar.make( view, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
                 //   Toast.makeText(this,prefManager.getToken(),Toast.LENGTH_LONG).show();
                 //switch user clear
                 SharedPreferences preferences = getSharedPreferences(Constants.SWITCh_ParentDeatils_FINMART, Context.MODE_PRIVATE);
@@ -341,6 +348,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 .forgotPassword(etEmail.getText().toString(), LoginActivity.this);
     }
 
+    public void showPospAlert(String strBody) {
+        try {
+            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(LoginActivity.this,R.style.AlertDialog_Theme);
+            builder.setTitle("PolicyBossPro Elite");
+
+            builder.setMessage(strBody);
+            String positiveText = "Ok";
+            builder.setPositiveButton(positiveText,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+
+                        }
+                    });
+            final androidx.appcompat.app.AlertDialog dialog = builder.create();
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        } catch (Exception ex) {
+            Toast.makeText(this, "Please try again..", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void OnSuccess(APIResponse response, String message) {
         cancelDialog();
@@ -351,9 +382,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 prefManager.setUserPassword("" + etPassword.getText().toString());
 
                 if (((LoginResponse) response).getMasterData().getPOSPNo() != null) {
+                    if (((LoginResponse) response).getMasterData().getPOSPNo() != "") {
+                        String PospID = ((LoginResponse) response).getMasterData().getPOSPNo();
+                        new RegisterController(this).hideFOSUser(PospID, LoginActivity.this);
 
-                    String PospID = ((LoginResponse) response).getMasterData().getPOSPNo();
-                    new RegisterController(this).hideFOSUser(PospID, LoginActivity.this);
+                    }else{
+                        showPospAlert("Your Posp Number is not generated.!!\nNot Eligible For Login.Please Contact Admin");
+                    }
+                }else{
+
+                    showPospAlert("Your Posp Number is not generated.!!\nNot Eligible For Login.Please Contact Admin");
                 }
                 // prefManager.setIsUserLogin(true);
 

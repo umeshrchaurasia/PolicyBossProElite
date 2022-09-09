@@ -52,11 +52,11 @@
 <!--        </com.google.android.material.appbar.AppBarLayout>-->
 
 
-        <include layout="@layout/content_home_main"
+        <include
             android:id="@+id/included_home_main"
+            layout="@layout/content_home_main"
             android:visibility="visible"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerDashboard"

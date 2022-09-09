@@ -16,6 +16,7 @@ import com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity;
 import com.policyboss.policybossproelite.myaccount.MyAccountActivity;
 import com.policyboss.policybossproelite.switchuser.SwitchUserActivity;
 import com.policyboss.policybossproelite.term.termselection.TermSelectionActivity;
+import com.policyboss.policybossproelite.utility.NetworkUtils;
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -130,6 +131,12 @@ public class NotificationActivity extends BaseActivity implements IResponseSubcr
                 switch (id){
                     case R.id.nav_home:
 
+                        if (!NetworkUtils.isNetworkAvailable(NotificationActivity.this)) {
+
+                            Snackbar.make( rvNotify, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         Intent intent = new Intent(NotificationActivity.this, HomeMainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.putExtra(Constants.BOTTOM_TYPE,"nav_home");
@@ -141,6 +148,13 @@ public class NotificationActivity extends BaseActivity implements IResponseSubcr
 
                     case R.id.nav_menu:
 
+                        if (!NetworkUtils.isNetworkAvailable(NotificationActivity.this)) {
+
+                            Snackbar.make( rvNotify, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show();
+                            return;
+                        }
+
+
                         BottomSheetDialogMenuFragment bottomSheetDialogMenuFragment =new  BottomSheetDialogMenuFragment();
                         bottomSheetDialogMenuFragment.show(getSupportFragmentManager(), bottomSheetDialogMenuFragment.getTag());
 
@@ -148,6 +162,13 @@ public class NotificationActivity extends BaseActivity implements IResponseSubcr
                         break;
 
                     case R.id.nav_profile:
+
+                        if (!NetworkUtils.isNetworkAvailable(NotificationActivity.this)) {
+
+                            Snackbar.make( rvNotify, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show();
+                            return;
+                        }
+
 
                         Intent intent3 = new Intent(NotificationActivity.this, MyAccountActivity.class);
                         intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -24,14 +24,14 @@
 
             <TextView
                 android:id="@+id/txtHdr"
-                android:layout_marginTop="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/twenty_four"
                 style="@style/TextViewStyle.Large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="0dp"
                 android:text="Saved Successfully !!"
-                android:fontFamily="@font/bungee"
+                android:fontFamily="@font/poppinsmedium"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -50,7 +50,9 @@
                 android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contact and Call Log Saved SuccessFully.\nTo see the details please click below "
+                android:text="Thank You for choosing Sync Contacts.While this happens, you can continue using the app.
+                \n\nWe will notify you once complete!
+"
                 />
 
            <LinearLayout
@@ -87,11 +89,11 @@
                 android:id="@+id/btnClose"
                 style="@style/ButtonStyle"
                 android:layout_width="match_parent"
-
+                android:textAllCaps="false"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
 
-                android:text="View Lead Dashboard" />
+                android:text="View Sync Contact Dashboard" />
 
 
         </LinearLayout>

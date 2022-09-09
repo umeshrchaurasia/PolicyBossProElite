@@ -26,6 +26,7 @@ import com.policyboss.policybossproelite.motor.twowheeler.activity.TwoWheelerQuo
 import com.policyboss.policybossproelite.ncd.NCDActivity
 import com.policyboss.policybossproelite.offline_quotes.AddNewOfflineQuotesActivity
 import com.policyboss.policybossproelite.quicklead.QuickLeadActivity
+import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivity
 import com.policyboss.policybossproelite.term.termselection.TermSelectionActivity
 import com.policyboss.policybossproelite.ultralaksha.ultra_selection.UltraLakshaSelectionActivity
 import com.policyboss.policybossproelite.utility.Constants
@@ -546,6 +547,11 @@ class SliderDashboardAdapter(
                 mContext.startActivity(Intent(mContext, AddNewOfflineQuotesActivity::class.java))
                 // new TrackingController(mContext).sendData(new TrackingRequestEntity(new TrackingData("Offline quote "), Constants.CAMPAIGN), null);
                 MyApplication.getInstance().trackEvent(Constants.OFFLINE, "Clicked", "OFFLINE")
+            }
+            45 -> {
+                mContext.startActivity(Intent(mContext, WelcomeSyncContactActivity::class.java))
+                //  new TrackingController(mContext).sendData(new TrackingRequestEntity(new TrackingData("Quick Lead tab on home page"), Constants.QUICK_LEAD), null);
+                MyApplication.getInstance().trackEvent(Constants.QUICK_LEAD, "Clicked", "SyncContact")
             }
             49 -> {
                 mContext.startActivity(Intent(mContext, UltraLakshaSelectionActivity::class.java))

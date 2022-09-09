@@ -66,6 +66,30 @@ public class DashboardMultiLangEntity extends RealmObject {
 
     }
 
+    public DashboardMultiLangEntity(String type, int productId, String productName, String productDetails, int icon, String productNameKey, String productDetailsKey,String isExclusive) {
+        this.type = type;
+        this.productId = productId;
+        this.productName = productName;
+        this.productDetails = productDetails;
+        this.icon = icon;
+        this.productNameKey = productNameKey;
+        this.productDetailsKey = productDetailsKey;
+        this.IsExclusive = isExclusive;
+
+        this.ProductNameFontColor = "";
+        this.ProductBackgroundColor = "";
+        this.ProductDetailsFontColor = "";
+
+        this.IsNewprdClickable = "";
+
+        this.IsSharable = "";
+        this.popupmsg = "";
+        this.title = "";
+        this.info = "";
+        this.isChecked = false;
+
+    }
+
 
     public String getProductNameKey() {
         return productNameKey;

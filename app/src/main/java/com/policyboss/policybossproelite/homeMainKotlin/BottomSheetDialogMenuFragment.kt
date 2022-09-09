@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import com.policyboss.policybossproelite.R
 import com.policyboss.policybossproelite.certificate.POSP_certicate_appointment
 import com.policyboss.policybossproelite.change_password.ChangePasswordActivity
@@ -38,6 +39,7 @@ import com.policyboss.policybossproelite.syncContact.Worker.SyncContactActivity
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivity
 import com.policyboss.policybossproelite.transactionhistory.nav_transactionhistoryActivity
 import com.policyboss.policybossproelite.utility.Constants
+import com.policyboss.policybossproelite.utility.NetworkUtils
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
 import magicfinmart.datacomp.com.finmartserviceapi.PrefManager
 import magicfinmart.datacomp.com.finmartserviceapi.Utility
@@ -263,8 +265,14 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
     fun getNavigationMenu(menuChild: MenuChild)  {
 
 
+        if (!NetworkUtils.isNetworkAvailable(this.requireContext())) {
 
-            this.dismiss()
+
+            Toast.makeText(this.requireContext(),getString(R.string.noInternet), Toast.LENGTH_SHORT ).show()
+
+            return
+        }
+        this.dismiss()
 
 
 

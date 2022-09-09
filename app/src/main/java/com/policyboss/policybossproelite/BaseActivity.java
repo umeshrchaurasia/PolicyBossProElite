@@ -1341,7 +1341,7 @@ public class BaseActivity extends AppCompatActivity {
     public void showAlert(String strBody) {
         try {
             androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(BaseActivity.this);
-            builder.setTitle("Finmart");
+            builder.setTitle("PolicyBossPro Elite");
 
             builder.setMessage(strBody);
             String positiveText = "Ok";

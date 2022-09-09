@@ -785,6 +785,9 @@ public class DBPersistanceController {
         if (prefManager.getMenuDashBoard() != null) {
             dashBoardItemEntities = prefManager.getMenuDashBoard().getMasterData().getDashboard();
             //     if (dashboardEntities != null && dashboardEntities.size() > 0) {
+
+         //   dashboardEntities.add(new DashboardEntity("LOANS", 4, "CREDIT CARD", "Get instant Credit card approvals with amazing offers & deals.", R.drawable.credit_card));
+            dashboardEntities.add(new DashboardMultiLangEntity("INSURANCE", 45, "SYNC CONTACT", "sync contact description", R.drawable.create_lead_from_contact, "SyncContacttitle", "SyncContactdesc","N"));
             for (DashBoardItemEntity dashBoardItemEntity : dashBoardItemEntities) {
                 if (dashBoardItemEntity.getDashboard_type() == 1 && dashBoardItemEntity.getIsActive() == 1) {
                     DashboardMultiLangEntity dashboardEntity = new DashboardMultiLangEntity("INSURANCE", Integer.parseInt(dashBoardItemEntity.getSequence()), "" + dashBoardItemEntity.getMenuname(), "" + dashBoardItemEntity.getDescription(), -1, "Insurance", "");

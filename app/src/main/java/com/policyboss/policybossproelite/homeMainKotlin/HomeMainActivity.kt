@@ -7,10 +7,7 @@ import android.content.*
 import android.content.pm.*
 import android.graphics.drawable.Icon
 import android.net.Uri
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
-import android.os.Parcelable
+import android.os.*
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +25,7 @@ import com.demo.kotlindemoapp.HomeMain.CarouselViewPager.Adapter.SliderImageAdap
 import com.demo.kotlindemoapp.HomeMain.CarouselViewPager.CarouselTransformer
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 import com.policyboss.policybossproelite.BaseActivity
 import com.policyboss.policybossproelite.BaseActivity.PermissionListener
 import com.policyboss.policybossproelite.BuildConfig
@@ -45,6 +43,7 @@ import com.policyboss.policybossproelite.splashscreen.SplashScreenActivity
 import com.policyboss.policybossproelite.switchuser.SwitchUserActivity
 import com.policyboss.policybossproelite.utility.CircleTransform
 import com.policyboss.policybossproelite.utility.Constants
+import com.policyboss.policybossproelite.utility.NetworkUtils
 import com.policyboss.policybossproelite.utility.ReadDeviceID
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
 import magicfinmart.datacomp.com.finmartserviceapi.PrefManager
@@ -65,6 +64,7 @@ import magicfinmart.datacomp.com.finmartserviceapi.model.DashboardMultiLangEntit
 import java.util.*
 
 
+
 class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListener, BaseActivity.PopUpListener,
         BaseActivity.WebViewPopUpListener, PermissionListener , BottomSheetDialogMenuFragment.IBottomMenuCallback, SliderDashboardAdapter.IDashboardAdapterCallBack{
 
@@ -79,7 +79,7 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
 
    // lateinit var sliderHandler: Handler
 
-    var sliderHandler = Handler()
+    var sliderHandler = Handler(Looper.getMainLooper())
     lateinit var sliderRun : Runnable
 
 
@@ -219,6 +219,13 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
 
                 }
                 R.id.nav_notification -> {
+
+                    if (!NetworkUtils.isNetworkAvailable(this)) {
+
+                        Snackbar.make( binding.root, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show()
+                        return@addBubbleListener
+                    }
+
                     startActivity(Intent(this@HomeMainActivity, NotificationActivity::class.java))
                     overridePendingTransition(0, 0)
 
@@ -226,6 +233,11 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
                 }
                 R.id.nav_profile -> {
 
+                    if (!NetworkUtils.isNetworkAvailable(this)) {
+
+                        Snackbar.make( binding.root, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show()
+                        return@addBubbleListener
+                    }
                     startActivity(Intent(this@HomeMainActivity, MyAccountActivity::class.java))
                     overridePendingTransition(0, 0)
 
@@ -235,7 +247,11 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
                 R.id.nav_menu -> {
 
                     //  showBottomSheetDialog()
+                    if (!NetworkUtils.isNetworkAvailable(this)) {
 
+                        Snackbar.make( binding.root, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show()
+                        return@addBubbleListener
+                    }
                     val bottomSheetDialogMenuFragment = BottomSheetDialogMenuFragment()
                     // bottomSheetDialogMenuFragment.registerCallBack(this@HomeMainActivity)
                     bottomSheetDialogMenuFragment.show(supportFragmentManager, bottomSheetDialogMenuFragment.tag)
@@ -892,7 +908,6 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
         viewPager2.setPageTransformer(CarouselTransformer(this))
 
 
-
         sliderRun = Runnable {
 
             Log.d("VIEWPAGER", "viewPager Current Item position " + viewPager2.currentItem)
@@ -1277,7 +1292,14 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
 
     override fun onClick(view: View?) {
 
-      when(view!!.id){
+        if (!NetworkUtils.isNetworkAvailable(this)) {
+
+            Snackbar.make( binding.root, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show()
+            return
+        }
+
+        when(view!!.id){
+
 
           //redirect to knowledge guru
           R.id.tvKnowledge -> {

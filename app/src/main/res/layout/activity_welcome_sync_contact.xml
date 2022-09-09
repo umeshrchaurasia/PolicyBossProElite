@@ -13,13 +13,12 @@ android:orientation="vertical"
     android:id="@+id/view_pager"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="80" />
+    android:layout_weight="70" />
 
 
 <View
     android:layout_width="match_parent"
     android:layout_height="1dp"
-    android:layout_above="@id/layoutDots"
     android:alpha=".5"
     android:background="@android:color/white" />
     <LinearLayout
@@ -32,14 +31,16 @@ android:orientation="vertical"
         android:id="@+id/ll_term"
         android:visibility="visible">
 
+
+
         <TextView
             android:id="@+id/txtterm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="0dp"
 
             android:text="@string/term"
-            android:textAppearance="@style/TextStyle.TextLarge"
+            android:textAppearance="@style/TextViewStyle.Large"
             android:textColor="@color/blue" />
 
 
@@ -47,20 +48,20 @@ android:orientation="vertical"
             android:id="@+id/txtprivacy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextViewStyle.Large"
             android:textColor="@color/blue"
             android:text="@string/privacy"
-            android:textAppearance="@style/TextStyle.TextLarge" />
+             />
 
         <CheckBox
             android:layout_marginTop="12dp"
-            android:textAppearance="@style/TextStyle.TextMedium"
+            style="@style/TextViewStyle.Medium"
             android:id="@+id/chkagree"
+            android:gravity="top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="
-I hereby agree to the terms &amp; conditions of the Sync Contacts &amp; Call Logs."
+            android:text="I hereby agree to the terms and conditions for using Sync Contacts and give access to my phone contacts and call logs"
             android:checked="false"/>
     </LinearLayout>
 <LinearLayout

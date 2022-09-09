@@ -736,10 +736,6 @@ The system is configured to monitor the number of leads generated, to the conver
     <string name="title_activity_change_password">Change Password</string>
 
 
-    <string name="term">
-       <u>Term &amp; Condition</u>.
-    </string>
-    <string name="privacy">
-       <u>Privacy Policy</u>.
-    </string>
+    <string name="term">Term &amp; Condition.</string>
+    <string name="privacy">Privacy Policy.</string>
 </resources>

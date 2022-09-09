@@ -248,12 +248,12 @@
                             android:background="@drawable/custom_curve_blue" />
                     </LinearLayout>
 
-                  <androidx.cardview.widget.CardView
-                       android:layout_marginTop="@dimen/eight"
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/tvSalesMat"
                         android:layout_width="145dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+                        android:layout_marginTop="@dimen/eight"
                         app:cardCornerRadius="@dimen/eight"
                         app:cardElevation="0dp"
 
