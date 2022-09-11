@@ -41,14 +41,14 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <include layout="@layout/content_myaccount"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@+id/app_bar"
-       android:layout_above="@+id/bubbleTabBar"
-        android:layout_height="match_parent"
+    <include
+        layout="@layout/content_myaccount"
         android:layout_width="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bubbleTabBar"
+        android:layout_below="@+id/app_bar"
+        android:layout_marginBottom="10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
     <com.facebook.shimmer.ShimmerFrameLayout

@@ -1557,7 +1557,7 @@
                         style="@style/LinearLayoutGreyStyle"
                         android:animateLayoutChanges="true"
 
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -1565,15 +1565,14 @@
                             android:orientation="vertical">
 
                             <TextView
+                                style="@style/TextViewStyle.Large"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/TextViewStyle.Large"
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="4dp"
                                 android:layout_marginRight="4dp"
 
-                                android:text="Notification Enable"
-                                />
+                                android:text="Notification Enable" />
 
                             <Switch
                                 android:id="@+id/swNotify"
@@ -1585,6 +1584,40 @@
                         </RelativeLayout>
 
 
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llPermission"
+                        style="@style/LinearLayoutGreyStyle"
+                        android:animateLayoutChanges="true"
+
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/TextViewStyle.Large"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginRight="4dp"
+
+                                android:text="Contact and Call Log Permission" />
+
+                            <Switch
+                                android:id="@+id/swPermission"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:clickable="false"
+                                android:layout_alignParentRight="true"/>
+
+                        </RelativeLayout>
 
 
 

@@ -78,6 +78,7 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
     lateinit var callingDetailAdapter: CallingDetailAdapter
 
    // lateinit var sliderHandler: Handler
+   // var runnable: Runnable? = null     // Initialize Null or lateinit
 
     var sliderHandler = Handler(Looper.getMainLooper())
     lateinit var sliderRun : Runnable

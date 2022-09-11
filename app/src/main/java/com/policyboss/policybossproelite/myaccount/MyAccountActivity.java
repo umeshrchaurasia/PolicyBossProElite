@@ -110,7 +110,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
     BubbleTabBar bubbleTabBar;
     ShimmerFrameLayout shimmerMyAcccount;
 
-    LinearLayout  llMyProfile, llAddress, llBankDetail, llDocumentUpload, llPosp, llAbout, llNotify;
+    LinearLayout  llMyProfile, llAddress, llBankDetail, llDocumentUpload, llPosp, llAbout, llNotify,llPermission;
     ImageView ivMyProfile, ivAddress, ivBankDetail, ivDocumentUpload, ivPOSP, ivProfile, ivAbout,
             ivPhotoCam, ivPhotoView, ivPanCam, ivPanView, ivCancelCam, ivCancelView, ivAadharCam, ivAadharView,
             ivAadhar, ivCancel, ivPan, ivPhoto, ivUser, ivNotify;
@@ -123,7 +123,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
 
     AppCompatImageView ivManagerMobile, ivManagerEmail, ivSupportMobile, ivSupportEmail;
     ScrollView mainScrollView;
-    Switch swNotify;
+    Switch swNotify,swPermission;
 
     Button btnSave;
     RegisterRequestEntity registerRequestEntity;
@@ -182,8 +182,6 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
         setListener();
         initLayouts();
         setfileView();
-
-
 
         shimmerMyAcccount.setVisibility(View.VISIBLE);
         rlParent.setVisibility(View.GONE);
@@ -256,6 +254,12 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        verifyCallLogContactPermission();
+    }
 
     private void initLayouts() {
         llMyProfile.setVisibility(View.GONE);
@@ -410,6 +414,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
         llPosp = (LinearLayout) findViewById(R.id.llPosp);
         llAbout = (LinearLayout) findViewById(R.id.llAbout);
         llNotify = (LinearLayout) findViewById(R.id.llNotify);
+        llPermission  = (LinearLayout) findViewById(R.id.llPermission);
 
         rlParent = (RelativeLayout) findViewById(R.id.rlParent);
         rlMyProfile = (RelativeLayout) findViewById(R.id.rlMyProfile);
@@ -496,6 +501,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
         ivNotify = (ImageView) findViewById(R.id.ivNotify);
         swNotify = (Switch) findViewById(R.id.swNotify);
         // region About Me
+        swPermission = (Switch) findViewById(R.id.swPermission);
 
         btnSave = (Button) findViewById(R.id.btnSave);
 
@@ -529,6 +535,19 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
         ivPanView.setVisibility(View.GONE);
         ivPhotoView.setVisibility(View.GONE);
         ivCancelView.setVisibility(View.GONE);
+    }
+
+    private void verifyCallLogContactPermission(){
+
+       if(checkCallLogContactPermission()) {
+
+        swPermission.setChecked(true);
+       }else {
+
+           swPermission.setChecked(false);
+
+
+       }
     }
 
     @Override
@@ -1991,6 +2010,22 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
                       && READ_EXTERNAL == PackageManager.PERMISSION_GRANTED;
 
           }
+
+
+
+    }
+
+    private boolean checkCallLogContactPermission() {
+
+        int contact = ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_CONTACTS);
+
+        int callLog = ActivityCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.READ_CALL_LOG);
+
+
+            return contact == PackageManager.PERMISSION_GRANTED
+
+                    && callLog == PackageManager.PERMISSION_GRANTED;
+
 
 
 
