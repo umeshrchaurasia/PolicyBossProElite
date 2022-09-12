@@ -90,6 +90,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".syncContact.Worker.WelcomeSyncContactActivity"
+            android:screenOrientation="portrait"
             android:exported="false" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -97,6 +98,7 @@
         </activity>
         <activity
             android:name=".syncContact.Worker.SyncContactActivity"
+            android:screenOrientation="portrait"
             android:exported="false" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

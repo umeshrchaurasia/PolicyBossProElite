@@ -301,8 +301,8 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
 
                     startActivity(Intent(requireContext(), CommonWebViewActivity::class.java) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
                             .putExtra("URL", "" + userConstantEntity.leadDashUrl)
-                            .putExtra("NAME", "" + "Lead DashBoard")
-                            .putExtra("TITLE", "" + "Lead DashBoard"))
+                            .putExtra("NAME", "" + "Sync Contact DashBoard")
+                            .putExtra("TITLE", "" + "Sync Contact DashBoard"))
 
                 }
 

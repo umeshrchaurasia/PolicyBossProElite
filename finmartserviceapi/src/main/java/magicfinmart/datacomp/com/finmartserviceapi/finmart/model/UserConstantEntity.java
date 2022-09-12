@@ -122,7 +122,8 @@ public class UserConstantEntity extends RealmObject {
 
     private String ERPID;
 
-    private int androidproversion;
+    ///androidproeliteversion
+    private int androidproeliteversion;
     /**
      * userid :
      * marketinghomepopupid : 1
@@ -1150,10 +1151,10 @@ public class UserConstantEntity extends RealmObject {
     }
 
     public int getAndroidproversion() {
-        return androidproversion;
+        return androidproeliteversion;
     }
 
     public void setAndroidproversion(int androidproversion) {
-        this.androidproversion = androidproversion;
+        this.androidproeliteversion = androidproversion;
     }
 }

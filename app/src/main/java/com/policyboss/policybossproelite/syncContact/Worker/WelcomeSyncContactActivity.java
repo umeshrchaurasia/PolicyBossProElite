@@ -76,6 +76,7 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
         txtterm = (TextView) findViewById(R.id.txtterm);
         btnchkagree = (CheckBox) findViewById(R.id.chkagree);
         ll_term= (LinearLayout) findViewById(R.id.ll_term);
+        btnchkagree.setTag(0);
 
     }
 
@@ -110,13 +111,18 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
                         .putExtra("TITLE", "" + "Term & Condition"));
                 break;
             case R.id.chkagree:
-                if (btnchkagree.isChecked()) {
+                if(!btnchkagree.getTag().equals("1")){
+                    if (btnchkagree.isChecked()) {
 
-                    btnNext.setVisibility(View.VISIBLE);
-                }else
-                {
-                    btnNext.setVisibility(View.GONE);
+                        btnNext.setEnabled(true);
+                        btnNext.setAlpha(1f);
+                    }else
+                    {
+                        btnNext.setEnabled(false);
+                        btnNext.setAlpha(0.4f);
+                    }
                 }
+
                 break;
         }
     }
@@ -133,15 +139,21 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
             if (position == layouts.length - 1) {
                 // last page. make button text to GOT IT
                 btnNext.setText("GET STARTED");
-                btnNext.setVisibility(View.GONE);
+              //  btnNext.setVisibility(View.GONE);
+                btnNext.setEnabled(false);
+                btnNext.setAlpha(0.4f);
+                btnNext.setTag(0);
                 ll_term.setVisibility(View.VISIBLE);
                // btnSkip.setVisibility(View.VISIBLE);
             } else {
                 // still pages are left
                 ll_term.setVisibility(View.GONE);
-                btnNext.setVisibility(View.VISIBLE);
+                //btnNext.setVisibility(View.VISIBLE);
+                btnNext.setTag(1);
+                btnNext.setAlpha(1f);
                 btnNext.setText("NEXT");
                 btnchkagree.setChecked(false);
+                btnNext.setEnabled(true);
               //  btnNext.setVisibility(View.GONE);
                // btnSkip.setVisibility(View.VISIBLE);
             }
