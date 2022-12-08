@@ -290,13 +290,16 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
     override fun onPause() {
         super.onPause()
 
-        if (sliderRun != null) {
+        try {
+            if (sliderRun != null) {
 
-          if(this::sliderRun.isInitialized)
+                if(this::sliderRun.isInitialized)
 
-            sliderHandler.removeCallbacks(sliderRun)
+                    sliderHandler.removeCallbacks(sliderRun)
 
-        }
+            }
+        }catch (ex : Exception){ }
+
     }
 
 
