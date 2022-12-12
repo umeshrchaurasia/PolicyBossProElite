@@ -54,6 +54,7 @@ import android.widget.Toast;
 import com.policyboss.policybossproelite.IncomeCalculator.IncomePotentialActivity;
 import com.policyboss.policybossproelite.helpfeedback.HelpFeedBackActivity;
 import com.policyboss.policybossproelite.login.LoginActivity;
+import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityNew;
 import com.policyboss.policybossproelite.term.hdfc.HdfcTermActivity;
 import com.policyboss.policybossproelite.term.icici.IciciTermActivity;
 import com.policyboss.policybossproelite.term.termselection.TermSelectionActivity;
@@ -85,6 +86,7 @@ import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.Utility;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.LoginResponseEntity;
+import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEntity;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -1537,18 +1539,22 @@ public class BaseActivity extends AppCompatActivity {
 
         // endregion
         @JavascriptInterface
-        public void incomePotential() {
+        public void synccontacts() {
             //Get the string value to process
             //shareQuote();
-            startActivity(new Intent(BaseActivity.this, IncomePotentialActivity.class));
+            startActivity(new Intent(BaseActivity.this, WelcomeSyncContactActivityNew.class));
         }
 
         @JavascriptInterface
-        public void incomeCalculator() {
+        public void syncsummary() {
             //Get the string value to process
             //shareQuote();
-            startActivity(new Intent(BaseActivity.this, IncomePotentialActivity.class));
-            // startActivity(new Intent(BaseActivity.this, IncomeCalculatorActivity.class));
+
+          UserConstantEntity userConstantEntity =    new DBPersistanceController(BaseActivity.this).getUserConstantsData();
+            startActivity(new Intent(BaseActivity.this, CommonWebViewActivity.class) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
+                .putExtra("URL", "" + userConstantEntity.getLeadDashUrl())
+                    .putExtra("NAME", "" + "View Summary")
+                    .putExtra("TITLE", "" + "View Summary"));
         }
 
         @JavascriptInterface

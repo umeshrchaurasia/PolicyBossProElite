@@ -156,6 +156,12 @@ public class  SalesMaterialActivity extends BaseActivity implements IResponseSub
             } else {
                 tempList.addAll(mlistSalesProduct);
             }
+            if(userConstantEntity.getSmsTemplatesEnabled() != "0") {
+
+               // menuChild.add(MenuChild("nav_sendSmsTemplate", "Sms Templates", R.drawable.sms_template))
+                tempList.add(new SalesProductEntity(110,"Sms Templates","http://api.magicfinmart.com/images/salesmaterial/sms_template.png?" + Math.round(Math.random() * 100),0));
+
+            }
 
             mAdapter = new SalesMaterialAdapter(this, tempList);
             rvSalesMaterial.setAdapter(mAdapter);

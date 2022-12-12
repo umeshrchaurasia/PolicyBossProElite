@@ -89,17 +89,25 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".syncContact.Worker.WelcomeSyncContactActivityNew"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+        </activity>
+        <activity
             android:name=".syncContact.Worker.WelcomeSyncContactActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.policyboss.policybossproelite.home.HomeActivity" />
         </activity>
         <activity
             android:name=".syncContact.Worker.SyncContactActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.policyboss.policybossproelite.home.HomeActivity" />

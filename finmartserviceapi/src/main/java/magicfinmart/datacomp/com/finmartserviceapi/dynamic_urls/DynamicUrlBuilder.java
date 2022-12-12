@@ -53,6 +53,7 @@ public class DynamicUrlBuilder extends GenericRetroRequestBuilder {
         @GET
         Call<VehicleMobileResponse> getVehicleByMobNo(@Url String strGetUrl);
 
+
         @Headers("token:" + token)
         @POST
         Call<GenerateLeadResponse> saveGenerateLead(@Url String strUrl, @Body GenerateLeadRequestEntity entity);

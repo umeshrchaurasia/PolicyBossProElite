@@ -27,6 +27,7 @@ import com.policyboss.policybossproelite.ncd.NCDActivity
 import com.policyboss.policybossproelite.offline_quotes.AddNewOfflineQuotesActivity
 import com.policyboss.policybossproelite.quicklead.QuickLeadActivity
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivity
+import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityNew
 import com.policyboss.policybossproelite.term.termselection.TermSelectionActivity
 import com.policyboss.policybossproelite.ultralaksha.ultra_selection.UltraLakshaSelectionActivity
 import com.policyboss.policybossproelite.utility.Constants
@@ -548,8 +549,8 @@ class SliderDashboardAdapter(
                 // new TrackingController(mContext).sendData(new TrackingRequestEntity(new TrackingData("Offline quote "), Constants.CAMPAIGN), null);
                 MyApplication.getInstance().trackEvent(Constants.OFFLINE, "Clicked", "OFFLINE")
             }
-            45 -> {
-                mContext.startActivity(Intent(mContext, WelcomeSyncContactActivity::class.java))
+            41 -> {
+                mContext.startActivity(Intent(mContext, WelcomeSyncContactActivityNew::class.java))
                 //  new TrackingController(mContext).sendData(new TrackingRequestEntity(new TrackingData("Quick Lead tab on home page"), Constants.QUICK_LEAD), null);
                 MyApplication.getInstance().trackEvent(Constants.QUICK_LEAD, "Clicked", "SyncContact")
             }
@@ -588,7 +589,7 @@ class SliderDashboardAdapter(
                 Toast.makeText(mContext, "You'r not authorize to sell Investment.", Toast.LENGTH_SHORT).show()
             }
         }
-        if (productID < 100) {
+        if (productID < 100 &&  productID != 41) {
             if (dashboardEntity.isNewprdClickable != null) {
                 if (dashboardEntity.isNewprdClickable == "Y") {
                     //   region Getting Dynamic Product and Clickable action Using UserConstatnt Data

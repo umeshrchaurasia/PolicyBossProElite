@@ -37,6 +37,7 @@ import com.policyboss.policybossproelite.posp.PospListActivity
 import com.policyboss.policybossproelite.sendTemplateSms.SendTemplateSmsActivity
 import com.policyboss.policybossproelite.syncContact.Worker.SyncContactActivity
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivity
+import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityNew
 import com.policyboss.policybossproelite.transactionhistory.nav_transactionhistoryActivity
 import com.policyboss.policybossproelite.utility.Constants
 import com.policyboss.policybossproelite.utility.NetworkUtils
@@ -337,15 +338,16 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                     // 05 temp
                   //  startActivity(Intent(requireContext(), ContactLeadActivity::class.java))
                   //  startActivity(Intent(requireContext(), SyncContactActivity::class.java))
-                    startActivity(Intent(requireContext(), WelcomeSyncContactActivity::class.java))
+                    startActivity(Intent(requireContext(), WelcomeSyncContactActivityNew::class.java))
 
                 }
 
-                "nav_sendSmsTemplate" -> {
-
-                    startActivity(Intent(requireContext(), SendTemplateSmsActivity::class.java))
-
-                }
+                // Shifted in Send Sms Template
+//                "nav_sendSmsTemplate" -> {
+//
+//                    startActivity(Intent(requireContext(), SendTemplateSmsActivity::class.java))
+//
+//                }
 
 
                 "nav_sendSmsTemplate" -> {

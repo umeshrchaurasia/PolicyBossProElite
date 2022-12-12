@@ -443,8 +443,8 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
             alertDialog.dismiss()
             startActivity(Intent(this, CommonWebViewActivity::class.java) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
                 .putExtra("URL", "" + userConstantEntity.leadDashUrl)
-                .putExtra("NAME", "" + "Lead DashBoard")
-                .putExtra("TITLE", "" + "Lead DashBoard"))
+                .putExtra("NAME", "" + "View Summary")
+                .putExtra("TITLE", "" + "View Summary"))
 
         }
         alertDialog.setCancelable(false)

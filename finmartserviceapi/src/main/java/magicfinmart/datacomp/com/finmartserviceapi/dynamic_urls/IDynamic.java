@@ -19,6 +19,7 @@ public interface IDynamic {
 
     void getVehicleByMobileNo(String mobileNo, IResponseSubcriber iResponseSubcriber);
 
+
     void saveGenerateLead(GenerateLeadRequestEntity entity, IResponseSubcriber iResponseSubcriber);
 
     void getNCD(IResponseSubcriber iResponseSubcriber);

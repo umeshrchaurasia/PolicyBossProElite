@@ -2,6 +2,9 @@ package com.policyboss.policybossproelite.salesmaterial;
 
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.policyboss.policybossproelite.R;
+import com.policyboss.policybossproelite.festivelink.festivelinkActivity;
+import com.policyboss.policybossproelite.sendTemplateSms.SendTemplateSmsActivity;
 
 import java.util.List;
 
@@ -43,9 +48,9 @@ public class SalesMaterialAdapter extends RecyclerView.Adapter<SalesMaterialAdap
     }
 
     @Override
-    public void onBindViewHolder(SalesMaterialItem holder, final int position) {
+    public void onBindViewHolder(SalesMaterialItem holder,   int position) {
         SalesMaterialItem item = (SalesMaterialItem) holder;
-        final SalesProductEntity entity = mlistSalesProduct.get(position);
+        final SalesProductEntity entity = mlistSalesProduct.get(holder.getAdapterPosition());
 
         if (entity.getCount() == entity.getOldCount()) {
             item.txtCount.setVisibility(View.INVISIBLE);
@@ -59,7 +64,15 @@ public class SalesMaterialAdapter extends RecyclerView.Adapter<SalesMaterialAdap
         holder.lyParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((SalesMaterialActivity) mContex).redirectToApplyMain(entity, position);
+                if(entity.getProduct_Id() == 110){
+
+
+
+                    mContex.startActivity(new Intent(mContex, SendTemplateSmsActivity.class));
+                }else{
+                    ((SalesMaterialActivity) mContex).redirectToApplyMain(entity, holder.getAdapterPosition());
+                }
+
             }
 
         });

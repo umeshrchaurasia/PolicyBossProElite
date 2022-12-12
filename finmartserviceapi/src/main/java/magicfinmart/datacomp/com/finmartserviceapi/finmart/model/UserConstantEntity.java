@@ -405,6 +405,9 @@ public class UserConstantEntity extends RealmObject {
     private String notificationpopupurl;
 
 
+    private String notif_popupurl_elite;
+
+
     private String crnmobileno;
     private String insurancerepositorylink;
 
@@ -540,6 +543,15 @@ public class UserConstantEntity extends RealmObject {
     public void setNotificationpopupurl(String notificationpopupurl) {
         this.notificationpopupurl = notificationpopupurl;
     }
+
+    public String getNotif_popupurl_elite() {
+        return notif_popupurl_elite + (int) Math.round(Math.random() * 100);
+    }
+
+    public void setNotif_popupurl_elite(String notif_popupurl_elite) {
+        this.notif_popupurl_elite = notif_popupurl_elite;
+    }
+
 
     public String getHealthurltemp() {
         return healthurltemp;

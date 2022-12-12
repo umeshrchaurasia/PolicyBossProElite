@@ -25,7 +25,7 @@ open class DBMenuRepository() {
             menuEntities.add(MenuHeader("MY TRANSACTIONS", false, R.drawable.transaction_menu, getMenuTransactionList(userConstantEntity, prefManager)))
             menuEntities.add(MenuHeader("MY UTILITIES", false, R.drawable.utility_menu, getMenuUtilityList(userConstantEntity, prefManager)))
 
-            menuEntities.add(MenuHeader("MY LEADS", false, R.drawable.leads_menu, getMenuMyLeadsList(userConstantEntity, prefManager)))
+            menuEntities.add(MenuHeader("SYNC CONTACTS", false, R.drawable.leads_menu, getMenuMyLeadsList(userConstantEntity, prefManager)))
             menuEntities.add(MenuHeader("LEGAL", false, R.drawable.legal_menu, getMenuLegalList(userConstantEntity, prefManager)))
 
 
@@ -120,19 +120,20 @@ open class DBMenuRepository() {
 
         fun getMenuMyLeadsList(userConstantEntity: UserConstantEntity, prefManager: PrefManager): MutableList<MenuChild> {
             val menuChild: MutableList<MenuChild> = ArrayList()
-            menuChild.add(MenuChild("nav_contact", "Sync Contact", R.drawable.create_lead_from_contact))
+            menuChild.add(MenuChild("nav_contact", "Sync/ReSync Now", R.drawable.create_lead_from_contact))
 
             if(userConstantEntity?.generateMotorLeadsEnabled?: "" != "0") {
 
                 menuChild.add(MenuChild("nav_generateLead", "Generate Motor Leads", R.drawable.leads_menu))
             }
-              menuChild.add(MenuChild("nav_leaddetail", "Sync Contact Dashboard", R.drawable.lead_dashboard))
+              menuChild.add(MenuChild("nav_leaddetail", "Summary & Dashboard", R.drawable.lead_dashboard))
 
-            if(userConstantEntity?.smsTemplatesEnabled?: "" != "0") {
-
-                menuChild.add(MenuChild("nav_sendSmsTemplate", "Sms Templates", R.drawable.sms_template))
-
-            }
+            // Shifted 'Sms Template' In SalesMaterial only in PolicyBossPro Elite
+//            if(userConstantEntity?.smsTemplatesEnabled?: "" != "0") {
+//
+//                menuChild.add(MenuChild("nav_sendSmsTemplate", "Sms Templates", R.drawable.sms_template))
+//
+//            }
 
             return menuChild
         }

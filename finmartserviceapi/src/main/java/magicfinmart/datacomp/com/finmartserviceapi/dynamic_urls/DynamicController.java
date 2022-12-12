@@ -23,6 +23,7 @@ import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.requestentity.Us
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.CertificateResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.CheckAppAccessResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.GenerateLeadResponse;
+
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.NCDResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.SwipeDetailResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.UploadNCDResponse;
@@ -459,6 +460,7 @@ public class DynamicController implements IDynamic {
             }
         });
     }
+
 
     @Override
     public void saveGenerateLead(GenerateLeadRequestEntity entity, final IResponseSubcriber iResponseSubcriber) {

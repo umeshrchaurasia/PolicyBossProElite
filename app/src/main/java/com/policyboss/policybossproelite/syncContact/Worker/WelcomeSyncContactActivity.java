@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.common.util.ArrayUtils;
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity;
@@ -30,14 +31,28 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
     int current = 0;
     CheckBox btnchkagree;
     LinearLayout ll_term;
-
+    String isContactSync = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_sync_contact);
+
+
+        if(getIntent().getStringExtra("Is_Contact_Sync") != null){
+            isContactSync = getIntent().getStringExtra("Is_Contact_Sync");
+        }
         init_widgets();
         setListener();
+
+
+        if(isContactSync.equals("1")){
+            viewPager.setCurrentItem(2);
+            dotsLayout.setVisibility(View.GONE);
+            viewPager.beginFakeDrag();
+
+        }
+
     }
 
     private void setListener() {
@@ -60,13 +75,17 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
         dot3 = (ImageView) findViewById(R.id.dot3);
       //  dot4 = (ImageView) findViewById(R.id.dot4);
     //    dot5 = (ImageView) findViewById(R.id.dot5);
+
+
         layouts = new int[]{
+
                 R.layout.sync_welcome_slide1,
                 R.layout.sync_welcome_slide2,
                 R.layout.sync_welcome_slide3,
-         //       R.layout.welcome_slide4,
-         //       R.layout.welcome_slide5
-               };
+                //       R.layout.welcome_slide4,
+                //       R.layout.welcome_slide5
+        };
+
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
@@ -134,9 +153,10 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
         public void onPageSelected(int position) {
             //addBottomDots(position);
             current = position;
+
             setSelectedDot(position + 1);
             // changing the next button text 'NEXT' / 'GOT IT'
-            if (position == layouts.length - 1) {
+            if (position == layouts.length - 1  ) {
                 // last page. make button text to GOT IT
                 btnNext.setText("GET STARTED");
               //  btnNext.setVisibility(View.GONE);
@@ -144,6 +164,9 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
                 btnNext.setAlpha(0.4f);
                 btnNext.setTag(0);
                 ll_term.setVisibility(View.VISIBLE);
+
+
+
                // btnSkip.setVisibility(View.VISIBLE);
             } else {
                 // still pages are left

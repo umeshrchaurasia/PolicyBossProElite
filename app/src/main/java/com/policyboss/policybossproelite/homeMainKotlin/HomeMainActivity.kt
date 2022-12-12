@@ -1325,7 +1325,7 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
           R.id.txtknwyour -> {
 
               if (userConstantEntity != null) {
-                  openWebViewPopUp(viewPager2, userConstantEntity!!.notificationpopupurl, true, "")
+                  openWebViewPopUp(viewPager2, userConstantEntity!!.notif_popupurl_elite, true, "")
 
               }
 
@@ -1423,18 +1423,18 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
                     //region Not IN Used
                     //Notification Url :-1 November
                     val localNotificationenable = prefManager.notificationsetting.toInt()
-                    if (userConstantEntity!!.notificationpopupurltype.toUpperCase() == "SM") {
+                    if (userConstantEntity!!.notificationpopupurltype.uppercase() == "SM") {
                         if (userConstantEntity!!.notificationpopupurl != "") {
                             if (prefManager.isSeasonal) {
-                                openWebViewPopUp(viewPager2, userConstantEntity!!.notificationpopupurl, true, "")
+                                openWebViewPopUp(viewPager2, userConstantEntity!!.notif_popupurl_elite, true, "")
                                 prefManager.isSeasonal = false
                             }
                         }
                     } else if (localNotificationenable == 0) {
                         // prefManager.updatePopUpId("" + serverId);
-                        if (userConstantEntity!!.notificationpopupurl != "") {
+                        if (userConstantEntity!!.notif_popupurl_elite != "") {
                             if (prefManager.isSeasonal) {
-                                openWebViewPopUp(viewPager2, userConstantEntity!!.notificationpopupurl, true, "")
+                                openWebViewPopUp(viewPager2, userConstantEntity!!.notif_popupurl_elite, true, "")
                                 prefManager.isSeasonal = false
                             }
                         }

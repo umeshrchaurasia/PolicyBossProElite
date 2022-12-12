@@ -107,7 +107,7 @@
                         android:layout_centerInParent="true"
 
 
-                        android:text="@string/Finmart_underline"
+                        android:text="@string/policypossPro_underline"
                         android:textColor="@android:color/white" />
 
                     <TextView
