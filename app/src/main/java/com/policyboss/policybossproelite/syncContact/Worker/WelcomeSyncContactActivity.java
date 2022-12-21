@@ -126,8 +126,8 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
 
                 startActivity(new Intent(this, CommonWebViewActivity.class)
                         .putExtra("URL", "https://www.policyboss.com/terms-condition")
-                        .putExtra("NAME", "" + "Term & Condition")
-                        .putExtra("TITLE", "" + "Term & Condition"));
+                        .putExtra("NAME", "" + "Terms & Conditions")
+                        .putExtra("TITLE", "" + "Terms & Conditions"));
                 break;
             case R.id.chkagree:
                 if(!btnchkagree.getTag().equals("1")){

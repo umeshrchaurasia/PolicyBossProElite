@@ -397,7 +397,11 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
         if(!dialogAnim.isShowing) {
             val dialogLoadingBinding = DialogLoadingBinding.inflate(layoutInflater)
             dialogAnim.setContentView(dialogLoadingBinding.root)
-            Glide.with(this).load<Any>(R.drawable.loading_gif)
+
+            dialogLoadingBinding.txtMessage1.visibility = View.VISIBLE
+            dialogLoadingBinding.txtMessage1.text = "Please Wait While We Sync Your Contactly Afresh!"
+
+            Glide.with(this).load<Any>(R.drawable.loading_spinner)
                 .asGif()
                 .crossFade()
                 .into(dialogLoadingBinding.imgLoader)

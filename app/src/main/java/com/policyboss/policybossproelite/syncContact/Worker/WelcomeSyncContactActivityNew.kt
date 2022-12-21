@@ -275,8 +275,8 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
             R.id.txtterm -> startActivity(
                 Intent(this, CommonWebViewActivity::class.java)
                     .putExtra("URL", "https://www.policyboss.com/terms-condition")
-                    .putExtra("NAME", "" + "Term & Condition")
-                    .putExtra("TITLE", "" + "Term & Condition")
+                    .putExtra("NAME", "" + "Terms & Conditions")
+                    .putExtra("TITLE", "" + "Terms & Conditions")
             )
             R.id.chkagree -> if (btnchkagree!!.tag != "1") {
                 if (btnchkagree!!.isChecked) {

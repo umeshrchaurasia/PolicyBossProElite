@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="0dp"
-                android:text="Saved Successfully !!"
+                android:text="Congrats! Sync Done!"
                 android:fontFamily="@font/poppinsmedium"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -50,9 +50,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thank You for choosing Sync Contacts.While this happens, you can continue using the app.
-                \n\nWe will notify you once complete!
-"
+                android:text="you are one step away from unlocking sales potential of your phone book."
                 />
 
            <LinearLayout
@@ -93,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
 
-                android:text="View Summary" />
+                android:text="View Sync Summary" />
 
 
         </LinearLayout>

@@ -331,6 +331,32 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
             }
         });
 
+        swPermission.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+
+                   // prefManager.updateNotificationsetting("0");
+                  //  Toast.makeText(getApplicationContext(), "Switch is on", Toast.LENGTH_LONG).show();
+                    if(buttonView.isPressed()) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivityForResult(intent, Constants.REQUEST_PERMISSION_SETTING);
+                    }
+                } else {
+
+                  //  Toast.makeText(getApplicationContext(), "Switch is off", Toast.LENGTH_LONG).show();
+                    if(buttonView.isPressed()) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivityForResult(intent, Constants.REQUEST_PERMISSION_SETTING);
+                    }
+                }
+            }
+        });
 
        // bubbleTabBar.setSelectedWithId(R.id.nav_profile,true);
       //  bubbleTabBar.set
@@ -775,7 +801,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if ((s.length() == 6) && (isDataUploaded)) {
                 showDialog("Fetching City...");
-                Toast.makeText(MyAccountActivity.this, "Fetching City...Data", Toast.LENGTH_LONG).show();
+                Toast.makeText(MyAccountActivity.this, "Fetching ...Data", Toast.LENGTH_LONG).show();
                 new RegisterController(MyAccountActivity.this).getCityState(etPincode.getText().toString(), MyAccountActivity.this);
 
             }
