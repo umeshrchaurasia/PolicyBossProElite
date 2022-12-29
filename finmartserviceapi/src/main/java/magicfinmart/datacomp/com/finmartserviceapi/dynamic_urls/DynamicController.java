@@ -687,7 +687,7 @@ public class DynamicController implements IDynamic {
     //Sync Contact Razor Pay
     @Override
     public void getSync_trascat_detail(String transaction_Id,final IResponseSubcriber iResponseSubcriber) {
-        String url = "http://horizon.policyboss.com:5000/razorpay_payment/transaction_details/" + transaction_Id;
+        String url = "https://horizon.policyboss.com:5443/razorpay_payment/transaction_details/" + transaction_Id;
 
 
         genericUrlNetworkService.getSync_trascat_detail(url).enqueue(new Callback<synctransactionDetailReponse>() {

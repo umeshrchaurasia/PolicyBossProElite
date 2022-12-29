@@ -64,7 +64,7 @@ public class Utility {
     public static final String CLIENT_KEY = "CLIENT-GLF2SRA5-CFIF-4X2T-HC1Z-CXV4ZWQTFQ3T";
     public static final int CLIENT_ID = 4;*/
 
-    //public static final String HORIZON_URL = "http://horizon.policyboss.com:5000";
+    //public static final String HORIZON_URL = "https://horizon.policyboss.com:5443";
     //public static final String QUOTE_BASE_URL = "http://www.policyboss.com/";
     //public static final String HORIZON_URL = "http://qa-horizon.policyboss.com:3000";
     //public static final String QUOTE_BASE_URL = "http://qa.policyboss.com/";

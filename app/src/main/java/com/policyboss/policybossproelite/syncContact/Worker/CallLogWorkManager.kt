@@ -105,7 +105,7 @@ class CallLogWorkManager(context: Context, workerParameters: WorkerParameters) :
 
         withContext(Dispatchers.IO) {
 
-            var url = "http://horizon.policyboss.com:5000/sync_contacts" + "/contact_call_history"
+            var url = "https://horizon.policyboss.com:5443" + "/sync_contacts" + "/contact_call_history"
 
 
             var callLogList = getCallDetails()

@@ -99,7 +99,7 @@ class ContactLogWorkManager(
 
         withContext(Dispatchers.IO) {
 
-            var url =  "http://horizon.policyboss.com:5000/sync_contacts" + "/contact_entry"
+            var url =  "https://horizon.policyboss.com:5443/sync_contacts" + "/contact_entry"
 
             var contactlist = getContactList()
 

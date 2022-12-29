@@ -253,7 +253,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
             case R.id.lyRaiseTicket:
                // String url = "http://qa.policyboss.com/Finmart/Ticketing/ticket_login.html?landing_page=login_page";
-                String url = "http://origin-cdnh.policyboss.com/fmweb/Ticketing/ticket_login.html?landing_page=login_page";
+                String url = "https://origin-cdnh.policyboss.com/fmweb/Ticketing/ticket_login.html?landing_page=login_page";
                 Log.d("URL", "Raise Ticket URL: " + url);
 
 

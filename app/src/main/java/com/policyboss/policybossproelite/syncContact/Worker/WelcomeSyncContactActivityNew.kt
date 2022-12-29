@@ -194,8 +194,8 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
         withContext(Dispatchers.IO){
 
-           // var url =  "http://horizon.policyboss.com:5000/sync_contacts" + "/contact_entry"
-            var url = "http://horizon.policyboss.com:5000/posps/dsas/view/" + POSPNO
+           // var url =  "https://horizon.policyboss.com:5443/sync_contacts" + "/contact_entry"
+            var url = "https://horizon.policyboss.com:5443/posps/dsas/view/" + POSPNO
             val resultRespAsync = async { RetroHelper.api.getHorizonDetails(url) }
              val resultResp = resultRespAsync.await()
             if (resultResp.isSuccessful) {

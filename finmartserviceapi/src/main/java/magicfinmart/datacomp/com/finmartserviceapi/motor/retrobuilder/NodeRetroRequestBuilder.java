@@ -23,7 +23,7 @@ public abstract class NodeRetroRequestBuilder {
 
     // live url
 
-    //public static String URL = "http://horizon.policyboss.com:5000";
+    //public static String URL = "https://horizon.policyboss.com:5443";
     //public static String PROPOSAL_BASE_URL = "http://www.policyboss.com/";
 
 

@@ -18,7 +18,7 @@ public final class BuildConfig {
   // Field from build type: debug
   public static final String LOAN_URL = "http://www.rupeeboss.com";
   // Field from build type: debug
-  public static final String NODE_URL = "http://horizon.policyboss.com:5000";
+  public static final String NODE_URL = "https://horizon.policyboss.com:5443";
   // Field from build type: debug
   public static final String POSP_URL = "http://edu.policyboss.com";
   // Field from build type: debug

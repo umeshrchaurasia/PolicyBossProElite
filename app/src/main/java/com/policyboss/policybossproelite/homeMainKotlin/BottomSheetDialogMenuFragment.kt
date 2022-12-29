@@ -409,7 +409,7 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                 "nav_policy" -> {
 
                     startActivity(Intent(requireContext(), CommonWebViewActivity::class.java)
-                            .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro")
+                            .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite")
                             .putExtra("NAME", "PRIVACY POLICY")
                             .putExtra("TITLE", "PRIVACY POLICY"))
 
