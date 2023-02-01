@@ -382,7 +382,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 prefManager.setUserPassword("" + etPassword.getText().toString());
 
                 if (((LoginResponse) response).getMasterData().getPOSPNo() != null) {
-                    if (((LoginResponse) response).getMasterData().getPOSPNo() != "") {
+                    if (  !((LoginResponse) response).getMasterData().getPOSPNo().trim().isEmpty()) {
                         String PospID = ((LoginResponse) response).getMasterData().getPOSPNo();
                         new RegisterController(this).hideFOSUser(PospID, LoginActivity.this);
 

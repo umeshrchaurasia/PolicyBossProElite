@@ -11,22 +11,21 @@ import android.view.View.GONE
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LifecycleOwner
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.policyboss.policybossproelite.BaseActivity
 import com.policyboss.policybossproelite.R
 import com.policyboss.policybossproelite.databinding.ActivityWelcomeSyncContactNewBinding
 import com.policyboss.policybossproelite.databinding.DialogLoadingBinding
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivity.MyViewPagerAdapter
+import com.policyboss.policybossproelite.utility.NetworkUtils.Companion.isNetworkAvailable
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
 import kotlinx.coroutines.*
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController
-import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.HorizonEmpDetailResponse
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEntity
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.retrobuilder.RetroHelper
 
@@ -102,6 +101,11 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
         init_widgets()
         setListener()
+
+//        if (!isNetworkAvailable(this)) {
+//            Snackbar.make(binding.root, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show()
+//            return
+//        }
         showAnimDialog("")
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -111,7 +115,10 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
             }catch (e: Exception){
 
-                //cancelDialog()
+                withContext(Dispatchers.Main) {
+                    viewPager.visibility = View.VISIBLE
+                    cancelAnimDialog()
+                }
             }
         }
 
@@ -215,6 +222,7 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
                             viewPager.beginFakeDrag()
                             viewPager.visibility = View.VISIBLE
                             cancelAnimDialog()
+
                         }else{
                             viewPager.visibility = View.VISIBLE
                             cancelAnimDialog()
@@ -222,9 +230,11 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
                     }
                 }else{
-                    Log.d(TAG, resultResp.toString())
-                    viewPager.visibility = View.VISIBLE
-                    cancelAnimDialog()
+                    withContext(Dispatchers.Main) {
+                        Log.d(TAG, resultResp.toString())
+                        viewPager.visibility = View.VISIBLE
+                        cancelAnimDialog()
+                    }
                 }
 
 
@@ -234,9 +244,11 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
             }else{
 
-                Log.d(TAG, resultResp.toString())
-                viewPager.visibility = View.VISIBLE
-                cancelAnimDialog()
+                withContext(Dispatchers.Main) {
+                    Log.d(TAG, resultResp.toString())
+                    viewPager.visibility = View.VISIBLE
+                    cancelAnimDialog()
+                }
                // cancelDialog()
             }
 

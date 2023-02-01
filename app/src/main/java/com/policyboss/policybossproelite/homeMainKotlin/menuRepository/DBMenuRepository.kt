@@ -96,13 +96,17 @@ open class DBMenuRepository() {
                 menuChild.add(MenuChild("nav_transactionhistory", "My Transactions", R.drawable.my_transaction))
 
             }
+            if(userConstantEntity?.myMessagesEnabled?: "0" != "0") {
 
-            menuChild.add(MenuChild("nav_MessageCentre", "My Messages", R.drawable.my_message))
+                menuChild.add(MenuChild("nav_MessageCentre", "My Messages", R.drawable.my_message))
+
+            }
+
 
 
             if(userConstantEntity?.policyByCRNEnabled?: "0" != "0"){
 
-                menuChild.add(MenuChild("c", "Get  Policy by CRN", R.drawable.my_transaction))
+                menuChild.add(MenuChild("nav_crnpolicy", "Get  Policy by CRN", R.drawable.my_transaction))
 
 
             }
