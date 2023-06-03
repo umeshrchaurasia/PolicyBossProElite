@@ -21,6 +21,8 @@
     <string name="error_selecting_file">Error selecting File</string>
     <string name="internal_storage">Internal storage</string>
 
+    <string name="oauth_note">Kindly Click on "Login via App" on PolicyBoss.com website.Please enter this Auth Token on PolicyBoss.com and Submit to Login.\n\n<b>This generated Token is valid only for next 15 minutes.</b></string>
+
     <string name="title_activity_home">Home</string>
     <string name="camera_access_required">Camera access is required to display the camera.</string>
 

@@ -24,6 +24,7 @@ import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.Certifi
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.CheckAppAccessResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.GenerateLeadResponse;
 
+import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.HorizonsyncDetailsResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.NCDResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.SwipeDetailResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.UploadNCDResponse;
@@ -758,7 +759,7 @@ public class DynamicController implements IDynamic {
 
     @Override
     public void getSync_razor_payment(String transaction_Id,String PayId,final IResponseSubcriber iResponseSubcriber) {
-        String url = "http://horizon.policyboss.com/razorpay-transaction-status/" + transaction_Id+"/Success/"+PayId;
+        String url = "https://horizon.policyboss.com/razorpay-transaction-status/" + transaction_Id+"/Success/"+PayId;
 
 
         genericUrlNetworkService.getSync_razor_payment(url).enqueue(new Callback<syncrazorsucessReponse>() {
@@ -791,4 +792,41 @@ public class DynamicController implements IDynamic {
         });
 
     }
+
+
+    @Override
+    public void getsyncDetailshorizon_java(String ss_id,final IResponseSubcriber iResponseSubcriber) {
+
+        String url = "https://horizon.policyboss.com:5443/posps/dsas/view/" + ss_id;
+
+        genericUrlNetworkService.getsyncDetailshorizondetail(url).enqueue(new Callback<HorizonsyncDetailsResponse>() {
+            @Override
+            public void onResponse(Call<HorizonsyncDetailsResponse> call, Response<HorizonsyncDetailsResponse> response) {
+                if (response.body() != null) {
+                    iResponseSubcriber.OnSuccess(response.body(), "response.body().getMessage()");
+
+                } else {
+                    iResponseSubcriber.OnFailure(new RuntimeException(response.body().getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HorizonsyncDetailsResponse> call, Throwable t) {
+
+                if (t instanceof ConnectException) {
+                    iResponseSubcriber.OnFailure(t);
+                } else if (t instanceof SocketTimeoutException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else if (t instanceof UnknownHostException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else if (t instanceof NumberFormatException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
+                } else {
+                    iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
+                }
+
+            }
+        });
+    }
+
 }

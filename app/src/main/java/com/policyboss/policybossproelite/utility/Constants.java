@@ -43,7 +43,7 @@ public class Constants {
     public static String LOGIN = "FBA LOGIN";
     public static String REGISTER = "FBA REGISTER";
 
-
+    public static String TAG = "POLICYBOSS ELITE";
     public static String BOTTOM_TYPE = "BOTTOM_HOME.";
   ;
     public static int BOTTOM_REQUEST_CODE = 25;

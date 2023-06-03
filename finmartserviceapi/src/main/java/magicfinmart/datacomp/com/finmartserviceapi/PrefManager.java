@@ -57,7 +57,7 @@ public class PrefManager {
     public static String SHARED_KEY_PUSH__TITLE = "shared_notify_Body";
     public static String PUSH_NOTIFICATION = "push_notifyication_data";
 
-
+    private static final String DeepLink = "DeepLink";
     public static String MPS_DATA = "mps_data";
 
     private static final String MENU_DASHBOARD = "menu_dashboard";
@@ -596,5 +596,16 @@ public class PrefManager {
 
     //endregion
 
+    public boolean setDeeplink(String strDeepLink) {
+        pref.edit().remove(DeepLink).commit();
+        return pref.edit().putString(DeepLink, strDeepLink).commit();
+    }
 
+    public String getDeepLink() {
+        return pref.getString(DeepLink, "");
+    }
+
+    public void clearDeeplink() {
+        pref.edit().remove(DeepLink).commit();
+    }
 }

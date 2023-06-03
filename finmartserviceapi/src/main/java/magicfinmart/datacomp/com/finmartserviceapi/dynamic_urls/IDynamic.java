@@ -63,4 +63,6 @@ public interface IDynamic {
     void getSync_trascat_Cancle(String transaction_Id,IResponseSubcriber iResponseSubcriber);
 
     void getSync_razor_payment(String transaction_Id,String PayId,IResponseSubcriber iResponseSubcriber);
+
+    void getsyncDetailshorizon_java(String ss_id,final IResponseSubcriber iResponseSubcriber);
 }

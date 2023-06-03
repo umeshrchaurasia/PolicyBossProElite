@@ -22,6 +22,8 @@ import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
@@ -43,6 +45,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.google.android.material.snackbar.Snackbar;
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.BuildConfig;
 import com.policyboss.policybossproelite.IncomeCalculator.IncomePotentialActivity;
@@ -53,6 +56,7 @@ import com.policyboss.policybossproelite.certificate.POSP_certicate_appointment;
 import com.policyboss.policybossproelite.change_password.ChangePasswordFragment;
 import com.policyboss.policybossproelite.contact_lead.ContactLeadActivity;
 import com.policyboss.policybossproelite.dashboard.DashboardFragment;
+import com.policyboss.policybossproelite.databinding.ProgressdialogLoadingBinding;
 import com.policyboss.policybossproelite.festivelink.festivelinkActivity;
 import com.policyboss.policybossproelite.generatelead.GenerateLeadActivity;
 import com.policyboss.policybossproelite.health.healthquotetabs.HealthQuoteBottomTabsActivity;
@@ -83,6 +87,8 @@ import com.policyboss.policybossproelite.sendTemplateSms.SendTemplateSmsActivity
 import com.policyboss.policybossproelite.share_data.ShareDataFragment;
 import com.policyboss.policybossproelite.splashscreen.SplashScreenActivity;
 import com.policyboss.policybossproelite.switchuser.SwitchUserActivity;
+import com.policyboss.policybossproelite.syncContact.Worker.SyncContactActivity;
+import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityNew;
 import com.policyboss.policybossproelite.term.compareterm.CompareTermActivity;
 import com.policyboss.policybossproelite.term.termselection.TermSelectionActivity;
 import com.policyboss.policybossproelite.transactionhistory.nav_transactionhistoryActivity;
@@ -91,12 +97,17 @@ import com.policyboss.policybossproelite.utility.Constants;
 import com.policyboss.policybossproelite.utility.ReadDeviceID;
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity;
 import com.policyboss.policybossproelite.whatsnew.WhatsNewActivity;
+import com.policyboss.policybossproelite.utility.NetworkUtils;
+	 import com.policyboss.policybossproelite.utility.CircleTransform;
+	import com.policyboss.policybossproelite.utility.Constants;
+import com.policyboss.policybossproelite.utility.CoroutineHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -119,6 +130,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.Utility;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
+import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.DynamicController;
+import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.requestentity.POSPHorizonEnity;
+import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.requestentity.SyncContactEntity;
+import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.HorizonsyncDetailsResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.APIResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.IResponseSubcriber;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.controller.login.LoginController;
@@ -134,6 +149,8 @@ import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserCallingEnti
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEntity;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.requestentity.LoginRequestEntity;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.ConstantsResponse;
+
+
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.LoginResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.MpsResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.MultiLangResponse;
@@ -169,7 +186,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
     UserConstantEntity userConstantEntity;
 
     MenuMasterResponse menuMasterResponse;
-    AlertDialog callingDetailDialog, finmartContacttDialog, LoanDialog, MoreServiceDialog, MyUtilitiesDialog;
+    AlertDialog callingDetailDialog, finmartContacttDialog, LoanDialog, MoreServiceDialog, MyUtilitiesDialog, MyAccountDialog,MySyncPopUpAlert;
     int selectedLang = -1;
     String LANGUAGE;
 
@@ -180,9 +197,14 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
     LinearLayout llSwitchUser;
     DashboardMultiLangEntity dashboardShareEntity;
+    SyncContactEntity syncContactEntity;
+
+    POSPHorizonEnity posphorizonEnity;
 
     ShortcutManager shortcutManager = null;
-
+    String deeplink_value="";
+    String Title = "";
+    Dialog showDialog ;
 
     //region broadcast receiver
     public BroadcastReceiver mHandleMessageReceiver = new BroadcastReceiver() {
@@ -263,12 +285,6 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
         }
 
 
-        try {
-            Utility.getMacAddress(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         db = new DBPersistanceController(this);
         loginResponseEntity = db.getUserData();
         userConstantEntity = db.getUserConstantsData();
@@ -295,17 +311,44 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
         // will be called once when ever app is opened
 
-        if (db.getRTOListNames() != null && db.getRTOListNames().size() <= 0) {
-            new MasterController(this).getRTOMaster(this);
-        }
+//        if (db.getRTOListNames() != null && db.getRTOListNames().size() <= 0) {
+//            new MasterController(this).getRTOMaster(this);
+//        }
 
         if (loginResponseEntity != null) {
-            if (loginResponseEntity.getPOSPNo().equals("5")) {
-                verifyPospNo();
-                return;
+            if (loginResponseEntity.getPOSPNo() != null) {
+                if (loginResponseEntity.getPOSPNo().equals("5")) {
+                    verifyPospNo();
+                    return;
+                }
+
+
+                   CoroutineHelper.saveDeviceDetails(HomeActivity.this,loginResponseEntity.getPOSPNo(),"Active");
+
+                //  List<String>  data =   CoroutineHelper.getSynHorizonDetails(HomeActivity.this,loginResponseEntity.getPOSPNo());
+                }
+
+//            new MasterController(this).getInsuranceSubType(this);
+//            new MasterController(this).getInsurerList();
             }
 
-        }
+
+            //getEnablesyncprofileupdate
+            if (loginResponseEntity != null) {
+                if (loginResponseEntity.getPOSPNo() != null) {
+
+                    showDialogMain();
+
+                    new DynamicController(this).getsyncDetailshorizon_java(loginResponseEntity.getPOSPNo(),this);
+
+                    //   String mydata =  CoroutineHelper.getsyncDetailshorizon(HomeActivity.this,loginResponseEntity.getPOSPNo(),"Active");
+                    //   if ((userConstantEntity.getLoanselfphoto() == null) || (userConstantEntity.getLoanselfphoto().trim().equals(""))) {
+                    //05 temp commented
+                    // showMySyncPopUpAlert();
+                    //   }
+
+                }
+
 
 
         checkfirstmsg_call = Integer.parseInt(prefManager.getCheckMsgFirst());
@@ -333,6 +376,12 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
             // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                    if (!NetworkUtils.isNetworkAvailable(HomeActivity.this)) {
+
+                        Snackbar.make(drawerLayout, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show();
+                        return false;
+                    }
                 //Checking if the item is in checked state or not, if not make it in checked state
                 if (menuItem.isChecked()) menuItem.setChecked(false);
                 else menuItem.setChecked(true);
@@ -690,7 +739,13 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
             @Override
             public void onDrawerOpened(View drawerView) {
                 // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                    try {
                 hideNavigationItem();
+                    } catch (Exception ex) {
+
+                    }
+
                 super.onDrawerOpened(drawerView);
             }
         };
@@ -699,7 +754,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
-
+        }
 
     }
 
@@ -875,7 +930,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
             String ipaddress = "0.0.0.0";
             try {
-                ipaddress = Utility.getMacAddress(this);
+                ipaddress = "";
             } catch (Exception io) {
                 ipaddress = "0.0.0.0";
             }
@@ -1111,7 +1166,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
         Map<String, String> outputMap = loadMap();
         if (outputMap != null && outputMap.size() > 0) {
             lstswitchuser.setVisibility(View.GONE);
-            lstswitchChild_user.setVisibility(View.VISIBLE);
+            lstswitchChild_user.setVisibility(View.GONE);
 
             String mystring = new String("Parent :- " + outputMap.get("Parent_name"));
             SpannableString content = new SpannableString(mystring);
@@ -1168,13 +1223,16 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
 
         } else {
-            if (loginResponseEntity.getIsUidLogin().equals("Y")) {
-                lstswitchuser.setVisibility(View.VISIBLE);
-                lstswitchChild_user.setVisibility(View.GONE);
-            } else {
+//            if (loginResponseEntity.getIsUidLogin().equals("Y")) {
+//                lstswitchuser.setVisibility(View.VISIBLE);
+//                lstswitchChild_user.setVisibility(View.GONE);
+//            } else {
+//                lstswitchuser.setVisibility(View.GONE);
+//                lstswitchChild_user.setVisibility(View.GONE);
+//            }
+
                 lstswitchuser.setVisibility(View.GONE);
                 lstswitchChild_user.setVisibility(View.GONE);
-            }
 
         }
 
@@ -1255,38 +1313,73 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
                     prefManager.clearNotification();
 
-                    if (type.matches("NL")) {
-                        Intent intent = new Intent(this, NotificationActivity.class);
-                        startActivity(intent);
+                    //region comment
+//                    if (type.matches("NL")) {
+//                        Intent intent = new Intent(this, NotificationActivity.class);
+//                        startActivity(intent);
+//
+//                    } else if (type.matches("MSG")) {
+//
+//                        startActivity(new Intent(HomeActivity.this, NotificationSmsActivity.class)
+//                                .putExtra("NOTIFY_TITLE", title)
+//                                .putExtra("NOTIFY_BODY", body));
+//
+//                    } else if (type.matches("PF")) {
+//                         //PF : Profile Pic
+//                        startActivity(new Intent(HomeActivity.this, MyAccountActivity.class)
+//                                .putExtra("NOTIFY_TITLE", title)
+//                                .putExtra("NOTIFY_BODY", body));
+//
+//                    }else if (type.matches("WB")) {
+//                        //WB : Webview
+//                        startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
+//                                .putExtra("URL", web_url)
+//                                .putExtra("NAME", web_name)
+//                                .putExtra("TITLE", web_title));
+//
+//                    }
 
-                    } else if (type.matches("MSG")) {
-
-                        startActivity(new Intent(HomeActivity.this, NotificationSmsActivity.class)
-                                .putExtra("NOTIFY_TITLE", title)
-                                .putExtra("NOTIFY_BODY", body));
-
-                    } else if (type.matches("WB")) {
-
-                        startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                                .putExtra("URL", web_url)
-                                .putExtra("NAME", web_name)
-                                .putExtra("TITLE", web_title));
-
-                    }
+            //endregion
                 }
 
             }
             //endregion
 
-            // region user already logged in and app in forground
+            // region user already logged in and app in forground / Background
             else if (getIntent().getExtras().getParcelable(Utility.PUSH_NOTIFY) != null) {
                 NotifyEntity notificationEntity = getIntent().getExtras().getParcelable(Utility.PUSH_NOTIFY);
 
+                if (notificationEntity.getNotifyFlag().trim().equals("NL")) {
+                    Intent intent = new Intent(this, NotificationActivity.class);
+                    startActivity(intent);
+
+                } else if (notificationEntity.getNotifyFlag().trim().equals("PF")) {
+
+                    startActivity(new Intent(HomeActivity.this, MyAccountActivity.class));
+
+                } else if (notificationEntity.getNotifyFlag().trim().equals("SL")) {
+
+                    startActivity(new Intent(HomeActivity.this, SalesMaterialActivity.class));
+
+                }
+                 else if (notificationEntity.getNotifyFlag().trim().equals("SY")) {
+
+                    startActivity(new Intent(HomeActivity.this, WelcomeSyncContactActivityNew.class));
+
+                }
+                else if (notificationEntity.getNotifyFlag().trim().equals("SYC")) {
+
+                    startActivity(new Intent(HomeActivity.this, SyncContactActivity.class));
+
+                }
+                else {
                 if (notificationEntity.getWeb_url() != null) {
 
                     navigateViaNotification(notificationEntity.getNotifyFlag(), notificationEntity.getWeb_url(), notificationEntity.getWeb_title());
 
                 }
+            }
+
             }
 
             //endregion
@@ -1340,10 +1433,12 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
         actionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
                 onOptionsItemSelected(menuItem);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-
-
         });
 
 
@@ -1359,6 +1454,12 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
         switch (item.getItemId()) {
 
             case R.id.action_call:
+
+                    if (!NetworkUtils.isNetworkAvailable(this)) {
+
+                        Snackbar.make(drawerLayout, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show();
+                        return false;
+                    }
                 if (userConstantEntity.getMangMobile() != null) {
 
 
@@ -1379,11 +1480,16 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
                 break;
             case R.id.action_push_notification:
+
+                    if (!NetworkUtils.isNetworkAvailable(this)) {
+
+                        Snackbar.make(drawerLayout, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show();
+                        return false;
+                    }
+
                 intent = new Intent(HomeActivity.this, NotificationActivity.class);
                 startActivityForResult(intent, Constants.REQUEST_CODE);
                 break;
-
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -1392,145 +1498,334 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
     @Override
     public void OnSuccess(APIResponse response, String message) {
-        cancelDialog();
-        if (response instanceof LoginResponse) {
-            if (response.getStatusNo() == 0) {
+ try {
+     cancelDialog();
+     if (response instanceof LoginResponse) {
+         if (response.getStatusNo() == 0) {
 
-                // prefManager.setIsUserLogin(true);
+             // prefManager.setIsUserLogin(true);
 
-                Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+             startActivity(intent);
 
 
-            } else {
-                Toast.makeText(this, "" + response.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        } else if (response instanceof MpsResponse) {
+         } else {
+             Toast.makeText(this, "" + response.getMessage(), Toast.LENGTH_SHORT).show();
+         }
+     } else if (response instanceof MpsResponse) {
 
-            if (response.getStatusNo() == 0) {
+         if (response.getStatusNo() == 0) {
 
-                prefManager.removeMps();
-                prefManager.setMPS(((MpsResponse) response).getMasterData());
-                if (loginResponseEntity.getIsFirstLogin() == 1) {
-                    DialogMPS();
-                } else {
-                    DialogMPS();
-                }
+             prefManager.removeMps();
+             prefManager.setMPS(((MpsResponse) response).getMasterData());
+             if (loginResponseEntity.getIsFirstLogin() == 1) {
+                 DialogMPS();
+             } else {
+                 DialogMPS();
+             }
 
-            }
-        } else if (response instanceof MyAcctDtlResponse) {
-            if (response.getStatusNo() == 0) {
-                if (((MyAcctDtlResponse) response).getMasterData().get(0) != null) {
-                    db.updateMyAccountData(((MyAcctDtlResponse) response).getMasterData().get(0));
-                }
-            }
-        } else if (response instanceof UserConstatntResponse) {
-            if (response.getStatusNo() == 0) {
-                if (((UserConstatntResponse) response).getMasterData() != null) {
-                    //db.updateUserConstatntData(((UserConstatntResponse) response).getMasterData());
-                    userConstantEntity = ((UserConstatntResponse) response).getMasterData();
-                    init_headers();
+         }
+     } else if (response instanceof MyAcctDtlResponse) {
+         if (response.getStatusNo() == 0) {
+             if (((MyAcctDtlResponse) response).getMasterData().get(0) != null) {
+                 db.updateMyAccountData(((MyAcctDtlResponse) response).getMasterData().get(0));
+             }
+         }
+     } else if (response instanceof UserConstatntResponse) {
+         if (response.getStatusNo() == 0) {
+             if (((UserConstatntResponse) response).getMasterData() != null) {
+                 //db.updateUserConstatntData(((UserConstatntResponse) response).getMasterData());
+                 userConstantEntity = ((UserConstatntResponse) response).getMasterData();
 
-                    if (prefManager.getPopUpCounter().equals("0")) {
-                        showMarketingPopup();
-                    }
+                 //  shortcutAppMenu();
+                 init_headers();
 
-                    //Notification Url :-1 November
-                    int localNotificationenable = Integer.parseInt(prefManager.getNotificationsetting());
+                 deeplink_handle();
 
-                    if (userConstantEntity.getNotificationpopupurltype().toUpperCase().equals("SM")) {
-                        if (!userConstantEntity.getNotificationpopupurl().equals("")) {
-                            if (prefManager.getIsSeasonal()) {
-                                openWebViewPopUp(txtFbaID, userConstantEntity.getNotificationpopupurl(), true, "");
-                                prefManager.setIsSeasonal(false);
-                            }
-                        }
-                    } else if (localNotificationenable == 0) {
-                        // prefManager.updatePopUpId("" + serverId);
-                        if (!userConstantEntity.getNotificationpopupurl().equals("")) {
-                            if (prefManager.getIsSeasonal()) {
-                                openWebViewPopUp(txtFbaID, userConstantEntity.getNotificationpopupurl(), true, "");
-                                prefManager.setIsSeasonal(false);
-                            }
-                        }
+                 //region check for new version
+                 int serverVersionCode = Integer.parseInt(userConstantEntity.getAndroidProVersion());
+                 if (pinfo != null && pinfo.versionCode < serverVersionCode) {
 
-                    }
-                }
+                     // forced update app
+                     openPopUp(navigationView, "UPDATE", "New version available on play store, Please update.", "OK", false);
+                 }
+                 //endregion
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    // createLaunchAppIconMenu((UserConstatntResponse) response);
-                }
+                 if (prefManager.getPopUpCounter().equals("0")) {
+                     showMarketingPopup();
+                 }
 
-            }
-        } else if (response instanceof ConstantsResponse) {
-            constantEntity = ((ConstantsResponse) response).getMasterData();
-            if (response.getStatusNo() == 0) {
+//                        if (userConstantEntity != null) {
+//                            if (userConstantEntity.getEnablemyaccountupdate() != null) {
+//
+//                               if (userConstantEntity.getEnablemyaccountupdate().equals("1"))
+//                                {
+//
+//                                    if ((userConstantEntity.getLoanselfphoto() == null) || (userConstantEntity.getLoanselfphoto().trim().equals(""))) {
+//                                        showMyAccountAlert();
+//                                    }
+//                                }
+//
+//                            }
+//                        }
 
-                //region check for new version
-                int serverVersionCode = Integer.parseInt(((ConstantsResponse) response).getMasterData().getVersionCode());
-                if (pinfo != null && pinfo.versionCode < serverVersionCode) {
-                    forceUpdate = Integer.parseInt(((ConstantsResponse) response).getMasterData().getIsForceUpdate());
-                    if (forceUpdate == 1) {
-                        // forced update app
-                        openPopUp(navigationView, "UPDATE", "New version available on play store, Please update.", "OK", false);
-                    } else {
-                        // aap with less version but not forced update
-                        if (prefManager.getUpdateShown()) {
-                            prefManager.setIsUpdateShown(false);
-                            openPopUp(navigationView, "UPDATE", "New version available on play store, Please update.", "OK", true);
-                        }
-                    }
+                 //Notification Url :-1 November
+                 int localNotificationenable = Integer.parseInt(prefManager.getNotificationsetting());
 
-                    if (new DBPersistanceController(this).getUserData().getIsFirstLogin() == 1) {
-                        for (Fragment frg :
-                                getSupportFragmentManager().getFragments()) {
+                 if (userConstantEntity.getNotificationpopupurltype() != null) {
 
-                            if (frg instanceof MPSFragment || frg instanceof KnowMoreMPSFragment) {
-                                if (!frg.isVisible()) {
-                                    //DialogMPS();
-                                }
-                            }
-                        }
-                    }
+                     if (userConstantEntity.getNotificationpopupurltype().toUpperCase().equals("SM")) {
+                         if (!userConstantEntity.getNotificationpopupurl().equals("")) {
+                             if (prefManager.getIsSeasonal()) {
+                                 openWebViewPopUp(txtFbaID, userConstantEntity.getNotificationpopupurl(), true, "");
+                                 prefManager.setIsSeasonal(false);
+                             }
+                         }
+                     } else if (localNotificationenable == 0) {
+                         // prefManager.updatePopUpId("" + serverId);
+                         if (!userConstantEntity.getNotificationpopupurl().equals("")) {
+                             if (prefManager.getIsSeasonal()) {
+                                 openWebViewPopUp(txtFbaID, userConstantEntity.getNotificationpopupurl(), true, "");
+                                 prefManager.setIsSeasonal(false);
+                             }
+                         }
 
-                } else if (((ConstantsResponse) response).getMasterData().
-                        getMPSStatus().toLowerCase().equalsIgnoreCase("p")) {
-                }
-                //endregion
-            }
-        } else if (response instanceof MenuMasterResponse) {
-            if (response.getStatusNo() == 0) {
-                prefManager.storeMenuDashboard((MenuMasterResponse) response);
-                addDynamicMenu((MenuMasterResponse) response);
-            }
-        } else if (response instanceof UserCallingResponse) {
-            if (response.getStatusNo() == 0) {
+                     }
+                 }
 
-                CallingDetailsPopUp(((UserCallingResponse) response).getMasterData());
-            }
-        } else if (response instanceof MultiLangResponse) {
+                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                     // createLaunchAppIconMenu((UserConstatntResponse) response);
+                 }
 
-            if (response.getStatusNo() == 0) {
+             }
+         } else if (response instanceof ConstantsResponse) {
+             constantEntity = ((ConstantsResponse) response).getMasterData();
+             if (response.getStatusNo() == 0) {
 
-                showMultiLanguage();
-            }
-        } else if (response instanceof ProductURLShareResponse) {
+                 //region check for new version
+                 int serverVersionCode = Integer.parseInt(((ConstantsResponse) response).getMasterData().getVersionCode());
+                 if (pinfo != null && pinfo.versionCode < serverVersionCode) {
+                     forceUpdate = Integer.parseInt(((ConstantsResponse) response).getMasterData().getIsForceUpdate());
+                     if (forceUpdate == 1) {
+                         // forced update app
+                         openPopUp(navigationView, "UPDATE", "New version available on play store, Please update.", "OK", false);
+                     } else {
+                         // aap with less version but not forced update
+                         if (prefManager.getUpdateShown()) {
+                             prefManager.setIsUpdateShown(false);
+                             openPopUp(navigationView, "UPDATE", "New version available on play store, Please update.", "OK", true);
+                         }
+                     }
 
-            if (response.getStatusNo() == 0) {
+                     if (new DBPersistanceController(this).getUserData().getIsFirstLogin() == 1) {
+                         for (Fragment frg :
+                                 getSupportFragmentManager().getFragments()) {
 
-                if (((ProductURLShareResponse) response).getMasterData() != null) {
-                    ProductURLShareEntity shareEntity = ((ProductURLShareResponse) response).getMasterData();
-                    if (dashboardShareEntity != null) {
-                        datashareList(HomeActivity.this, dashboardShareEntity.getTitle(), shareEntity.getMsg(), shareEntity.getUrl());
-                    }
-                }
-            }
+                             if (frg instanceof MPSFragment || frg instanceof KnowMoreMPSFragment) {
+                                 if (!frg.isVisible()) {
+                                     //DialogMPS();
+                                 }
+                             }
+                         }
+                     }
+
+                 } else if (((ConstantsResponse) response).getMasterData().
+                         getMPSStatus().toLowerCase().equalsIgnoreCase("p")) {
+                 }
+                 //endregion
+             }
+         } else if (response instanceof MenuMasterResponse) {
+             if (response.getStatusNo() == 0) {
+                 prefManager.storeMenuDashboard((MenuMasterResponse) response);
+                 addDynamicMenu((MenuMasterResponse) response);
+             }
+         } else if (response instanceof UserCallingResponse) {
+             if (response.getStatusNo() == 0) {
+
+                 CallingDetailsPopUp(((UserCallingResponse) response).getMasterData());
+             }
+         } else if (response instanceof MultiLangResponse) {
+
+             if (response.getStatusNo() == 0) {
+
+                 showMultiLanguage();
+             }
+         } else if (response instanceof ProductURLShareResponse) {
+
+             if (response.getStatusNo() == 0) {
+
+                 if (((ProductURLShareResponse) response).getMasterData() != null) {
+                     ProductURLShareEntity shareEntity = ((ProductURLShareResponse) response).getMasterData();
+                     if (dashboardShareEntity != null) {
+                         datashareList(HomeActivity.this, dashboardShareEntity.getTitle(), shareEntity.getMsg(), shareEntity.getUrl());
+                     }
+                 }
+             }
+         } else if (response instanceof HorizonsyncDetailsResponse) {
+
+             if (((HorizonsyncDetailsResponse) response).getStatus().equals("SUCCESS")) {
+
+                 syncContactEntity = ((HorizonsyncDetailsResponse) response).getResult();
+                 // posphorizonEnity = ((HorizonsyncDetailsResponse) response).getPOSP();
+
+                 if (syncContactEntity != null) {
+                     if (!syncContactEntity.getActionNeeded().equals("NO_ACTION")) {
+                         showMySyncPopUpAlert(syncContactEntity);
+                     }
+                 }
+
+
+             }
+         }
+
+         }
+    }catch (Exception ex)
+        {
+
         }
+
 
     }
 
+/*
+    private void shortcutAppMenu() {
 
+        try {
+            if (loginResponseEntity != null && userConstantEntity != null) {
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N_MR1) {
+
+                    //  val shortcutManager = getSystemService(ShortcutManager::class.java);
+
+
+                    ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+
+                    if (shortcutManager != null) {
+
+                        // var intentPrivateCar: Intent? = null;
+
+                        //Motor
+                        if (db == null) {
+                            db = new DBPersistanceController(HomeActivity.this);
+                        }
+
+                        String motorUrl = db.getUserConstantsData().getFourWheelerUrl();
+                        String bikeUrl = db.getUserConstantsData().getTwoWheelerUrl();
+                        String healthUrl = db.getUserConstantsData().getHealthurl();
+
+
+                        String expressUrl = "";
+                        for (int i = 0; i < db.getUserConstantsData().getDashboardarray().size(); i++) {
+                            DashboardarrayEntity dbEntity = db.getUserConstantsData().getDashboardarray().get(i);
+                            if (Integer.parseInt(dbEntity.getProdId()) == 35) {
+                                expressUrl = dbEntity.getUrl();
+                            }
+
+                        }
+
+
+                        String ipaddress = "0.0.0.0";
+                        try {
+                            ipaddress = "";
+                        } catch (Exception io) {
+                            ipaddress = "0.0.0.0";
+                        }
+
+                        //fetching parent ss_id in case of switch user
+                        Map<String, String> map = (HomeActivity.this).loadMap();
+                        String parent_ssid = "";
+                        if (map.size() > 0) {
+                            parent_ssid = map.get("Parent_POSPNo");
+                        }
+
+
+                        //&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.2.0&product_id=1
+                        String append = "&ip_address=" + ipaddress + "&mac_address=" + ipaddress + "&app_version=policyboss-" + BuildConfig.VERSION_NAME + "&device_id=" + Utility.getDeviceId(HomeActivity.this) + "&product_id=1&login_ssid=" + parent_ssid;
+                        motorUrl = motorUrl + append;
+
+                        String append_bike = "&ip_address=" + ipaddress + "&mac_address=" + ipaddress + "&app_version=policyboss-" + BuildConfig.VERSION_NAME + "&device_id=" + Utility.getDeviceId(HomeActivity.this) + "&product_id=10&login_ssid=" + parent_ssid;
+                        bikeUrl = bikeUrl + append_bike;
+
+
+                        String append_health = "&ip_address=" + ipaddress + "&app_version=policyboss-" + Utility.getVersionName(HomeActivity.this) + "&device_id=" + Utility.getDeviceId(HomeActivity.this) + "&login_ssid=" + parent_ssid;
+
+                        healthUrl = healthUrl + append_health;
+
+
+                        String append_express = "&ip_address=" + ipaddress + "&mac_address=" + ipaddress + "&app_version=policyboss-" + BuildConfig.VERSION_NAME + "&device_id=" + Utility.getDeviceId(HomeActivity.this) + "&product_id=35&login_ssid=" + parent_ssid;
+                        expressUrl = expressUrl + append_express;
+
+
+                        Intent intentPrivateCar;
+
+                        intentPrivateCar = new Intent(HomeActivity.this, CommonWebViewActivity.class);
+
+                        intentPrivateCar.putExtra("URL", motorUrl);
+                        intentPrivateCar.putExtra("dashBoardtype", "INSURANCE");
+                        intentPrivateCar.putExtra("NAME", "Motor Insurance");
+                        intentPrivateCar.putExtra("TITLE", "Motor Insurance");
+                        intentPrivateCar.putExtra("APPMENU", "Y");
+                        intentPrivateCar.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intentPrivateCar.setAction(Intent.ACTION_VIEW);
+
+                        Intent intentBike;
+
+                        intentBike = new Intent(HomeActivity.this, CommonWebViewActivity.class).putExtra("URL", bikeUrl).putExtra("dashBoardtype", "INSURANCE").putExtra("NAME", "Two Wheeler Insurance").putExtra("TITLE", "Two Wheeler Insurance").putExtra("APPMENU", "Y").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intentBike.setAction(Intent.ACTION_VIEW);
+
+
+                        Intent intentExpressUrl;
+
+                        //startActivity(new Intent(HomeActivity.this, WelcomeSyncContactActivityNew.class));
+                        intentExpressUrl = new Intent(HomeActivity.this, WelcomeSyncContactActivityNew.class)
+                               // .putExtra("URL", expressUrl).putExtra("dashBoardtype", "INSURANCE")
+                               // .putExtra("NAME", "Sync Contacts").putExtra("TITLE", "Sync Contacts")
+                               // .putExtra("APPMENU", "Y")
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intentExpressUrl.setAction(Intent.ACTION_VIEW);
+
+                        Intent intenthealthIns;
+
+                        intenthealthIns = new Intent(HomeActivity.this, CommonWebViewActivity.class).putExtra("URL", healthUrl).putExtra("dashBoardtype", "INSURANCE").putExtra("NAME", "Health Insurance").putExtra("TITLE", "Health Insurance").putExtra("APPMENU", "Y").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intenthealthIns.setAction(Intent.ACTION_VIEW);
+
+
+                        //two_wheeler_express
+                        ShortcutInfo shortcutInfo1 = new ShortcutInfo.Builder(this, "ID1").setShortLabel("Sync Contacts").setLongLabel("Sync Contacts").setIcon(Icon.createWithResource(this, R.drawable.sync_contact)).setIntent(intentExpressUrl).setRank(0).build();
+                        //health_advisory
+                        ShortcutInfo shortcutInfo2 = new ShortcutInfo.Builder(this, "ID2").setShortLabel("Health Insurance").setLongLabel("Health Insurance").setIcon(Icon.createWithResource(this, R.drawable.health_insurance_sm)).setIntent(intenthealthIns).setRank(1).build();
+
+
+                        //car
+                        ShortcutInfo shortcutInfo3 = new ShortcutInfo.Builder(this, "ID3").setShortLabel("Private Car").setLongLabel("Private Car").setIcon(Icon.createWithResource(this, R.drawable.private_car_sm))
+                                //.setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("https://programmerworld.co/")))
+                                .setIntent(intentPrivateCar).setRank(2).build();
+
+                        ShortcutInfo shortcutInfo4 = new ShortcutInfo.Builder(this, "ID4").setShortLabel("Two Wheeler").setLongLabel("Two Wheeler").setIcon(Icon.createWithResource(this, R.drawable.two_wheeler_sm)).setIntent(intentBike).setRank(3).build();
+
+                        ArrayList<ShortcutInfo> shortcutInfoList = new ArrayList<ShortcutInfo>();
+
+                        shortcutInfoList.add(shortcutInfo1);
+                        shortcutInfoList.add(shortcutInfo2);
+                        shortcutInfoList.add(shortcutInfo3);
+                        shortcutInfoList.add(shortcutInfo4);
+
+
+                        shortcutManager.setDynamicShortcuts(shortcutInfoList);
+
+
+                    }
+
+                }
+            }
+
+        } catch (Exception ex) {
+            Log.d("SHORTCUTMENU", ex.toString());
+        }
+    }
+
+*/
     @Override
     public void OnFailure(Throwable t) {
         cancelDialog();
@@ -1710,7 +2005,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
         String ipAddress = "0.0.0.0";
         try {
-            ipAddress = Utility.getMacAddress(this);
+            ipAddress = "";
         } catch (Exception io) {
             ipAddress = "0.0.0.0";
         }
@@ -2066,6 +2361,159 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
         }
     }
 
+//    public void showMyAccountAlert() {
+//    try
+//    {
+//        if (MyAccountDialog != null && MyAccountDialog.isShowing()) {
+//
+//            return;
+//        }
+//        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this, R.style.CustomDialog);
+//
+//        TextView txtTile, txtMessage;
+//        ImageView ivCross, ivMessage;
+//        Button btnAllow;
+//        LayoutInflater inflater = this.getLayoutInflater();
+//
+//        final View dialogView = inflater.inflate(R.layout.layout_verify_mycontact_popup, null);
+//
+//        builder.setView(dialogView);
+//        MyAccountDialog = builder.create();
+//        // set the custom dialog components - text, image and button
+//        txtTile = dialogView.findViewById(R.id.txtTile);
+//        txtMessage = dialogView.findViewById(R.id.txtMessage);
+//        ivCross = (ImageView) dialogView.findViewById(R.id.ivCross);
+//        ivMessage = (ImageView) dialogView.findViewById(R.id.ivMessage);
+//        btnAllow = (Button) dialogView.findViewById(R.id.btnAllow);
+////myaccountupdateurl
+//        String url = userConstantEntity.getMyaccountupdateurl() + Math.round(Math.random() * 1000);
+//        ;
+//        Glide.with(HomeActivity.this).load(url)
+//                //.placeholder(R.drawable.circle_placeholder)
+//                .into(ivMessage);
+//
+//        txtTile.setText("Update Profile Photo!!");
+//        // txtMessage.setText(getResources().getString(R.string.myaccount_update));
+//
+//
+//        ivCross.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MyAccountDialog.dismiss();
+//
+//            }
+//        });
+//
+//        btnAllow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MyAccountDialog.dismiss();
+//                startActivity(new Intent(HomeActivity.this, MyAccountActivity.class));
+//
+//            }
+//        });
+//
+//        MyAccountDialog.setCancelable(true);
+//        MyAccountDialog.setCanceledOnTouchOutside(true);
+//        MyAccountDialog.show();
+//    }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+
+    public void showMySyncPopUpAlert(SyncContactEntity syncContactEntity) {
+        try
+        {
+            if (MySyncPopUpAlert != null && MySyncPopUpAlert.isShowing()) {
+
+                return;
+            }
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this, R.style.CustomDialog);
+
+            TextView txtTile, txtMessage;
+            ImageView ivCross, ivMessage;
+            Button btnAllow;
+            LayoutInflater inflater = this.getLayoutInflater();
+
+            String ACTION_NEEDED= syncContactEntity.getActionNeeded();
+            String FIRST_SYNC_CAMPAIGN_CREATIVE= syncContactEntity.getFirstSyncCampaignCreative();
+            String RE_SYNC_CAMPAIGN_CREATIVE= syncContactEntity.getReSyncCampaignCreative();
+            String url ="";
+            String texttitledisplay="";
+
+            final View dialogView = inflater.inflate(R.layout.layout_mysync_popup, null);
+
+            builder.setView(dialogView);
+            MySyncPopUpAlert = builder.create();
+            // set the custom dialog components - text, image and button
+            txtTile = dialogView.findViewById(R.id.txtTile);
+            txtMessage = dialogView.findViewById(R.id.txtMessage);
+            ivCross = (ImageView) dialogView.findViewById(R.id.ivCross);
+            ivMessage = (ImageView) dialogView.findViewById(R.id.ivMessage);
+            btnAllow = (Button) dialogView.findViewById(R.id.btnAllow);
+
+//            if(ACTION_NEEDED)
+//            {}
+//            else {}
+
+            if(ACTION_NEEDED.equals("RE_SYNC")) {
+                texttitledisplay="Update Resync Contacts!!";
+                url = RE_SYNC_CAMPAIGN_CREATIVE +"?" + Math.round(Math.random() * 1000);
+                btnAllow.setText("Go To Resync Contacts");
+
+            }else
+            {
+                texttitledisplay="Update Sync Contacts!!";
+                url = FIRST_SYNC_CAMPAIGN_CREATIVE +"?" + Math.round(Math.random() * 1000);
+                btnAllow.setText("Go To Sync Contacts");
+            }
+
+
+           //  url = "https://api.magicfinmart.com/images/in_miss1.jpeg?" + Math.round(Math.random() * 1000);
+
+
+
+            Glide.with(HomeActivity.this).load(url)
+                    //.placeholder(R.drawable.circle_placeholder)
+                    .into(ivMessage);
+
+            txtTile.setText(texttitledisplay);
+            // txtMessage.setText(getResources().getString(R.string.myaccount_update));
+
+
+            ivCross.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MySyncPopUpAlert.dismiss();
+
+                }
+            });
+
+            btnAllow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MySyncPopUpAlert.dismiss();
+                    if(ACTION_NEEDED.equals("RE_SYNC")) {
+                        startActivity(new Intent(HomeActivity.this, SyncContactActivity.class));
+                    }else
+                    {
+                        startActivity(new Intent(HomeActivity.this, WelcomeSyncContactActivityNew.class));
+                    }
+
+                }
+            });
+
+            MySyncPopUpAlert.setCancelable(true);
+            MySyncPopUpAlert.setCanceledOnTouchOutside(true);
+            MySyncPopUpAlert.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void CallingDetailsPopUp(List<UserCallingEntity> lstCallingDetail) {
         if (callingDetailDialog != null && callingDetailDialog.isShowing()) {
@@ -2922,6 +3370,57 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
         // for user define height and width..
     }
 
+    public void oauthVerifyPopUp(DashboardMultiLangEntity shareEntity) {
+
+        if (shareProdDialog != null && shareProdDialog.isShowing()) {
+
+            return;
+        }
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(HomeActivity.this);
+        TextView txtTitle, txtMessage;
+        Button btnShare;
+        ImageView ivCross;
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.layout_share_popup, null);
+
+        builder.setView(dialogView);
+        shareProdDialog = builder.create();
+        // set the custom dialog components - text, image and button
+        txtTitle = (TextView) dialogView.findViewById(R.id.txtTitle);
+        txtMessage = (TextView) dialogView.findViewById(R.id.txtMessage);
+        btnShare = (Button) dialogView.findViewById(R.id.btnShare);
+        ivCross = (ImageView) dialogView.findViewById(R.id.ivCross);
+
+        txtTitle.setText("" + shareEntity.getTitle());
+        txtMessage.setText("" + shareEntity.getPopupmsg());
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                shareDashbordProduct(shareEntity);
+                shareProdDialog.dismiss();
+
+            }
+        });
+
+        ivCross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                shareProdDialog.dismiss();
+
+            }
+        });
+
+        shareProdDialog.setCancelable(true);
+        shareProdDialog.show();
+        //  alertDialog.getWindow().setLayout(900, 600);
+
+        // for user define height and width..
+    }
+
 
     public void verifyPospNo() {
 
@@ -2983,17 +3482,12 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
     private void navigateViaNotification(String prdID, String WebURL, String Title) {
 
-        if (prdID.equals("18")) {
+        if (prdID.equals("WB")) {
 
-            startActivity(new Intent(HomeActivity.this, TermSelectionActivity.class));
+            startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class).putExtra("URL", WebURL).putExtra("NAME", Title).putExtra("TITLE", Title));
 
-        } else if (prdID.equals("WB")) {
-
-            startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                    .putExtra("URL", WebURL)
-                    .putExtra("NAME", Title)
-                    .putExtra("TITLE", Title));
-
+        } else if (prdID.equals("CB")) {
+            Utility.loadWebViewUrlInBrowser(HomeActivity.this, WebURL);
         } else {
 
             if (WebURL.trim().equals("") || Title.trim().equals("")) {
@@ -3002,7 +3496,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
             }
             String ipaddress = "0.0.0.0";
             try {
-                ipaddress = Utility.getMacAddress(HomeActivity.this);
+                ipaddress = "";
             } catch (Exception io) {
                 ipaddress = "0.0.0.0";
             }
@@ -3017,11 +3511,158 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                     + "&login_ssid=";
             WebURL = WebURL + append;
 
-            startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                    .putExtra("URL", WebURL)
-                    .putExtra("NAME", Title)
-                    .putExtra("TITLE", Title));
+            startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class).putExtra("URL", WebURL).putExtra("NAME", Title).putExtra("TITLE", Title));
         }
 
     }
+
+
+    private void removeShorcuts() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            try {
+                ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+
+                shortcutManager.disableShortcuts(Arrays.asList("ID1"));
+                shortcutManager.disableShortcuts(Arrays.asList("ID2"));
+                shortcutManager.disableShortcuts(Arrays.asList("ID3"));
+                shortcutManager.disableShortcuts(Arrays.asList("ID4"));
+                shortcutManager.removeAllDynamicShortcuts();
+            }catch (java.lang.Exception ex){
+                Log.d("SHORTCUTMENU", ex.toString());
+            }
+
+
+
+        }
+    }
+
+    private void deeplink_handle()
+    {
+        deeplink_value = prefManager.getDeepLink();
+        if (!deeplink_value.isEmpty()) {
+            try {
+
+                Uri myUri = Uri.parse(deeplink_value);
+
+                String prdID = myUri.getQueryParameter("product_id");
+                String title_value = myUri.getQueryParameter("title");
+
+                if (title_value != null) {
+                    Title = title_value;
+                } else {
+                    Title = "";
+                }
+
+                if (prdID != null) {
+
+                    if (prdID.equals("41")) {
+                        //sync native app activity
+                        startActivity(new Intent(HomeActivity.this, WelcomeSyncContactActivityNew.class));
+                    } else if (prdID.equals("501")) {
+                        //my account activity
+                        startActivity(new Intent(HomeActivity.this, MyAccountActivity.class));
+                    }else if (prdID.equals("502")) {
+                        //PospEnrollment activity
+                        startActivity(new Intent(HomeActivity.this, PospEnrollment.class));
+                    }else if (prdID.equals("503")) {
+                        //sync native app activity
+                        startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+                    }else if (prdID.equals("504")) {
+                        //sync native app activity
+                        startActivity(new Intent(HomeActivity.this, SalesMaterialActivity.class));
+                    }
+                    else {
+
+                        String ipaddress = "0.0.0.0";
+                        try {
+                            ipaddress = "";
+                        } catch (Exception io) {
+                            ipaddress = "0.0.0.0";
+                        }
+
+
+                        //&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.2.0&product_id=1
+                        String append = "&ss_id=" + userConstantEntity.getPOSPNo() + "&fba_id=" + userConstantEntity.getFBAId() + "&sub_fba_id=" + "&ip_address=" + ipaddress + "&mac_address=" + ipaddress + "&app_version=policyboss-" + BuildConfig.VERSION_NAME + "&device_id=" + Utility.getDeviceId(HomeActivity.this)
+                                // + "&product_id=" + prdID
+                                + "&login_ssid=";
+                        deeplink_value = deeplink_value + append;
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class).putExtra("URL", deeplink_value).putExtra("NAME", Title).putExtra("TITLE", Title));
+
+
+                            }
+                        }, 100);
+
+
+                    }
+
+
+                }
+                else {
+                    //new link
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class).putExtra("URL", deeplink_value).putExtra("NAME", Title).putExtra("TITLE", Title));
+
+
+                        }
+                    }, 100);
+                }
+
+
+                prefManager.clearDeeplink();
+
+            } catch (Exception ex) {
+                //  Toast.makeText(this, "Please try again..", Toast.LENGTH_SHORT).show();
+                Log.d("Deeplinl", ex.toString());
+            }
+
+        }
+    }
+
+
+   private void showDialogMain( ){
+
+        try {
+            if(! HomeActivity.this.isFinishing()){
+
+                if(!showDialog.isShowing()) {
+                    ProgressdialogLoadingBinding dialogLoadingBinding = ProgressdialogLoadingBinding.inflate(getLayoutInflater());
+                    showDialog.setContentView(dialogLoadingBinding.getRoot());
+
+                    showDialog.setCancelable(false);
+                    showDialog.show();
+                }
+            }
+        }catch (Exception e){
+
+
+        }
+
+
+    }
+
+    private void cancelDialogMain() {
+        try{
+            if (showDialog != null) {
+                showDialog.dismiss();
+
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            showDialog.dismiss();
+        }
+    }
+
+
+
 }
+

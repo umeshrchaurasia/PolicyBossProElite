@@ -105,6 +105,10 @@ public class UserConstantEntity extends RealmObject {
     private String finmartwhatsappno;
     private int isactive;
 
+    private String enablemyaccountupdate;
+    private String  androidproversion;
+
+    private String androidproouathEnabled;
     /**
      * plbanner :https://horizon.policyboss.com:5443/images/plbanner.gif
      * plactive : 1
@@ -200,6 +204,13 @@ public class UserConstantEntity extends RealmObject {
     private String MyTransactionsEnabled;
     private String MyMessagesEnabled;
     private String SmsTemplatesEnabled;
+
+    private String notif_popupurl_elite;
+
+    private String  enablesyncprofileupdate;
+
+
+    private String myaccountupdateurl;
 
     public String getFinboxEnabled() {
         return FinboxEnabled;
@@ -405,7 +416,7 @@ public class UserConstantEntity extends RealmObject {
     private String notificationpopupurl;
 
 
-    private String notif_popupurl_elite;
+
 
 
     private String crnmobileno;
@@ -544,13 +555,6 @@ public class UserConstantEntity extends RealmObject {
         this.notificationpopupurl = notificationpopupurl;
     }
 
-    public String getNotif_popupurl_elite() {
-        return notif_popupurl_elite + (int) Math.round(Math.random() * 100);
-    }
-
-    public void setNotif_popupurl_elite(String notif_popupurl_elite) {
-        this.notif_popupurl_elite = notif_popupurl_elite;
-    }
 
 
     public String getHealthurltemp() {
@@ -1162,11 +1166,52 @@ public class UserConstantEntity extends RealmObject {
         this.enablesynccontact = enablesynccontact;
     }
 
-    public int getAndroidproversion() {
-        return androidproeliteversion;
+    public String getEnablemyaccountupdate() {
+        return enablemyaccountupdate;
     }
 
-    public void setAndroidproversion(int androidproversion) {
-        this.androidproeliteversion = androidproversion;
+    public String getMyaccountupdateurl() {
+        return myaccountupdateurl;
+    }
+
+    public void setMyaccountupdateurl(String myaccountupdateurl) {
+        this.myaccountupdateurl = myaccountupdateurl;
+    }
+
+
+    public void setEnablemyaccountupdate(String enablemyaccountupdate) {
+        this.enablemyaccountupdate = enablemyaccountupdate;
+    }
+
+    public String getNotif_popupurl_elite() {
+        return notif_popupurl_elite;
+    }
+
+    public void setNotif_popupurl_elite(String notif_popupurl_elite) {
+        this.notif_popupurl_elite = notif_popupurl_elite;
+    }
+
+    public String getAndroidProVersion() {
+        return androidproversion;
+    }
+
+    public void setAndroidproversion(String androidproversion) {
+        this.androidproversion = androidproversion;
+    }
+
+    public String getAndroidpProOuathEnabled() {
+        return androidproouathEnabled;
+    }
+
+    public void setAndroidproouathEnabled(String androidproouathEnabled) {
+        this.androidproouathEnabled = androidproouathEnabled;
+    }
+
+    public String getEnablesyncprofileupdate() {
+        return enablesyncprofileupdate;
+    }
+
+    public void setEnablesyncprofileupdate(String enablesyncprofileupdate) {
+        this.enablesyncprofileupdate = enablesyncprofileupdate;
     }
 }

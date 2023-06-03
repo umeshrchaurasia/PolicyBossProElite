@@ -15,6 +15,7 @@ import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.requestentity.Us
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.CertificateResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.CheckAppAccessResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.GenerateLeadResponse;
+import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.HorizonsyncDetailsResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.NCDResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.SwipeDetailResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.UploadNCDResponse;
@@ -115,6 +116,9 @@ public class DynamicUrlBuilder extends GenericRetroRequestBuilder {
 
         @GET
         Call<syncrazorsucessReponse> getSync_razor_payment(@Url String strUrl);
+
+        @GET
+        Call<HorizonsyncDetailsResponse> getsyncDetailshorizondetail(@Url String strUrl);
 
     }
 }
