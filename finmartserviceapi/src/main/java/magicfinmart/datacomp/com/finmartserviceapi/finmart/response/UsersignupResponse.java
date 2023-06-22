@@ -8,29 +8,29 @@ import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserHideEntity;
 
 public class UsersignupResponse extends APIResponse {
 
-	private UsersingupEntity MasterData;
-
-
-	public UsersingupEntity getMasterData(){
+	private List<UsersingupEntity> MasterData;
+	public List<UsersingupEntity> getMasterData() {
 		return MasterData;
 	}
 
-	public void setMasterData(UsersingupEntity MasterData) {
-		this.MasterData = MasterData;
+	public void setMasterData(List<UsersingupEntity> masterData) {
+		MasterData = masterData;
 	}
+
+
 
 
 	public static class UsersingupEntity {
 
-		private String enableEliteSignupurl;
-		private String enableProSignupurl;
+		private String enable_pro_signupurl;
+		private String enable_elite_signupurl;
 
 		public String getEnableEliteSignupurl(){
-			return enableEliteSignupurl;
+			return enable_elite_signupurl;
 		}
 
 		public String getEnableProSignupurl(){
-			return enableProSignupurl;
+			return enable_elite_signupurl;
 		}
 	}
 }

@@ -443,8 +443,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
         else if(response instanceof UsersignupResponse){
             if (response.getStatusNo() == 0) {
-                if( ((UsersignupResponse) response).getMasterData().getEnableEliteSignupurl()!=null) {
-                    enable_elite_signupurl = ((UsersignupResponse) response).getMasterData().getEnableEliteSignupurl();
+                if( ((UsersignupResponse) response).getMasterData().get(0).getEnableEliteSignupurl() != null) {
+                    enable_elite_signupurl = ((UsersignupResponse) response).getMasterData().get(0).getEnableEliteSignupurl();
                 }
             }
         }
