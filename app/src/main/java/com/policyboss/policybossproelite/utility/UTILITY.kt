@@ -115,16 +115,6 @@ object UTILITY {
             SDK =  ""+ Build.VERSION.SDK_INT,
             Manufacture = Build.MANUFACTURER?: "",
             Brand = Build.BRAND?: "",
-
-            User = Build.USER ?: "",
-            Type = Build.TYPE ?: "",
-            Base = ""+ Build.VERSION_CODES.BASE,
-
-            Incremental = Build.VERSION.INCREMENTAL?: "",
-            Board = Build.BRAND ?: "",
-            Host = Build.HOST ?: "",
-
-            FingerPrint = Build.FINGERPRINT ?: "",
             VersionCode = Build.VERSION.RELEASE?: ""
         )
     }
