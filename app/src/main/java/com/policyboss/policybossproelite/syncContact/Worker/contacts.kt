@@ -10,6 +10,7 @@ data class contacts (
     var birthdate: String = "",
     var nickname : String = ""
 
+
 )
 
 
