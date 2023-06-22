@@ -1,5 +1,6 @@
 package com.policyboss.policybossproelite.syncContact.Worker
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
@@ -13,14 +14,13 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
+
 import com.policyboss.policybossproelite.BaseActivity
 import com.policyboss.policybossproelite.R
 import com.policyboss.policybossproelite.databinding.ActivityWelcomeSyncContactNewBinding
 import com.policyboss.policybossproelite.databinding.DialogLoadingBinding
-import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivity.MyViewPagerAdapter
-import com.policyboss.policybossproelite.utility.NetworkUtils.Companion.isNetworkAvailable
-import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
+ import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
+
 import com.utility.finmartcontact.core.requestentity.CallLogRequestEntity
 import kotlinx.coroutines.*
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController
@@ -38,9 +38,9 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
     private lateinit var dialogAnim : Dialog
     val TAG = "HORIZONEMP"
 
-//    lateinit var viewPager: ViewPager
-   // lateinit var myViewPagerAdapter: MyViewPagerAdapter
-   // lateinit var dotsLayout: LinearLayout
+    //    lateinit var viewPager: ViewPager
+    // lateinit var myViewPagerAdapter: MyViewPagerAdapter
+    // lateinit var dotsLayout: LinearLayout
     lateinit var  layouts: IntArray
     lateinit var btnNext: Button
 
@@ -58,50 +58,50 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
     lateinit var userConstantEntity: UserConstantEntity
 
 
-   lateinit var shareProdSyncDialog: AlertDialog
+    lateinit var shareProdSyncDialog: AlertDialog
     var POSPNO = ""
     var FBAID = ""
 
-/*
-//userConstantEntity!!.pospNo
-    var viewPagerPageChangeListener: OnPageChangeListener = object : OnPageChangeListener {
-        override fun onPageSelected(position: Int) {
-            //addBottomDots(position);
-            current = position
-            setSelectedDot(position + 1)
-            // changing the next button text 'NEXT' / 'GOT IT'
-            if (position == layouts.size - 1) {
-                // last page. make button text to GOT IT
-                btnNext.text = "GET STARTED"
-                //  btnNext.setVisibility(View.GONE);
-                btnNext.isEnabled = false
-                btnNext.alpha = 0.4f
-                btnNext.tag = 0
-                ll_term!!.visibility = View.VISIBLE
+    /*
+    //userConstantEntity!!.pospNo
+        var viewPagerPageChangeListener: OnPageChangeListener = object : OnPageChangeListener {
+            override fun onPageSelected(position: Int) {
+                //addBottomDots(position);
+                current = position
+                setSelectedDot(position + 1)
+                // changing the next button text 'NEXT' / 'GOT IT'
+                if (position == layouts.size - 1) {
+                    // last page. make button text to GOT IT
+                    btnNext.text = "GET STARTED"
+                    //  btnNext.setVisibility(View.GONE);
+                    btnNext.isEnabled = false
+                    btnNext.alpha = 0.4f
+                    btnNext.tag = 0
+                    ll_term!!.visibility = View.VISIBLE
 
 
-                // btnSkip.setVisibility(View.VISIBLE);
-            } else {
-                // still pages are left
-                ll_term!!.visibility = View.GONE
-                //btnNext.setVisibility(View.VISIBLE);
-                btnNext.tag = 1
-                btnNext.alpha = 1f
-                btnNext.text = "NEXT"
-                btnchkagree!!.isChecked = false
-                btnNext.isEnabled = true
-                //  btnNext.setVisibility(View.GONE);
-                // btnSkip.setVisibility(View.VISIBLE);
+                    // btnSkip.setVisibility(View.VISIBLE);
+                } else {
+                    // still pages are left
+                    ll_term!!.visibility = View.GONE
+                    //btnNext.setVisibility(View.VISIBLE);
+                    btnNext.tag = 1
+                    btnNext.alpha = 1f
+                    btnNext.text = "NEXT"
+                    btnchkagree!!.isChecked = false
+                    btnNext.isEnabled = true
+                    //  btnNext.setVisibility(View.GONE);
+                    // btnSkip.setVisibility(View.VISIBLE);
+                }
             }
-        }
 
-        override fun onPageScrolled(arg0: Int, arg1: Float, arg2: Int) {}
-        override fun onPageScrollStateChanged(arg0: Int) {}
-    }*/
+            override fun onPageScrolled(arg0: Int, arg1: Float, arg2: Int) {}
+            override fun onPageScrollStateChanged(arg0: Int) {}
+        }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // setContentView(R.layout.activity_welcome_sync_contact_new)
+        // setContentView(R.layout.activity_welcome_sync_contact_new)
 
         binding = ActivityWelcomeSyncContactNewBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -115,7 +115,7 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
         init_widgets()
         setListener()
-     //   showAnimDialog("")
+        //   showAnimDialog("")
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 showDialog()
@@ -125,7 +125,7 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
             }catch (e: Exception){
 
                 withContext(Dispatchers.Main) {
-                 //   viewPager.visibility = View.VISIBLE
+                    //   viewPager.visibility = View.VISIBLE
                     cancelAnimDialog()
                 }
             }
@@ -138,15 +138,15 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
     }
 
     private fun init_widgets() {
-/*
-        layouts = intArrayOf(
-            R.layout.sync_welcome_slide1,
-            R.layout.sync_welcome_slide2,
-            R.layout.sync_welcome_slide3
-        )*/
-       // viewPager = binding.viewPager
-       // viewPager.visibility = GONE
-      //  dotsLayout = binding.layoutDots
+        /*
+                layouts = intArrayOf(
+                    R.layout.sync_welcome_slide1,
+                    R.layout.sync_welcome_slide2,
+                    R.layout.sync_welcome_slide3
+                )*/
+        // viewPager = binding.viewPager
+        // viewPager.visibility = GONE
+        //  dotsLayout = binding.layoutDots
 
         btnNext = binding.btnNext
         btnchkagree = binding.chkagree
@@ -171,10 +171,10 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
     }
 
     private fun setListener() {
-     //   myViewPagerAdapter = MyViewPagerAdapter()
-     //   viewPager!!.adapter = myViewPagerAdapter
+        //   myViewPagerAdapter = MyViewPagerAdapter()
+        //   viewPager!!.adapter = myViewPagerAdapter
 
-    //    viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
+        //    viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
         btnNext.setOnClickListener(this)
         btnchkagree.setOnClickListener(this)
 
@@ -187,48 +187,48 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
         tvClickHere.setOnClickListener(this)
 
         ll_term.setOnClickListener(this)
-      //  ll_term.visibility = View.GONE
+        //  ll_term.visibility = View.GONE
         btnchkagree!!.isChecked = false
         btnchkcommunication_sms!!.isChecked = false
         btnchktele_call!!.isChecked = false
     }
-/*
-    private fun setSelectedDot(current: Int) {
-      //  binding.dot1.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.unselected_dot))
-      //  binding.dot2.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.unselected_dot))
-      //  binding.dot3.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.unselected_dot))
-        /*
-        when (current) {
-            1 -> binding.dot1.setImageDrawable(
-                ContextCompat.getDrawable(
-                    this,
-                    R.drawable.indicator_active
+    /*
+        private fun setSelectedDot(current: Int) {
+          //  binding.dot1.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.unselected_dot))
+          //  binding.dot2.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.unselected_dot))
+          //  binding.dot3.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.unselected_dot))
+            /*
+            when (current) {
+                1 -> binding.dot1.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.indicator_active
+                    )
                 )
-            )
-            2 -> binding.dot2.setImageDrawable(
-                ContextCompat.getDrawable(
-                    this,
-                    R.drawable.indicator_active
+                2 -> binding.dot2.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.indicator_active
+                    )
                 )
-            )
-            3 -> binding.dot3.setImageDrawable(
-                ContextCompat.getDrawable(
-                    this,
-                    R.drawable.indicator_active
+                3 -> binding.dot3.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.indicator_active
+                    )
                 )
-            )
+            }*/
         }*/
-    }*/
 
     private suspend fun getHorizonDetails(){
 
         withContext(Dispatchers.IO){
 
-           // var url =  "https://horizon.policyboss.com:5443/sync_contacts" + "/contact_entry"
+            // var url =  "https://horizon.policyboss.com:5443/sync_contacts" + "/contact_entry"
 
             var url = "https://horizon.policyboss.com:5443/sync_contact/get_sync_contact_agreements?ss_id=" + POSPNO
             val resultRespAsync = async { RetroHelper.api.getHorizonDetails(url) }
-             val resultResp = resultRespAsync.await()
+            val resultResp = resultRespAsync.await()
             if (resultResp.isSuccessful) {
                 cancelDialog()
                 Log.d(TAG, resultResp.toString())
@@ -248,16 +248,16 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
                         is_sms = Horizon_sync_contact_agree_Response?.Msg?.get(isContactSync_msg-1)?.is_sms?:""
 
                         if(is_call.equals("yes")){
-                                btnchktele_call.isChecked = true
+                            btnchktele_call.isChecked = true
 
-                            }else
+                        }else
                         {
-                                btnchktele_call.isChecked = false
+                            btnchktele_call.isChecked = false
                         }
 
                         if(is_sms.equals("yes")){
-                                btnchkcommunication_sms.isChecked = true
-                            }else
+                            btnchkcommunication_sms.isChecked = true
+                        }else
                         {
                             btnchkcommunication_sms.isChecked = false
                         }
@@ -265,12 +265,12 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
 
                     }
-                        }else{
+                }else{
                     withContext(Dispatchers.Main) {
                         Log.d(TAG, resultResp.toString())
-                       // viewPager.visibility = View.VISIBLE
-                            cancelAnimDialog()
-                        }
+                        // viewPager.visibility = View.VISIBLE
+                        cancelAnimDialog()
+                    }
                 }
 
 
@@ -278,64 +278,6 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
 
 
-                }else{
-
-                    withContext(Dispatchers.Main) {
-                        Log.d(TAG, resultResp.toString())
-                   // viewPager.visibility = View.VISIBLE
-                        cancelAnimDialog()
-                    }
-                cancelDialog()
-            }
-
-        }
-
-    }
-
-    private suspend fun savecheckboxdetails(){
-
-        withContext(Dispatchers.IO){
-
-            // var url =  "https://horizon.policyboss.com:5443/sync_contacts" + "/contact_entry"
-            var url = "https://horizon.policyboss.com:5443/postservicecall/sync_contacts/online_agreement"
-
-
-            var smschk ="no"
-
-            var telechk ="no"
-
-               if(btnchkcommunication_sms!!.isChecked){
-                   smschk="yes"
-            }else{
-                   smschk="no"
-               }
-
-               if(btnchktele_call!!.isChecked){
-                   telechk="yes"
-               }else{
-                   telechk="no"
-               }
-
-            val saveCheckboxRequestEntity = SaveCheckboxRequestEntity(
-
-                fba_id = Integer.parseInt(FBAID),
-                is_sms = smschk,
-                is_call = telechk,
-                online_agreement = "online_agreement",
-                ss_id = Integer.parseInt(POSPNO)
-
-            )
-
-          // val resultRespAsync1 =  RetroHelper.api.savecheckboxdetails(url,saveCheckboxRequestEntity)
-          //  val resultResp = resultRespAsync.await()
-
-            val resultRespAsync = async { RetroHelper.api.savecheckboxdetails(url,saveCheckboxRequestEntity) }
-            val resultResp = resultRespAsync.await()
-
-            if (resultResp.isSuccessful) {
-                cancelDialog()
-                    Log.d(TAG, resultResp.toString())
-                           // delay(8000)
             }else{
 
                 withContext(Dispatchers.Main) {
@@ -350,14 +292,73 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
 
     }
 
-        //  viewpager change listener
+    @SuppressLint("SuspiciousIndentation")
+    private suspend fun savecheckboxdetails(){
+
+        withContext(Dispatchers.IO){
+
+            // var url =  "https://horizon.policyboss.com:5443/sync_contacts" + "/contact_entry"
+            var url = "https://horizon.policyboss.com:5443/postservicecall/sync_contacts/online_agreement"
+
+
+            var smschk ="no"
+
+            var telechk ="no"
+
+            if(btnchkcommunication_sms!!.isChecked){
+                smschk="yes"
+            }else{
+                smschk="no"
+            }
+
+            if(btnchktele_call!!.isChecked){
+                telechk="yes"
+            }else{
+                telechk="no"
+            }
+
+            val saveCheckboxRequestEntity = SaveCheckboxRequestEntity(
+
+                fba_id = Integer.parseInt(FBAID),
+                is_sms = smschk,
+                is_call = telechk,
+                online_agreement = "online_agreement",
+                ss_id = Integer.parseInt(POSPNO)
+
+            )
+
+            // val resultRespAsync1 =  RetroHelper.api.savecheckboxdetails(url,saveCheckboxRequestEntity)
+            //  val resultResp = resultRespAsync.await()
+
+            val resultRespAsync = async { RetroHelper.api.savecheckboxdetails(url,saveCheckboxRequestEntity) }
+            val resultResp = resultRespAsync.await()
+
+            if (resultResp.isSuccessful) {
+                cancelDialog()
+                Log.d(TAG, resultResp.toString())
+                // delay(8000)
+            }else{
+
+                withContext(Dispatchers.Main) {
+                    Log.d(TAG, resultResp.toString())
+                    // viewPager.visibility = View.VISIBLE
+                    cancelAnimDialog()
+                }
+                cancelDialog()
+            }
+
+        }
+
+    }
+
+    //  viewpager change listener
 
 
     override fun onClick(view: View?) {
 
         when (view!!.getId()) {
             btnNext.id -> {
-           //     btnchktele!!.isChecked && btnchkcommunication!!.isChecked &&
+                //     btnchktele!!.isChecked && btnchkcommunication!!.isChecked &&
                 if ( btnchkagree!!.isChecked ) {
                     // current = current + 1
                     // if (current < layouts.size) {
@@ -366,31 +367,31 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
                     //  } else {
 
 
-                        CoroutineScope(Dispatchers.IO).launch {
-                            try { //showDialog()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try { //showDialog()
 
-                              savecheckboxdetails()
+                            savecheckboxdetails()
 
-                            }catch (e: Exception){
+                        }catch (e: Exception){
 
-                                withContext(Dispatchers.Main) {
-                                 //   viewPager.visibility = View.VISIBLE
-                                 //   cancelAnimDialog()
-                                }
+                            withContext(Dispatchers.Main) {
+                                //   viewPager.visibility = View.VISIBLE
+                                //   cancelAnimDialog()
                             }
                         }
+                    }
                     startActivity(Intent(this, SyncContactActivity::class.java))
                     //  }
                 }
             }
 
-         //   R.id.btn_skip -> startActivity(Intent(this, SyncContactActivity::class.java))
+            //   R.id.btn_skip -> startActivity(Intent(this, SyncContactActivity::class.java))
 
             txtprivacy.id -> startActivity(
                 Intent(this, CommonWebViewActivity::class.java)
                     .putExtra(
                         "URL",
-                        "https://www.policyboss.com/privacy-policy-policyboss-pro"
+                        "https://www.policyboss.com/privacy-policy-policyboss-pro-elite"
                     )
                     .putExtra("NAME", "" + "privacy-policy")
                     .putExtra("TITLE", "" + "privacy-policy")
@@ -404,14 +405,14 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
             tvClickHere.id -> SyncTermPopUp()
 
             btnchkagree.id -> if (btnchkagree!!.tag != "1") {
-                if (btnchkagree!!.isChecked) {
+                if (btnchkagree!!.isChecked ) {
                     btnNext.isEnabled = true
-                 //   btnNext.alpha = 1f
+                    //   btnNext.alpha = 1f
 
-                 //   btnNext.setVisibility(View.VISIBLE);
+                    //   btnNext.setVisibility(View.VISIBLE);
                     btnNext.tag = 1
                     btnNext.alpha = 1f
-                  //  btnNext.text = "NEXT"
+                    //  btnNext.text = "NEXT"
                 } else {
                     btnNext.isEnabled = false
                     btnNext.alpha = 0.4f
@@ -498,8 +499,8 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
         txtMessage = dialogView.findViewById<View>(R.id.txtMessage) as TextView
         btnShare = dialogView.findViewById<View>(R.id.btnShare) as Button
         ivCross = dialogView.findViewById<View>(R.id.ivCross) as ImageView
-      //  txtTitle.text = ""
-     //   txtMessage.text = ""
+        //  txtTitle.text = ""
+        //   txtMessage.text = ""
 
         // txtMessage.setText(getResources().getString(R.string.myaccount_update));
         ivCross.setOnClickListener { shareProdSyncDialog.dismiss() }
@@ -510,7 +511,7 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
         //  alertDialog.getWindow().setLayout(900, 600);
 
         // for user define height and width..
-        }
+    }
 
 
 }

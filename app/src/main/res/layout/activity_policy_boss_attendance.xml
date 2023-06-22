@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.policyboss.policybossproelite.attendance.PolicyBossAttendanceActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="?attr/colorPrimary"-->
+<!--            app:popupTheme="@style/AppTheme.PopupOverlay"-->
+<!--            app:titleTextAppearance="@style/TextStyle.Toolbar"-->
+<!--            app:titleTextColor="@color/white"/>-->
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+
+            app:titleTextAppearance="@style/TextStyle.ToolbarNormal"
+            app:titleTextColor="@color/white"/>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".attendance.PolicyBossAttendanceActivity"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+
+                android:id="@+id/lyParent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_location"
+                        android:background="@drawable/bg_lightblue_rect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/fab_margin"
+                        android:paddingRight="@dimen/fab_margin"
+                        android:text="Get My Current Location"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                </LinearLayout>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+
+                    android:background="@color/seperator" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/textLatitudedesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="top"
+                        android:text="Latitude :  "
+                        android:fontFamily="@font/muli"
+                        android:textAppearance="@style/TextStyle.TextLarge"
+                        android:textColor="@color/dashboard_title"
+                        android:textStyle="normal" />
+
+
+                    <TextView
+                        android:id="@+id/tv_latitude"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/textLatitudedesc"
+
+                        android:gravity="top"
+                        android:text=""
+                        android:textAppearance="@style/TextStyle.TextMedium"
+                        android:textColor="@color/header_light_text"
+
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/textLongitudedesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="top"
+                        android:text="Longitude :  "
+                        android:fontFamily="@font/muli"
+                        android:textAppearance="@style/TextStyle.TextLarge"
+                        android:textColor="@color/dashboard_title"
+                        android:textStyle="normal" />
+
+
+                    <TextView
+                        android:id="@+id/tv_longitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/textLongitudedesc"
+
+
+                        android:text=""
+                        android:textAppearance="@style/TextStyle.TextMedium"
+                        android:textColor="@color/header_light_text"
+                        android:textStyle="bold"
+
+                        />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/lySubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                    <TextView
+                       android:id="@+id/txtLoader"
+                        style="@style/TextViewStyle.Large"
+                        android:textColor="@color/header_dark_text"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Please Wait Loading..."
+                        >
+
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/btn_submit_attendance"
+                        android:layout_marginTop="@dimen/fab_margin"
+                        style="@style/ButtonStyleCustom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:text="Submit Attendance"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:visibility="visible"
+                        tools:ignore="TextContrastCheck" />
+
+
+                    <TextView
+                        android:id="@+id/txtMessage"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="@dimen/eight"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/muli"
+                        android:text=""
+                        android:textColor="@color/header_dark_text"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/seperator"
+                    android:visibility="visible" />
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/lyheader"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lyParent"
+
+                android:layout_marginHorizontal="@dimen/eight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    style="@style/TextViewStyle.Large"
+                    android:fontFamily="@font/muli"
+                    android:text="Attendance History"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="@dimen/eight"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:fontFamily="@font/muli"
+                        android:layout_marginLeft="@dimen/eight"
+                        android:gravity="center_vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/icon"
+                        android:textColor="@color/black"
+                        android:text="Date"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:layout_marginRight="@dimen/fab_margin"
+                        android:textSize="16dp" />
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_marginLeft="0dp"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/muli"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/icon"
+                        android:textColor="@color/black"
+                        android:text="Entry Time"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:layout_marginRight="4dp"
+                        android:textSize="16dp" />
+                </LinearLayout>
+                <View
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightGrey"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAttendace"
+                    android:layoutAnimation="@anim/layout_animation"
+                    android:nestedScrollingEnabled="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+
+                    />
+
+            </LinearLayout>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

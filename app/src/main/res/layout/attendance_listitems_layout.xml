@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_dashboard"
+    app:cardCornerRadius="@dimen/eight"
+    android:layout_marginTop="4dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/eight"
+        android:padding="6dp">
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/txtDate"
+            android:layout_marginLeft="@dimen/eight"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli"
+            android:layout_toRightOf="@+id/icon"
+            android:textColor="@color/header_dark_text"
+            android:text="xw"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:minLines="1"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_weight="1"
+            android:fontFamily="@font/muli"
+            android:layout_marginLeft="0dp"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/icon"
+            android:textColor="@color/black"
+            android:text="ww"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:minLines="1"
+            android:layout_marginRight="4dp"
+            android:textSize="16dp" />
+    </LinearLayout>
+    <View
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightGrey"
+        />
+
+</LinearLayout>

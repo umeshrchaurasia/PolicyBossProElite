@@ -569,6 +569,25 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
+    <style name="Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="ButtonStyleCustom" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/bg_primary_rect</item>
+        <item name="backgroundTint">@color/green_descent</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:minHeight">48dp</item>
 
 
+    </style>
 </resources>

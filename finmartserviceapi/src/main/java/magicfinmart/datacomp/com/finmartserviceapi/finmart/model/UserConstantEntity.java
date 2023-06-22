@@ -106,9 +106,14 @@ public class UserConstantEntity extends RealmObject {
     private int isactive;
 
     private String enablemyaccountupdate;
-    private String  androidproversion;
+//    private String  androidproversion;
 
     private String androidproouathEnabled;
+
+    private String androidproattendanceEnable;
+    private String androidpromarketEnable;
+    private String androidpromarketuidurl;
+    private String androidpromarkefbaurl;
     /**
      * plbanner :https://horizon.policyboss.com:5443/images/plbanner.gif
      * plactive : 1
@@ -125,6 +130,18 @@ public class UserConstantEntity extends RealmObject {
     private String PBByCrnSearch;
 
     private String ERPID;
+
+    public String getAndroidproouathEnabled() {
+        return androidproouathEnabled;
+    }
+
+    public int getAndroidproeliteversion() {
+        return androidproeliteversion;
+    }
+
+    public void setAndroidproeliteversion(int androidproeliteversion) {
+        this.androidproeliteversion = androidproeliteversion;
+    }
 
     ///androidproeliteversion
     private int androidproeliteversion;
@@ -1191,13 +1208,13 @@ public class UserConstantEntity extends RealmObject {
         this.notif_popupurl_elite = notif_popupurl_elite;
     }
 
-    public String getAndroidProVersion() {
-        return androidproversion;
-    }
+//    public String getAndroidProVersion() {
+//        return androidproversion;
+//    }
 
-    public void setAndroidproversion(String androidproversion) {
-        this.androidproversion = androidproversion;
-    }
+//    public void setAndroidproversion(String androidproversion) {
+//        this.androidproversion = androidproversion;
+//    }
 
     public String getAndroidpProOuathEnabled() {
         return androidproouathEnabled;
@@ -1207,11 +1224,42 @@ public class UserConstantEntity extends RealmObject {
         this.androidproouathEnabled = androidproouathEnabled;
     }
 
+    public String getAndroidproattendanceEnable() {
+        return androidproattendanceEnable;
+    }
+
+    public void setAndroidproattendanceEnable(String androidproattendanceEnable) {
+        this.androidproattendanceEnable = androidproattendanceEnable;
+    }
     public String getEnablesyncprofileupdate() {
         return enablesyncprofileupdate;
     }
 
     public void setEnablesyncprofileupdate(String enablesyncprofileupdate) {
         this.enablesyncprofileupdate = enablesyncprofileupdate;
+    }
+
+    public String getAndroidpromarketEnable() {
+        return androidpromarketEnable;
+    }
+
+    public void setAndroidpromarketEnable(String androidpromarketEnable) {
+        this.androidpromarketEnable = androidpromarketEnable;
+    }
+
+    public String getAndroidpromarketuidurl() {
+        return androidpromarketuidurl;
+    }
+
+    public void setAndroidpromarketuidurl(String androidpromarketuidurl) {
+        this.androidpromarketuidurl = androidpromarketuidurl;
+    }
+
+    public String getAndroidpromarkefbaurl() {
+        return androidpromarkefbaurl;
+    }
+
+    public void setAndroidpromarkefbaurl(String androidpromarkefbaurl) {
+        this.androidpromarkefbaurl = androidpromarkefbaurl;
     }
 }

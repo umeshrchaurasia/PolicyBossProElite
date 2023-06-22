@@ -3,6 +3,8 @@ package com.policyboss.policybossproelite.utility
 object Constant {
 
 
+    const val pbAttendanceURL = "https://pbtimes.policyboss.com/EIS/JSON_Test/app_data_push_test.php"
+
 
     const val KEY_fbaid : String = "fbaid"
 
@@ -17,6 +19,7 @@ object Constant {
     const val KEY_Max_Progress_result = "op_Max_Progress_result"
     const val KEY_error_result = "op_error_result"
 
+    const val   TAG = "PBTAG"
 
     const val   TAG_SAVING_CALL_LOG = "SAVING_CALL_LOG"
     const val   TAG_SAVING_CONTACT_LOG = "SAVING_CONTACT_LOG"

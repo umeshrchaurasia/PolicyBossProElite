@@ -52,6 +52,7 @@ import com.policyboss.policybossproelite.IncomeCalculator.IncomePotentialActivit
 import com.policyboss.policybossproelite.MyApplication;
 import com.policyboss.policybossproelite.R;
 
+import com.policyboss.policybossproelite.attendance.PolicyBossAttendanceActivity;
 import com.policyboss.policybossproelite.certificate.POSP_certicate_appointment;
 import com.policyboss.policybossproelite.change_password.ChangePasswordFragment;
 import com.policyboss.policybossproelite.contact_lead.ContactLeadActivity;
@@ -412,8 +413,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_attendance:
-//                        fragment = new AttendanceFragment();
-//                        getSupportActionBar().setTitle("My Attendance");
+                        startActivity(new Intent(HomeActivity.this, PolicyBossAttendanceActivity.class));
 
                         break;
 
@@ -1544,7 +1544,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                  deeplink_handle();
 
                  //region check for new version
-                 int serverVersionCode = Integer.parseInt(userConstantEntity.getAndroidProVersion());
+                 int serverVersionCode = userConstantEntity.getAndroidproeliteversion();
                  if (pinfo != null && pinfo.versionCode < serverVersionCode) {
 
                      // forced update app
@@ -2282,15 +2282,21 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
             nav_Menu.findItem(R.id.nav_generateLead).setVisible(false);
         }
 
-
         //Attendance
-//        if (loginResponseEntity.getIsUidLogin().equals("Y")) {
-//            //visible attendance
-//            nav_Menu.findItem(R.id.nav_attendance).setVisible(true);
-//        } else {
-//            //hide attendance
-//            nav_Menu.findItem(R.id.nav_attendance).setVisible(false);
-//        }
+
+
+        if (userConstantEntity.getAndroidproattendanceEnable().equals("1")) {
+            if (loginResponseEntity.getIsUidLogin().equals("Y")) {
+                //visible attendance
+                nav_Menu.findItem(R.id.nav_attendance).setVisible(true);
+            } else {
+                //hide attendance
+                nav_Menu.findItem(R.id.nav_attendance).setVisible(false);
+            }
+        }else
+        {
+            nav_Menu.findItem(R.id.nav_attendance).setVisible(false);
+        }
 
         //init_headers();
 

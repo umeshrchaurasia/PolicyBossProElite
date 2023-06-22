@@ -14,10 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.common.util.ArrayUtils;
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity;
+
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 public class WelcomeSyncContactActivity extends BaseActivity implements View.OnClickListener {
     private ViewPager viewPager;

@@ -1,20 +1,14 @@
 package com.utility.finmartcontact.home.Worker
 
-import android.app.Notification
-import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.Intent
 import android.database.Cursor
-import android.graphics.Color
-import android.os.Build
 import android.provider.ContactsContract
 import android.util.Log
-import androidx.annotation.RequiresApi
-import androidx.core.app.NotificationCompat
-import androidx.work.*
-import com.github.tamir7.contacts.Contacts
-import com.github.tamir7.contacts.Contacts.*
+import androidx.work.CoroutineWorker
+import androidx.work.Data
+import androidx.work.WorkerParameters
+
 import com.google.gson.Gson
 import com.policyboss.policybossproelite.utility.Constant
 
@@ -25,12 +19,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.retrobuilder.RetroHelper
 
+import com.policyboss.policybossproelite.syncContact.Worker.ContactHelper
+
+
 
 /**
  * Created by Rahul on 10/06/2022.
  */
 class ContactLogWorkManager(
-    context: Context, workerParameters: WorkerParameters,
+   val context: Context, workerParameters: WorkerParameters,
 
     ) : CoroutineWorker(context, workerParameters) {
 
@@ -80,9 +77,11 @@ class ContactLogWorkManager(
         val fbaid = inputData.getInt(Constant.KEY_fbaid, 0)
         val ssid = inputData.getString(Constant.KEY_ssid)
         val parentid = inputData.getString(Constant.KEY_parentid)
+        val deviceID = inputData.getString(Constant.KEY_deviceid) ?: ""
 
         var tfbaid = ""
         var tsub_fba_id = ""
+        var getAllContactDetails :  MutableList<ContactHelper.ModelContact> = mutableListOf()
 
         if (parentid.isNullOrEmpty() || parentid.equals("0")) {
 
@@ -110,7 +109,12 @@ class ContactLogWorkManager(
 
             if (contactlist != null && contactlist!!.size > 0) {
 
-                var getAllContactDetails = getQuery().find()
+                try{
+                    getAllContactDetails =  ContactHelper.getContact(context.applicationContext)
+                }catch (ex :Exception ){
+
+                }
+
 
 
                 for (i in 0..contactlist!!.size - 1 step 1000) {
@@ -128,8 +132,12 @@ class ContactLogWorkManager(
                         ssid = ssid!!,
                         sub_fba_id = tsub_fba_id,
                         contactlist = subcontactlist,
-                        raw_data = Gson().toJson(getAllContactDetails)
+                        raw_data = Gson().toJson(getAllContactDetails),
+                        device_id = deviceID
                     )
+
+
+                    Log.d(Constant.TAG_SAVING_CONTACT_LOG,Gson().toJson(getAllContactDetails) )
 
                         val resultResp = RetroHelper.api.saveContactLead(url, contactRequestEntity)
 
@@ -171,7 +179,9 @@ class ContactLogWorkManager(
             ContactsContract.Contacts.DISPLAY_NAME,
             ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
             ContactsContract.CommonDataKinds.Phone.NUMBER,
-            ContactsContract.CommonDataKinds.Photo.CONTACT_ID
+            ContactsContract.CommonDataKinds.Photo.CONTACT_ID,
+             ContactsContract.Data.MIMETYPE,
+            ContactsContract.Data.DATA1
         )
 
         val uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
@@ -251,6 +261,8 @@ class ContactLogWorkManager(
 
 
     }
+
+
 
 
 }

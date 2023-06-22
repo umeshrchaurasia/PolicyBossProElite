@@ -2,6 +2,7 @@ package com.policyboss.policybossproelite.homeMainKotlin.menuRepository
 
 import com.policyboss.policybossproelite.R
 import magicfinmart.datacomp.com.finmartserviceapi.PrefManager
+import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.LoginResponseEntity
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEntity
 import magicfinmart.datacomp.com.finmartserviceapi.model.MenuChild
 import magicfinmart.datacomp.com.finmartserviceapi.model.MenuHeader
@@ -13,12 +14,12 @@ open class DBMenuRepository() {
     companion object {
 
         //endregion
-        fun getMenuMainList(userConstantEntity: UserConstantEntity, prefManager: PrefManager): MutableList<MenuHeader> {
+        fun getMenuMainList(loginResponseEntity: LoginResponseEntity, userConstantEntity: UserConstantEntity, prefManager: PrefManager): MutableList<MenuHeader> {
 
 
             val menuEntities: MutableList<MenuHeader> = ArrayList()
 
-            menuEntities.add(MenuHeader("MY ACCOUNT", false, R.drawable.user_menu, getMenuMyAccountList(userConstantEntity, prefManager)))
+            menuEntities.add(MenuHeader("MY ACCOUNT", false, R.drawable.user_menu, getMenuMyAccountList(loginResponseEntity,userConstantEntity, prefManager)))
 
             menuEntities.add(MenuHeader("MY DOCUMENTS", false, R.drawable.document_menu, getMenuMyDocumentList(userConstantEntity, prefManager)))
 
@@ -37,9 +38,40 @@ open class DBMenuRepository() {
             return menuEntities
         }
 
-        fun getMenuMyAccountList(userConstantEntity: UserConstantEntity, prefManager: PrefManager): MutableList<MenuChild> {
+        fun getMenuMyAccountList(loginResponseEntity: LoginResponseEntity, userConstantEntity: UserConstantEntity, prefManager: PrefManager): MutableList<MenuChild> {
             val menuChild: MutableList<MenuChild> = ArrayList()
             menuChild.add(MenuChild("nav_myaccount", "My Profile", R.drawable.my_profile))
+       //     getAndroidproattendanceEnable //loginResponseEntity.getIsUidLogin()
+            if((userConstantEntity?.androidproattendanceEnable ?: "0").toInt() == 1 ){
+                if(loginResponseEntity.getIsUidLogin().equals("Y")) {
+                    menuChild.add(
+                        MenuChild(
+                            "nav_My_Attendance",
+                            "My Attendance",
+                            R.drawable.enrol_as_posp
+                        )
+                    )
+                } else {
+                   // nav_Menu.findItem(R.id.nav_attendance).setVisible(false)
+                }
+            } else {
+              //  nav_Menu.findItem(R.id.nav_attendance).setVisible(false)
+            }
+
+            if((userConstantEntity?.androidproouathEnabled ?: "0").toInt() == 1 ){
+
+                    menuChild.add(
+                        MenuChild(
+                            "nav_ouathEnabled",
+                            "Generate Login Token",
+                            R.drawable.utilities
+                        )
+                    )
+
+            } else {
+                //  nav_Menu.findItem(R.id.nav_attendance).setVisible(false)
+            }
+
 
             if((userConstantEntity?.enableenrolasposp ?: "0").toInt() == 1 ){
 

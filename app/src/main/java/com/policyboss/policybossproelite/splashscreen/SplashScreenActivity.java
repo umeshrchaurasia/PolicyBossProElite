@@ -113,7 +113,7 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
                 public void run() {
 
                         if (loginResponseEntity != null) {
-                            startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class)
+                            startActivity(new Intent(SplashScreenActivity.this, HomeMainActivity.class)
                                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             }else{
                             startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class)

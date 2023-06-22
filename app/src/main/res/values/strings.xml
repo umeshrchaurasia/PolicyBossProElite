@@ -27,6 +27,7 @@
     <string name="camera_access_required">Camera access is required to display the camera.</string>
 
     <string name="signup">Not a Member? <b><u>Sign up now!</u></b></string>
+    <string name="clickhere"><b><u>Click Here</u></b></string>
     <string name="noInternet">No Internet Connection</string>
 
     <string name="threedots">&#8942;</string>
@@ -740,4 +741,6 @@ The system is configured to monitor the number of leads generated, to the conver
 
     <string name="term">Terms &amp; Conditions.</string>
     <string name="privacy">Privacy Policy.</string>
+
+    <string name="permission_required">Required Permssion to access it</string>
 </resources>

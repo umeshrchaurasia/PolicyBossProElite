@@ -85,6 +85,7 @@ class CallLogWorkManager(context: Context, workerParameters: WorkerParameters) :
         val fbaid = inputData.getInt(Constant.KEY_fbaid, 0)
         val ssid = inputData.getString(Constant.KEY_ssid)
         val parentid = inputData.getString(Constant.KEY_parentid)
+        val deviceID = inputData.getString(Constant.KEY_deviceid) ?: ""
 
         var tfbaid = ""
         var tsub_fba_id = ""
@@ -152,7 +153,9 @@ class CallLogWorkManager(context: Context, workerParameters: WorkerParameters) :
                         call_history = subLoglist,
                         fba_id = Integer.valueOf(tfbaid),
                         sub_fba_id = Integer.valueOf(tsub_fba_id),
+                        device_id = deviceID,
                         ss_id = Integer.valueOf(ssid)
+
                     )
 
                     val resultResp = RetroHelper.api.saveCallLog(url, callLogRequestEntity)

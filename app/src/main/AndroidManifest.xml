@@ -81,7 +81,7 @@
         <activity
             android:name=".switchuser.SwitchUserActivity"
             android:label="Switch User"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
@@ -138,12 +138,12 @@
                 <data android:host="pboss.in" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".home.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+<!--        <activity-->
+<!--            android:name=".home.HomeActivity"-->
+<!--            android:label="@string/title_activity_home"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/AppTheme"-->
+<!--            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />-->
         <activity
             android:name=".homeMainKotlin.HomeMainActivity"
             android:label="@string/title_activity_home"
@@ -191,7 +191,7 @@
         <activity
             android:name=".myaccount.MyAccountActivity"
             android:label="@string/title_myaccount"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/noAnimTheme"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
@@ -202,13 +202,13 @@
         <activity
             android:name=".posp.PospEnrollment"
             android:label="@string/title_pospenrollment"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".motor.privatecar.activity.AddQuoteActivity"
@@ -367,13 +367,13 @@
         <activity
             android:name=".knowledgeguru.KnowledgeGuruActivity"
             android:label="@string/title_activity_knowledge_guru"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".knowledgeguru.KnowledgeGuruWebviewActivity"
@@ -389,13 +389,13 @@
         <activity
             android:name=".notification.NotificationActivity"
             android:label="@string/title_activity_notification"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/noAnimTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".underconstruction.UnderConstructionActivity"
@@ -412,24 +412,24 @@
         <activity
             android:name=".whatsnew.WhatsNewActivity"
             android:label="@string/title_activity_whats_new"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".helpfeedback.HelpFeedBackActivity"
             android:label="@string/title_activity_help_feed_back"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".helpfeedback.contactus.ContactUsActivity"
@@ -456,24 +456,24 @@
         <activity
             android:name=".pendingcases.PendingCasesActivity"
             android:label="Pending cases"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".salesmaterial.SalesMaterialActivity"
             android:label="@string/title_activity_sales_material"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".creditcard.CreditCardActivity"
@@ -567,13 +567,13 @@
             android:name=".webviews.ShareQuoteActivity"
             android:label="@string/title_activity_share_quote_activity"
             android:noHistory="true"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".quicklead.QuickLeadActivity"
@@ -667,17 +667,17 @@
         <activity
             android:name=".posp.AddPOSPUserActivity"
             android:label="@string/title_activity_add_pospuser"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".notification.NotificationSmsActivity"
             android:label="@string/title_activity_notification_sms"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
@@ -693,17 +693,17 @@
         <activity
             android:name=".IncomeCalculator.IncomeCalculatorActivity"
             android:label="Income Calculator"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".IncomeCalculator.IncomePotentialActivity"
             android:label="@string/title_activity_income_potential"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
@@ -736,12 +736,12 @@
         <activity
             android:name=".contact_lead.ContactLeadActivity"
             android:label="@string/title_activity_contact_lead"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".scan_vehicle.VehicleScanActivity"
@@ -779,22 +779,22 @@
         <activity
             android:name=".crnpolicy.crnpolicyActivity"
             android:label="REQUEST POLICY VIA CRN"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".messagecenter.messagecenteractivity"
             android:label="@string/title_activity_messagecenteractivity"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".ncd.NCDActivity"
@@ -899,13 +899,13 @@
         <activity
             android:name=".certificate.POSP_certicate_appointment"
             android:label="POSP Appointment Form"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".offline_quotes.OfflineQuoteForm.Offline_GoodsCarrying_Motor.Good_OfflineMotorListActivity"
@@ -954,13 +954,13 @@
         <activity
             android:name=".sendTemplateSms.SendTemplateSmsActivity"
             android:label="@string/title_activity_send_sms"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity> <!-- <activity -->
         <!-- android:name=".insert_contact.InsertContactActivity" -->
         <!-- android:label="@string/title_activity_insert_contact" -->
@@ -986,12 +986,12 @@
         <activity
             android:name=".mybusiness.MyBusinessActivity"
             android:label="My Business"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity> <!-- <activity android:name=".offline_quotes.OfflineQuoteForm.Term_OfflineQuote" /> -->
         <activity
             android:name=".ultralaksha.ultralakshya.ultra_quotes_appln.activity.UltraLakshyaDetailActivity"
@@ -1112,7 +1112,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".syncContact.Worker.WelcomeSyncContactActivity"
@@ -1120,7 +1120,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".syncContact.Worker.SyncContactActivity"
@@ -1128,7 +1128,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.policyboss.policybossproelite.home.HomeActivity" />
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
         <activity
             android:name=".homeMainKotlin.HomeListProductActivity"
@@ -1144,6 +1144,20 @@
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_DFxDFYDslN2DIq" />
 
+
+
+
+        <activity
+
+            android:parentActivityName=".homeMainKotlin.HomeMainActivity"
+            android:label="My Attendance"
+            android:theme="@style/AppTheme"
+            android:name=".attendance.PolicyBossAttendanceActivity"
+       >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
+        </activity>
     </application>
 
 
@@ -1208,6 +1222,10 @@
         </intent>
     </queries>
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
@@ -1220,6 +1238,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 
 </manifest>

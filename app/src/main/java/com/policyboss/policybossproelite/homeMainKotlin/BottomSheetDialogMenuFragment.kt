@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.policyboss.policybossproelite.R
+import com.policyboss.policybossproelite.attendance.PolicyBossAttendanceActivity
 import com.policyboss.policybossproelite.certificate.POSP_certicate_appointment
 import com.policyboss.policybossproelite.change_password.ChangePasswordActivity
 import com.policyboss.policybossproelite.contact_lead.ContactLeadActivity
@@ -32,6 +33,7 @@ import com.policyboss.policybossproelite.homeMainKotlin.menuRepository.DBMenuRep
 import com.policyboss.policybossproelite.messagecenter.messagecenteractivity
 import com.policyboss.policybossproelite.myaccount.MyAccountActivity
 import com.policyboss.policybossproelite.mybusiness.MyBusinessActivity
+import com.policyboss.policybossproelite.oauthtoken.OauthTokenActivity
 import com.policyboss.policybossproelite.posp.PospEnrollment
 import com.policyboss.policybossproelite.posp.PospListActivity
 import com.policyboss.policybossproelite.sendTemplateSms.SendTemplateSmsActivity
@@ -204,7 +206,7 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
     private fun bindMenuData(){
 
 
-        adapterMenu = MenuAdapter(this, DBMenuRepository.getMenuMainList(userConstantEntity, prefManager))
+        adapterMenu = MenuAdapter(this, DBMenuRepository.getMenuMainList(loginResponseEntity,userConstantEntity, prefManager))
 
         binding.apply {
 
@@ -282,6 +284,17 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                 "nav_myaccount" -> {
 
                     startActivity(Intent(requireContext(), MyAccountActivity::class.java))
+
+                }
+
+                "nav_My_Attendance" -> {
+
+                    startActivity(Intent(requireContext(), PolicyBossAttendanceActivity::class.java))
+
+                }
+                "nav_ouathEnabled" -> {
+
+                    startActivity(Intent(requireContext(),OauthTokenActivity::class.java))
 
                 }
 
@@ -533,7 +546,7 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
 
     override fun onClick(view: View?) {
 
-        when(view!!.id) {
+        when(requireView().id) {
 
             R.id.lstswitchuser -> {
 

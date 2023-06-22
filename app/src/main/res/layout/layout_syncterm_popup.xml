@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@color/white"
+    android:elevation="2dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="2dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_popup"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:background="@color/header_dark_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextViewStyle.Large"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:text="SYNC CONTACT DETAILS"
+                android:textAppearance="@style/TextStyle.Title"
+                android:textColor="@color/white" />
+
+
+
+            <ImageView
+                android:id="@+id/ivCross"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/close"
+                android:visibility="visible" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/lightGrey" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="15dp"
+
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <TextView
+                    android:drawableLeft="@drawable/bullet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginRight="20dp"
+                    android:text="Unique way of enhancing the bussiness potential &amp; user experience for all PolicyBoss Pro users, from their own phone book."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+            </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="15dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <TextView
+                    android:drawableLeft="@drawable/bullet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginRight="20dp"
+                    android:text="Using this exclusive feature, you get important insurance related information and updates of own contacts, pre-filled to enrich your journey experience."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+            </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="15dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <TextView
+                    android:drawableLeft="@drawable/bullet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginRight="20dp"
+                    android:text="Access phone book contacts in app under &quot;Sync Corner &gt; My Contacts&quot;. Simply choose the contact &amp; initate your insurance solicitation on the fly."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="15dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <TextView
+                    android:drawableLeft="@drawable/bullet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginRight="20dp"
+                    android:text="Convert your phone book contacts into business leads &amp; contact proactively only  around time of policy renewal."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+            </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="15dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <TextView
+                    android:drawableLeft="@drawable/bullet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginRight="20dp"
+                    android:text="Option to communicate using any of the promotional creative made available inside 'Sales Material' section of app."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="15dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <TextView
+                    android:drawableLeft="@drawable/bullet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginRight="20dp"
+                    android:text="Remember, existing customers of yours are  highlighted with a &quot;Greentick Symbol&quot; to help you easily identify."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="15dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <TextView
+                    android:drawableLeft="@drawable/bullet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginRight="20dp"
+                    android:text="Option to avail communication and/or tele calling support to quality &amp; convert Sync Contact Leads, Thereby getting the right business support to maximise your business potential."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginRight="20dp"
+            android:text="We are driven by our commitment to ensure no Indian compromises on trusted insurance advisory for the sake of convenience."
+
+            android:textAppearance="@style/TextStyle.TextLarge" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextStyle.TextLarge"
+            android:text="#RightInsuranceZarooriHai"
+
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/lyCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:padding="5dp">
+
+
+
+            <TextView
+                android:id="@+id/txtMessage"
+                style="@style/TextViewStyle.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/header_light_text"
+                android:textStyle="bold"
+               />
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/lightGrey" />
+
+       <Button
+           android:id="@+id/btnShare"
+           android:text="share"
+           android:visibility="gone"
+           android:layout_marginTop="12dp"
+           android:layout_marginBottom="12dp"
+           style="@style/ButtonStyle"
+           android:layout_gravity="center"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.cardview.widget.CardView>

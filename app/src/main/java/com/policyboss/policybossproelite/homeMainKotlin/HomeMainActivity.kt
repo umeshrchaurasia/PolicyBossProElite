@@ -1405,15 +1405,14 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
                     //init_headers()
                     val VersionCode = PackageInfoCompat.getLongVersionCode(pinfo)
 
-                    //androidproversion
-//                    userConstantEntity?.androidproversion?.let {
-//
-//
-//                         if(pinfo != null &&  VersionCode.toInt() < it) {
-//
-//                             openPopUp(viewPager2, "UPDATE", "New version available on play store!!!! Please update.", "OK", false)
-//                         }
-//                     }
+                    userConstantEntity?.androidproeliteversion?.let {
+
+
+                         if(pinfo != null &&  VersionCode.toInt() < it) {
+
+                             openPopUp(viewPager2, "UPDATE", "New version available on play store!!!! Please update.", "OK", false)
+                         }
+                     }
 
 
                      if (prefManager.popUpCounter == "0") {

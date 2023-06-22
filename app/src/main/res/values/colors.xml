@@ -22,7 +22,7 @@
 
     <color name="button_color">@color/colorPrimary</color>
 
-
+    <color name="bg_screen3">#3395ff</color>
     <color name="blue_card">#b1eafe</color>
     <color name="blue_menu">#d2f2fd</color>
     <color name="blue_bg_light">#e3f2fd</color>
@@ -100,5 +100,8 @@
     <!--<color name="application_primary_text_color">#212121</color>-->
     <!--<color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>-->
+
+    <color name="red_light">#ff7777</color>
+    <color name="red_custom">#ff5a5f</color>
 </resources>
 

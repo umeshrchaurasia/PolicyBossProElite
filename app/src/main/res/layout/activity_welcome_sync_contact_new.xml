@@ -16,271 +16,271 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="5dp"
-            android:layout_marginTop="5dp"
-            android:text="SYNC CONTACTS"
-            android:textAllCaps="true"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextStyle.Title" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="UNDERSTANDING WHAT, HOW &amp; WHY"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextStyle.Title" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/synccontactlogo" />
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="20dp"
-            android:text="Exclusive feature only for PolicyBoss Pro users"
-
-            android:textAppearance="@style/TextStyle.TextMedium" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="20dp"
-            android:text="Now, Get important insurance related information &amp; updates to your phonebook contacts, pre-filled to enrich your app experience"
-
-            android:textAppearance="@style/TextStyle.TextMedium" />
-
-        <LinearLayout
-            android:id="@+id/llDontKnow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvOr"
-            android:layout_marginLeft="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="8dp"
 
-                android:text="To understand how it works &amp; more details"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="SYNC CONTACTS"
+                    android:textAllCaps="true"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextStyle.Title" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="UNDERSTANDING WHAT, HOW &amp; WHY"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextStyle.Title" />
 
-                android:textAppearance="@style/TextStyle.TextMedium" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/synccontactlogo" />
 
 
-            <TextView
-                android:id="@+id/tvClickHere"
-                style="@style/TextStyle.TextLarge"
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Exclusive feature only for PolicyBoss Pro users"
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Now, Get important insurance related information &amp; updates to your phonebook contacts, pre-filled to enrich your app experience"
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+
+                <LinearLayout
+                    android:id="@+id/llDontKnow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvOr"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="8dp"
+
+                        android:text="To understand how it works &amp; more details"
+
+                        android:textAppearance="@style/TextStyle.TextMedium" />
+
+
+                    <TextView
+                        android:id="@+id/tvClickHere"
+                        style="@style/TextStyle.TextLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="20dp"
+
+                        android:text="@string/clickhere"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Rest assured, no synced data will be shared with any third-party and is completely safe."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:text="For extented business support using PolicyBoss.com's communication &amp; tele-channels share your preference below."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:text="It you still wish to stop or discontinue sync of new contacts, simply toggle to switch off under 'Settings' of app."
+
+                    android:textAppearance="@style/TextStyle.TextMedium" />
+            </LinearLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha=".5"
+                android:background="@android:color/white" />
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-
-                android:text="@string/clickhere"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="20dp"
-            android:text="Rest assured, no synced data will be shared with any third-party and is completely safe."
-
-            android:textAppearance="@style/TextStyle.TextMedium" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="20dp"
-            android:text="For extented business support using PolicyBoss.com's communication &amp; tele-channels share your preference below."
-
-            android:textAppearance="@style/TextStyle.TextMedium" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="20dp"
-            android:text="It you still wish to stop or discontinue sync of new contacts, simply toggle to switch off under 'Settings' of app."
-
-            android:textAppearance="@style/TextStyle.TextMedium" />
-    </LinearLayout>
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_term"
+                android:visibility="visible">
 
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:alpha=".5"
-        android:background="@android:color/white" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        android:id="@+id/ll_term"
-        android:visibility="visible">
+                <TextView
+                    android:id="@+id/txtterm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+
+                    android:text="@string/term"
+                    android:textAppearance="@style/TextViewStyle.Large"
+                    android:textColor="@color/blue" />
+
+                <TextView
+                    android:id="@+id/txttermspace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+
+                    android:text="  "
+                    android:textAppearance="@style/TextViewStyle.Large"
+                    android:textColor="@color/blue" />
+                <TextView
+                    android:id="@+id/txtprivacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textAppearance="@style/TextViewStyle.Large"
+                    android:textColor="@color/blue"
+                    android:text="@string/privacy"
+                    />
 
 
-
-        <TextView
-            android:id="@+id/txtterm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-
-            android:text="@string/term"
-            android:textAppearance="@style/TextViewStyle.Large"
-            android:textColor="@color/blue" />
-
-        <TextView
-            android:id="@+id/txttermspace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-
-            android:text="  "
-            android:textAppearance="@style/TextViewStyle.Large"
-            android:textColor="@color/blue" />
-        <TextView
-            android:id="@+id/txtprivacy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:textAppearance="@style/TextViewStyle.Large"
-            android:textColor="@color/blue"
-            android:text="@string/privacy"
-            />
-
-
-    </LinearLayout>
-    <CheckBox
-        android:layout_marginTop="1dp"
-        style="@style/TextViewStyle.Medium"
-        android:id="@+id/chkcommunication_sms"
-        android:gravity="top"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I would like to avail of communication support (SMS/Email/Whatsapp/Other Comm. modes) for my Sync Contact Leads"
-        android:checked="false"/>
-    <CheckBox
-        android:layout_marginTop="5dp"
-        style="@style/TextViewStyle.Medium"
-        android:id="@+id/chktele_call"
-        android:gravity="top"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I would like to avail of tele-calling support for my Sync Contact Leads"
-        android:checked="false"/>
-    <CheckBox
-        android:layout_marginTop="5dp"
-        style="@style/TextViewStyle.Medium"
-        android:id="@+id/chkagree"
-        android:gravity="top"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I hereby agree to the terms &amp; conditions for using Sync Contacts"
-        android:checked="false"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/twelve"
-            android:background="@drawable/custome_curveborder_blue"
-            android:text="GET STARTED"
-            android:textColor="@color/button_color" />
-
-        <LinearLayout
-            android:id="@+id/layoutDots"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/dot1"
+            </LinearLayout>
+            <CheckBox
+                android:layout_marginTop="1dp"
+                style="@style/TextViewStyle.Medium"
+                android:id="@+id/chkcommunication_sms"
+                android:gravity="top"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:src="@drawable/indicator_active" />
-
-            <ImageView
-                android:id="@+id/dot2"
+                android:text="I would like to avail of communication support (SMS/Email/Whatsapp/Other Comm. modes) for my Sync Contact Leads"
+                android:checked="false"/>
+            <CheckBox
+                android:layout_marginTop="5dp"
+                style="@style/TextViewStyle.Medium"
+                android:id="@+id/chktele_call"
+                android:gravity="top"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:src="@drawable/unselected_dot" />
-
-            <ImageView
-                android:id="@+id/dot3"
+                android:text="I would like to avail of tele-calling support for my Sync Contact Leads"
+                android:checked="false"/>
+            <CheckBox
+                android:layout_marginTop="5dp"
+                style="@style/TextViewStyle.Medium"
+                android:id="@+id/chkagree"
+                android:gravity="top"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:src="@drawable/unselected_dot" />
+                android:text="I hereby agree to the terms &amp; conditions for using Sync Contacts"
+                android:checked="false"/>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="20"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/btn_skip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutDots"
-            android:background="@null"
-            android:gravity="center"
-            android:padding="4dp"
-            android:text="@string/skin_walkthrogh"
-            android:visibility="gone"/>
-    </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/twelve"
+                    android:background="@drawable/custome_curveborder_blue"
+                    android:text="GET STARTED"
+                    android:textColor="@color/button_color" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/dot1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:src="@drawable/indicator_active" />
+
+                    <ImageView
+                        android:id="@+id/dot2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:src="@drawable/unselected_dot" />
+
+                    <ImageView
+                        android:id="@+id/dot3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:src="@drawable/unselected_dot" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btn_skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutDots"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="@string/skin_walkthrogh"
+                    android:visibility="gone"/>
+            </LinearLayout>
 
         </LinearLayout>
 
