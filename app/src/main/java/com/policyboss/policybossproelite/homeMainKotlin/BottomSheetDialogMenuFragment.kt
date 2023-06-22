@@ -45,6 +45,7 @@ import com.policyboss.policybossproelite.transactionhistory.nav_transactionhisto
 import com.policyboss.policybossproelite.utility.Constants
 import com.policyboss.policybossproelite.utility.NetworkUtils
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
+import com.policyboss.policybossproelite.webviews.PrivacyWebViewActivity
 import magicfinmart.datacomp.com.finmartserviceapi.PrefManager
 import magicfinmart.datacomp.com.finmartserviceapi.Utility
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController
@@ -431,10 +432,12 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                 }
                 "nav_delete" -> {
 
-                    startActivity(Intent(requireContext(), CommonWebViewActivity::class.java)
-                        .putExtra("URL", "https://www.policyboss.com/initiate-account-deletion-elite")
+                    startActivity(Intent(requireContext(), PrivacyWebViewActivity::class.java)
+                        .putExtra("URL", "https://www.policyboss.com/initiate-account-deletion-elite?ssid="+userConstantEntity.getPOSPNo())
                         .putExtra("NAME", "ACCOUNT-DELETE")
                         .putExtra("TITLE", "ACCOUNT-DELETE"))
+
+
 
                 }
 

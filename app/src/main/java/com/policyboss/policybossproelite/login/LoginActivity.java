@@ -90,7 +90,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         if (!checkPermission()) {
             requestPermission();
         }
-        new LoginController(this).Getusersignup(LoginActivity.this);
+     //   new LoginController(this).Getusersignup(LoginActivity.this);
 
     }
 

@@ -63,7 +63,7 @@ open class DBMenuRepository() {
                     menuChild.add(
                         MenuChild(
                             "nav_ouathEnabled",
-                            "Generate Login Token",
+                            "App Code",
                             R.drawable.utilities
                         )
                     )
