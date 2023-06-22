@@ -33,7 +33,8 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
     int current = 0;
     CheckBox btnchkagree;
     LinearLayout ll_term;
-    String isContactSync = "0";
+    int isContactSync_msg = 0;
+   // String isContactSync = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +42,19 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
         setContentView(R.layout.activity_welcome_sync_contact);
 
 
-        if(getIntent().getStringExtra("Is_Contact_Sync") != null){
-            isContactSync = getIntent().getStringExtra("Is_Contact_Sync");
-        }
+//        if(getIntent().getStringExtra("Is_Contact_Sync") != null){
+//            isContactSync = getIntent().getStringExtra("Is_Contact_Sync");
+//        }
         init_widgets();
         setListener();
 
 
-        if(isContactSync.equals("1")){
-            viewPager.setCurrentItem(2);
-            dotsLayout.setVisibility(View.GONE);
-            viewPager.beginFakeDrag();
-
-        }
+//        if(isContactSync.equals("1")){
+//            viewPager.setCurrentItem(2);
+//            dotsLayout.setVisibility(View.GONE);
+//            viewPager.beginFakeDrag();
+//
+//        }
 
     }
 
