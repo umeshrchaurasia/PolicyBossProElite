@@ -337,6 +337,13 @@
         android:orderInCategory="910"
         android:title="Co Browser User"
         android:visible="false" />
+
+    <item
+        android:id="@+id/nav_delete"
+        android:icon="@drawable/delete"
+        android:orderInCategory="980"
+        android:visible="true"
+        android:title="ACCOUNT-DELETE" />
     <item
         android:id="@+id/nav_logout"
         android:icon="@drawable/logout"

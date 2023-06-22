@@ -19,4 +19,6 @@ public interface ILogin {
     void getPospAgentData(String UID, String Name, IResponseSubcriber iResponseSubcriber);
 
     void checkLoginSwitchUser(LoginRequestEntity loginRequestEntity, IResponseSubcriber iResponseSubcriber);
+
+    void Getusersignup(IResponseSubcriber iResponseSubcriber) ;
 }

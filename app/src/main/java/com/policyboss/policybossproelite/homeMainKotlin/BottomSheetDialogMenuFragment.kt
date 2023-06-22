@@ -427,6 +427,15 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                             .putExtra("TITLE", "PRIVACY POLICY"))
 
                 }
+                "nav_delete" -> {
+
+                    startActivity(Intent(requireContext(), CommonWebViewActivity::class.java)
+                        .putExtra("URL", "https://www.policyboss.com/initiate-account-deletion-elite")
+                        .putExtra("NAME", "ACCOUNT-DELETE")
+                        .putExtra("TITLE", "ACCOUNT-DELETE"))
+
+                }
+
 
 
 //                "nav_logout" -> {

@@ -29,9 +29,11 @@ import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.helpfeedback.raiseticketDialog.RaiseTicketDialogActivity;
 import com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity;
 import com.policyboss.policybossproelite.register.RegisterActivity;
+import com.policyboss.policybossproelite.salesmaterial.SalesDetailActivity;
 import com.policyboss.policybossproelite.utility.Constants;
 import com.policyboss.policybossproelite.utility.NetworkUtils;
 import com.policyboss.policybossproelite.utility.ReadDeviceID;
+import com.policyboss.policybossproelite.webviews.PrivacyWebViewActivity;
 
 import io.realm.Realm;
 import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
@@ -41,10 +43,12 @@ import magicfinmart.datacomp.com.finmartserviceapi.finmart.APIResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.IResponseSubcriber;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.controller.login.LoginController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.controller.register.RegisterController;
+import magicfinmart.datacomp.com.finmartserviceapi.finmart.controller.salesmaterial.SalesMaterialController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.requestentity.LoginRequestEntity;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.ForgotResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.LoginResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.UserHideResponse;
+import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.UsersignupResponse;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -52,7 +56,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     PrefManager prefManager;
     EditText etEmail, etPassword;
     LoginRequestEntity loginRequestEntity;
-    TextView tvSignUp, tvForgotPass;
+    TextView tvSignUp, tvForgotPass, txtterm,txtprivacy;;
     Button btnSignIn;
     LinearLayout lyRaiseTicket;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 1111;
@@ -60,6 +64,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private static int PERMISSION_DENIED = 0;
 
 
+    String enable_elite_signupurl = "";
 
     String[] perms = {
             "android.permission.CAMERA",
@@ -85,6 +90,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         if (!checkPermission()) {
             requestPermission();
         }
+        new LoginController(this).Getusersignup(LoginActivity.this);
+
     }
 
     @Override
@@ -163,10 +170,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
-            case  Constants.PERMISSION_CAMERA_STORACGE_CONSTANT:
-              // if (grantResults.length > 0) {
-
+            case Constants.PERMISSION_CAMERA_STORACGE_CONSTANT:
+                // if (grantResults.length > 0) {
 
 
                 // if (grantResults.length > 0)
@@ -178,13 +186,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     boolean readExternal = grantResults[2] == PackageManager.PERMISSION_GRANTED;
                     boolean read_contacts = grantResults[3] == PackageManager.PERMISSION_GRANTED;
                     boolean read_call_log = grantResults[4] == PackageManager.PERMISSION_GRANTED;
-                    if (camera && writeExternal && readExternal && read_contacts && read_call_log ) {
+                    if (camera && writeExternal && readExternal && read_contacts && read_call_log) {
 
                         // Toast.makeText(this, "All permission granted", Toast.LENGTH_SHORT).show();
                     } else {
 
                         //Permission Denied, You cannot access location data and camera
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (SDK_INT >= Build.VERSION_CODES.M) {
 
 
                             showMessageOKCancel("Required permissions to proceed PolicyBossProElite..!",
@@ -231,9 +239,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         btnSignIn.setOnClickListener(this);
         tvForgotPass.setOnClickListener(this);
         lyRaiseTicket.setOnClickListener(this);
+
+        txtterm.setOnClickListener(this);
+        txtprivacy.setOnClickListener(this);
     }
 
     private void initWidgets() {
+        txtterm = findViewById(R.id.txtterm);
+        txtprivacy =  findViewById(R.id.txtprivacy);
+
         tvSignUp = (TextView) findViewById(R.id.tvSignUp);
         tvForgotPass = (TextView) findViewById(R.id.tvForgotPass);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
@@ -249,7 +263,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 dialogForgotPassword();
                 break;
             case R.id.tvSignUp:
-                startActivity(new Intent(this, RegisterActivity.class));
+                if(enable_elite_signupurl  != null) {
+                    if (enable_elite_signupurl.isEmpty()) {
+                        startActivity(new Intent(this, RegisterActivity.class));
+                    }
+                    else
+                    {
+                         Utility.loadWebViewUrlInBrowser(LoginActivity.this, enable_elite_signupurl);
+                    }
+                }else
+                {
+                    startActivity(new Intent(this, RegisterActivity.class));
+                }
                 break;
             case R.id.lyRaiseTicket:
                // String url = "http://qa.policyboss.com/Finmart/Ticketing/ticket_login.html?landing_page=login_page";
@@ -260,6 +285,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(new Intent(this, RaiseTicketDialogActivity.class)
                              .putExtra("URL", url));
                 break;
+            case R.id.txtprivacy:
+
+                startActivity(new Intent(this, PrivacyWebViewActivity.class)
+                        .putExtra(
+                                "URL",
+                                "https://www.policyboss.com/privacy-policy-policyboss-pro-elite"
+                        )
+                        .putExtra("NAME", "" + "privacy-policy")
+                        .putExtra("TITLE", "" + "privacy-policy"));
+                break;
+            case R.id.txtterm:
+                startActivity(new Intent(this, PrivacyWebViewActivity.class)
+                        .putExtra("URL", "https://www.policyboss.com/terms-condition")
+                        .putExtra("NAME", "" + "Terms & Conditions")
+                        .putExtra("TITLE", "" + "Terms & Conditions"));
+                break;
+
             case R.id.btnSignIn:
                 if (!isEmpty(etEmail)) {
                     etEmail.requestFocus();
@@ -398,7 +440,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             } else {
                 Toast.makeText(this, "" + response.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        } else if (response instanceof ForgotResponse) {
+        }
+        else if(response instanceof UsersignupResponse){
+            if (response.getStatusNo() == 0) {
+                if( ((UsersignupResponse) response).getMasterData().getEnableEliteSignupurl()!=null) {
+                    enable_elite_signupurl = ((UsersignupResponse) response).getMasterData().getEnableEliteSignupurl();
+                }
+            }
+        }
+
+        else if (response instanceof ForgotResponse) {
             if (response.getStatusNo() == 0) {
                 Toast.makeText(this, "" + response.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -456,4 +507,5 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         intent.setData(uri);
         startActivityForResult(intent, Constants.REQUEST_PERMISSION_SETTING);
     }
+
 }

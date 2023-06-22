@@ -1,6 +1,8 @@
 package com.policyboss.policybossproelite.utility
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.net.Uri
 import android.os.Build
@@ -8,6 +10,7 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.provider.Settings
 import android.util.Log
+import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 
@@ -156,6 +159,18 @@ object UTILITY {
             return ""
         }
 
+    }
+
+    @JvmStatic
+    fun copyTextToClipboard(str : String,context: Context ) {
+        val textToCopy = str
+
+        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText("text", textToCopy)
+        clipboardManager.setPrimaryClip(clipData)
+
+
+        Toast.makeText(context, "Text copied to clipboard", Toast.LENGTH_LONG).show()
     }
 
 }

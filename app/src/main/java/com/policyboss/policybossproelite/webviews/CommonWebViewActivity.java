@@ -55,6 +55,7 @@ import com.policyboss.policybossproelite.paymentEliteplan.SyncRazorPaymentActivi
 import com.policyboss.policybossproelite.term.termselection.TermSelectionActivity;
 import com.policyboss.policybossproelite.utility.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.policyboss.policybossproelite.utility.UTILITY;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -124,6 +125,7 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
     androidx.appcompat.app.AlertDialog alertDialog;
     //endregion
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -406,6 +408,14 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
         // endregion
 
         @JavascriptInterface
+        public void openbrowser(String url) {
+
+            Utility.loadWebViewUrlInBrowser(CommonWebViewActivity.this, url);
+
+        }
+
+
+        @JavascriptInterface
         public void SendShareQuotePdf(String url, String shareHtml) {
 
             Intent intent = new Intent(CommonWebViewActivity.this, ShareQuoteActivity.class);
@@ -506,6 +516,38 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
 //            intent.putExtra("transactionId", transactionId);
 //            startActivity(intent);
 //            finish();
+        }
+
+        @JavascriptInterface
+        public void razorpayment(String ssid) {
+
+            if (!ssid.equals("")) {
+              //  gethorizonpospdetails(ssid);
+            }
+        }
+        @JavascriptInterface
+        public void copyToClipboard(String str) {
+
+            if (!str.equals("")) {
+                UTILITY.copyTextToClipboard(str,CommonWebViewActivity.this);
+            }
+        }
+
+        @JavascriptInterface
+        public void shareToText(String str)
+        {
+            if (!str.equals("")) {
+                // UTILITY.copyTextToClipboard(str,CommonWebViewActivity.this);
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, str);
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+            }
+
         }
     }
 
@@ -653,6 +695,7 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case Constants.PERMISSION_CAMERA_STORACGE_CONSTANT:
                 if (grantResults.length > 0) {
@@ -664,7 +707,7 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
                     boolean readExternal = grantResults[2] == PackageManager.PERMISSION_GRANTED;
                     boolean minSdk29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
 
-                    if (camera && (writeExternal || minSdk29 ) && readExternal) {
+                    if (camera && (writeExternal || minSdk29) && readExternal) {
 
                         showCamerGalleryPopUp();
 
