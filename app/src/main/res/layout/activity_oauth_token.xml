@@ -59,7 +59,21 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_close" />
 
+            <TextView
+                android:id="@+id/txtDes"
+                android:layout_marginTop="@dimen/twelve"
+                android:text="Enter this code to login to PolicyBoss.com Web"
+                style="@style/TextViewStyle.BannerLarge"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="@dimen/twelve"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
 
+                app:layout_constraintTop_toBottomOf="@+id/imgClose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TextView>
             <View
                 android:id="@+id/view1"
                 android:layout_width="0dp"
@@ -69,10 +83,12 @@
                 android:background="@color/blue_descent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textOath" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDes" />
 
 
             <!--            android:textColor="@color/lightBlue"-->
+
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtOauthData"
                 android:layout_width="0dp"
