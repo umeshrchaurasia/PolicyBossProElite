@@ -92,13 +92,6 @@ object UTILITY {
                 "SDK: ${Build.VERSION.SDK_INT} \n" +
                 "Manufacture: ${Build.MANUFACTURER} \n" +
                 "Brand: ${Build.BRAND} \n" +
-                "User: ${Build.USER} \n" +
-                "Type: ${Build.TYPE} \n" +
-                "Base: ${Build.VERSION_CODES.BASE} \n" +
-                "Incremental: ${Build.VERSION.INCREMENTAL} \n" +
-                "Board: ${Build.BOARD} \n" +
-                "Host: ${Build.HOST} \n" +
-                "FingerPrint: ${Build.FINGERPRINT} \n" +
                 "Version Code: ${Build.VERSION.RELEASE}"
         }catch (ex: Exception){
             return ""

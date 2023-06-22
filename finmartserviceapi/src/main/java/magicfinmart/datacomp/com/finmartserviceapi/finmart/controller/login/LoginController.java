@@ -278,10 +278,12 @@ public class LoginController implements ILogin {
                         iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
 
                     } else {
-                        iResponseSubcriber.OnFailure(new RuntimeException(response.body().getMessage()));
+                        iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
+                      //  iResponseSubcriber.OnFailure(new RuntimeException(response.body().getMessage()));
                     }
                 } else {
-                    iResponseSubcriber.OnFailure(new RuntimeException("Failed to fetch information."));
+                    iResponseSubcriber.OnSuccess(null, "Failed to fetch information.");
+                   // iResponseSubcriber.OnFailure(new RuntimeException("Failed to fetch information."));
                 }
 
             }

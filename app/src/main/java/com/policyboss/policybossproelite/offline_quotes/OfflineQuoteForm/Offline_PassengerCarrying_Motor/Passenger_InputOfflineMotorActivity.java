@@ -2065,7 +2065,7 @@ public class Passenger_InputOfflineMotorActivity extends BaseActivity implements
             motorRequestEntity.setVehicle_insurance_subtype("" + insuranceSubtypeEntity.getCode());
 
         try {
-            motorRequestEntity.setMac_address(Utility.getMacAddress(this));
+            motorRequestEntity.setMac_address(Utility.getinfoaddress(this));
         } catch (IOException e) {
             motorRequestEntity.setMac_address("0");
         }

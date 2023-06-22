@@ -27,6 +27,7 @@ import com.policyboss.policybossproelite.ncd.NCDActivity
 import com.policyboss.policybossproelite.offline_quotes.AddNewOfflineQuotesActivity
 import com.policyboss.policybossproelite.quicklead.QuickLeadActivity
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivity
+import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityKotlin
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityNew
 import com.policyboss.policybossproelite.term.termselection.TermSelectionActivity
 import com.policyboss.policybossproelite.ultralaksha.ultra_selection.UltraLakshaSelectionActivity
@@ -317,7 +318,7 @@ class SliderDashboardAdapter(
                 } else {
                     var motorUrl: String = dbPersistanceController.getUserConstantsData().getFourWheelerUrl()
                     ipaddress = try {
-                        Utility.getMacAddress(mContext)
+                        Utility.getinfoaddress(mContext)
                     } catch (io: Exception) {
                         "0.0.0.0"
                     }
@@ -345,7 +346,7 @@ class SliderDashboardAdapter(
                 // KOTAK
                 var kotakUrl: String = dbPersistanceController.getUserConstantsData().getEliteKotakUrl()
                 ipaddress = try {
-                    Utility.getMacAddress(mContext)
+                    Utility.getinfoaddress(mContext)
                 } catch (io: Exception) {
                     "0.0.0.0"
                 }
@@ -381,7 +382,7 @@ class SliderDashboardAdapter(
                     var healthUrl: String = dbPersistanceController.getUserConstantsData().getHealthurl()
                     //String healthUrl = new DBPersistanceController(mContext).getUserConstantsData().getHealthurltemp();
                     ipaddress = try {
-                        Utility.getMacAddress(mContext)
+                        Utility.getinfoaddress(mContext)
                     } catch (io: Exception) {
                         "0.0.0.0"
                     }
@@ -482,7 +483,7 @@ class SliderDashboardAdapter(
                 } else {
                     var motorUrl: String = dbPersistanceController.getUserConstantsData().getTwoWheelerUrl()
                     ipaddress = try {
-                        Utility.getMacAddress(mContext)
+                        Utility.getinfoaddress(mContext)
                     } catch (io: Exception) {
                         "0.0.0.0"
                     }
@@ -514,7 +515,7 @@ class SliderDashboardAdapter(
                 //Commercial vehicle
                 var cvUrl: String = dbPersistanceController.getUserConstantsData().getCVUrl()
                 ipaddress = try {
-                    Utility.getMacAddress(mContext)
+                    Utility.getinfoaddress(mContext)
                 } catch (io: Exception) {
                     "0.0.0.0"
                 }
@@ -550,7 +551,7 @@ class SliderDashboardAdapter(
                 MyApplication.getInstance().trackEvent(Constants.OFFLINE, "Clicked", "OFFLINE")
             }
             41 -> {
-                mContext.startActivity(Intent(mContext, WelcomeSyncContactActivityNew::class.java))
+                mContext.startActivity(Intent(mContext, WelcomeSyncContactActivityKotlin::class.java))
                 //  new TrackingController(mContext).sendData(new TrackingRequestEntity(new TrackingData("Quick Lead tab on home page"), Constants.QUICK_LEAD), null);
                 MyApplication.getInstance().trackEvent(Constants.QUICK_LEAD, "Clicked", "SyncContact")
             }
@@ -568,7 +569,7 @@ class SliderDashboardAdapter(
             5 -> if (dbPersistanceController.getUserConstantsData().getInvestmentEnabled() == "1") {
                 var invUrl: String = dbPersistanceController.getUserConstantsData().getInvestmentUrl()
                 ipaddress = try {
-                    Utility.getMacAddress(mContext)
+                    Utility.getinfoaddress(mContext)
                 } catch (io: Exception) {
                     "0.0.0.0"
                 }
@@ -602,7 +603,7 @@ class SliderDashboardAdapter(
                     }
                     if (!dynamicUrl.isEmpty()) {
                         ipaddress = try {
-                            Utility.getMacAddress(mContext)
+                            Utility.getinfoaddress(mContext)
                         } catch (io: Exception) {
                             "0.0.0.0"
                         }

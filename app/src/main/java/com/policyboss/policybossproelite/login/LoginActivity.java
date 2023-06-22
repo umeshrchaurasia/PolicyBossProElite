@@ -90,7 +90,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         if (!checkPermission()) {
             requestPermission();
         }
-     //   new LoginController(this).Getusersignup(LoginActivity.this);
 
     }
 
@@ -263,18 +262,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 dialogForgotPassword();
                 break;
             case R.id.tvSignUp:
-                if(enable_elite_signupurl  != null) {
-                    if (enable_elite_signupurl.isEmpty()) {
-                        startActivity(new Intent(this, RegisterActivity.class));
-                    }
-                    else
-                    {
-                         Utility.loadWebViewUrlInBrowser(LoginActivity.this, enable_elite_signupurl);
-                    }
-                }else
-                {
-                    startActivity(new Intent(this, RegisterActivity.class));
+
+                if (!NetworkUtils.isNetworkAvailable(this)) {
+
+                    Snackbar.make( view, getString(R.string.noInternet), Snackbar.LENGTH_SHORT).show();
+                    return;
                 }
+                showDialog();
+                new LoginController(this).Getusersignup(LoginActivity.this);
+
+
                 break;
             case R.id.lyRaiseTicket:
                // String url = "http://qa.policyboss.com/Finmart/Ticketing/ticket_login.html?landing_page=login_page";
@@ -445,7 +442,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             if (response.getStatusNo() == 0) {
                 if( ((UsersignupResponse) response).getMasterData().get(0).getEnableEliteSignupurl() != null) {
                     enable_elite_signupurl = ((UsersignupResponse) response).getMasterData().get(0).getEnableEliteSignupurl();
+
                 }
+
+            }
+            if(enable_elite_signupurl  != null) {
+                if (enable_elite_signupurl.isEmpty()) {
+                    startActivity(new Intent(this, RegisterActivity.class));
+                }
+                else
+                {
+                    Utility.loadWebViewUrlInBrowser(LoginActivity.this, enable_elite_signupurl);
+                }
+            }else
+            {
+                startActivity(new Intent(this, RegisterActivity.class));
             }
         }
 

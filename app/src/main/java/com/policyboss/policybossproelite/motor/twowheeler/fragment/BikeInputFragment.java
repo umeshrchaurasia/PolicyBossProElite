@@ -1948,7 +1948,7 @@ public class BikeInputFragment extends BaseFragment implements BaseFragment.PopU
         motorRequestEntity.setDevice_id(Utility.getTokenId(getActivity()));
 
         try {
-            motorRequestEntity.setMac_address(Utility.getMacAddress(getActivity()));
+            motorRequestEntity.setMac_address(Utility.getinfoaddress(getActivity()));
         } catch (IOException e) {
             motorRequestEntity.setMac_address("0");
         }

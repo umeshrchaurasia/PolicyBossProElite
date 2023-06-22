@@ -2071,7 +2071,7 @@ public class Good_InputOfflineMotorActivity extends BaseActivity implements Base
 //        motorRequestEntity.setDevice_id(Utility.getTokenId(Good_InputOfflineMotorActivity.this));
 //        motorRequestEntity.setFba_id(loginResponseEntity.getFBAId());
 //        try {
-//            motorRequestEntity.setMac_address(Utility.getMacAddress(Good_InputOfflineMotorActivity.this));
+//            motorRequestEntity.setMac_address(Utility.getinfoaddress(Good_InputOfflineMotorActivity.this));
 //        } catch (IOException e) {
 //            motorRequestEntity.setMac_address("0");
 //        }
@@ -2100,7 +2100,7 @@ public class Good_InputOfflineMotorActivity extends BaseActivity implements Base
             motorRequestEntity.setVehicle_insurance_subtype("" + insuranceSubtypeEntity.getCode());
 
         try {
-            motorRequestEntity.setMac_address(Utility.getMacAddress(this));
+            motorRequestEntity.setMac_address(Utility.getinfoaddress(this));
         } catch (IOException e) {
             motorRequestEntity.setMac_address("0");
         }

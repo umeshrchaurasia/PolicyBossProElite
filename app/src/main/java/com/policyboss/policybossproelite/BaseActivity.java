@@ -54,6 +54,7 @@ import android.widget.Toast;
 import com.policyboss.policybossproelite.IncomeCalculator.IncomePotentialActivity;
 import com.policyboss.policybossproelite.helpfeedback.HelpFeedBackActivity;
 import com.policyboss.policybossproelite.login.LoginActivity;
+import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityKotlin;
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityNew;
 import com.policyboss.policybossproelite.term.hdfc.HdfcTermActivity;
 import com.policyboss.policybossproelite.term.icici.IciciTermActivity;
@@ -1542,7 +1543,7 @@ public class BaseActivity extends AppCompatActivity {
         public void synccontacts() {
             //Get the string value to process
             //shareQuote();
-            startActivity(new Intent(BaseActivity.this, WelcomeSyncContactActivityNew.class));
+            startActivity(new Intent(BaseActivity.this, WelcomeSyncContactActivityKotlin.class));
         }
 
         @JavascriptInterface
@@ -1594,7 +1595,7 @@ public class BaseActivity extends AppCompatActivity {
 
             String ipaddress = "0.0.0.0";
             try {
-                ipaddress = Utility.getMacAddress(BaseActivity.this);
+                ipaddress = Utility.getinfoaddress(BaseActivity.this);
             } catch (Exception io) {
                 ipaddress = "0.0.0.0";
             }
@@ -1635,7 +1636,7 @@ public class BaseActivity extends AppCompatActivity {
 
             String ipaddress = "0.0.0.0";
             try {
-                ipaddress = Utility.getMacAddress(BaseActivity.this);
+                ipaddress = Utility.getinfoaddress(BaseActivity.this);
             } catch (Exception io) {
                 ipaddress = "0.0.0.0";
             }
@@ -1676,7 +1677,7 @@ public class BaseActivity extends AppCompatActivity {
 
             String ipaddress = "0.0.0.0";
             try {
-                ipaddress = Utility.getMacAddress(BaseActivity.this);
+                ipaddress = Utility.getinfoaddress(BaseActivity.this);
             } catch (Exception io) {
                 ipaddress = "0.0.0.0";
             }
@@ -1719,7 +1720,7 @@ public class BaseActivity extends AppCompatActivity {
 
             String ipaddress = "0.0.0.0";
             try {
-                ipaddress = Utility.getMacAddress(BaseActivity.this);
+                ipaddress = Utility.getinfoaddress(BaseActivity.this);
             } catch (Exception io) {
                 ipaddress = "0.0.0.0";
             }

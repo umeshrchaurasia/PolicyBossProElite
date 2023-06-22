@@ -543,11 +543,7 @@ public class DynamicController implements IDynamic {
         UserBehaviourRequestEntity entity = new UserBehaviourRequestEntity();
 
         try {
-            entity.setBluetooth(facade.getBluetooth());
-            entity.setDefaultlanguage(facade.getLocalLanguage());
-            entity.setInstallapps(facade.getPackages());
-            entity.setWifi(facade.getWifiList());
-            entity.setFba_id("" + new DBPersistanceController(mContext).getUserData().getFBAId());
+
         } catch (Exception w) {
 
         }

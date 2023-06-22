@@ -280,7 +280,7 @@ public class MotorRequestEntity implements Parcelable {
         this.device_id = Utility.getTokenId(context);
         this.fba_id = loginResponseEntity.getFBAId();
         try {
-            this.mac_address = Utility.getMacAddress(context);
+            this.mac_address = Utility.getinfoaddress(context);
         } catch (IOException e) {
             this.mac_address = "0";
         }
