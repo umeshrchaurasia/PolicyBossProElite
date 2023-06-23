@@ -64,7 +64,7 @@ public class messagecenteractivity  extends BaseActivity {
 
             String ipaddress = "0.0.0.0";
             try {
-                ipaddress = Utility.getMacAddress(this);
+                ipaddress = Utility.getinfoaddress(this);
             } catch (Exception io) {
                 ipaddress = "0.0.0.0";
             }

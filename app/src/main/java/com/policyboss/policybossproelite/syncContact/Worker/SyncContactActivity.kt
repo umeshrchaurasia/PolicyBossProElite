@@ -452,6 +452,8 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
 
         btnClose.setOnClickListener {
             alertDialog.dismiss()
+
+            this@SyncContactActivity.finish()
             startActivity(Intent(this, CommonWebViewActivity::class.java) // .putExtra("URL", "https://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
                 .putExtra("URL", "" + userConstantEntity.leadDashUrl)
                 .putExtra("NAME", "" + "Sync Contact DashBoard")

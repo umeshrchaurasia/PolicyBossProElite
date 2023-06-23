@@ -322,7 +322,7 @@ public class NotificationActivity extends BaseActivity implements IResponseSubcr
             }
             String ipaddress = "0.0.0.0";
             try {
-                ipaddress = Utility.getMacAddress(NotificationActivity.this);
+                ipaddress = Utility.getinfoaddress(NotificationActivity.this);
             } catch (Exception io) {
                 ipaddress = "0.0.0.0";
             }

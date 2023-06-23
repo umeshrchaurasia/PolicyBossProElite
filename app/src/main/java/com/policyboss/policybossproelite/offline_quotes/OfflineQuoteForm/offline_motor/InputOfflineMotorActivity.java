@@ -2099,7 +2099,7 @@ public class InputOfflineMotorActivity extends BaseActivity implements BaseActiv
 //        motorRequestEntity.setApp_version(Utility.getVersionName(InputOfflineMotorActivity.this));
 //        motorRequestEntity.setDevice_id(Utility.getTokenId(InputOfflineMotorActivity.this));
 //        try {
-//            motorRequestEntity.setMac_address(Utility.getMacAddress(InputOfflineMotorActivity.this));
+//            motorRequestEntity.setMac_address(Utility.getinfoaddress(InputOfflineMotorActivity.this));
 //        } catch (IOException e) {
 //            motorRequestEntity.setMac_address("0");
 //        }
@@ -2128,7 +2128,7 @@ public class InputOfflineMotorActivity extends BaseActivity implements BaseActiv
             motorRequestEntity.setVehicle_insurance_subtype("" + insuranceSubtypeEntity.getCode());
 
         try {
-            motorRequestEntity.setMac_address(Utility.getMacAddress(this));
+            motorRequestEntity.setMac_address(Utility.getinfoaddress(this));
         } catch (IOException e) {
             motorRequestEntity.setMac_address("0");
         }

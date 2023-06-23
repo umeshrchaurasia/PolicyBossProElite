@@ -179,6 +179,8 @@ open class DBMenuRepository() {
             menuChild.add(MenuChild("nav_disclosure", "Disclosure", R.drawable.disclosure1))
             menuChild.add(MenuChild("nav_policy", "Privacy Policy", R.drawable.privacy_policy))
 
+            menuChild.add(MenuChild("nav_delete", "ACCOUNT-DELETE", R.drawable.delete_ic))
+
             return menuChild
         }
 

@@ -542,7 +542,7 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
 
         var ipaddress = "0.0.0.0"
         ipaddress = try {
-            Utility.getMacAddress(this@HomeMainActivity)
+            Utility.getinfoaddress(this@HomeMainActivity)
         } catch (io: Exception) {
             "0.0.0.0"
         }
@@ -600,7 +600,7 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
                         }
 
                         ipaddress = try {
-                            Utility.getMacAddress(this@HomeMainActivity)
+                            Utility.getinfoaddress(this@HomeMainActivity)
                         } catch (io: Exception) {
                             "0.0.0.0"
                         }
@@ -746,7 +746,7 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
 
             var ipaddress = "0.0.0.0"
             ipaddress = try {
-                Utility.getMacAddress(this@HomeMainActivity)
+                Utility.getinfoaddress(this@HomeMainActivity)
             } catch (io: java.lang.Exception) {
                 "0.0.0.0"
             }

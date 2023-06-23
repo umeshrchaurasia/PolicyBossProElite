@@ -249,132 +249,22 @@ public class Utility {
     public static String getLocalIpAddress(Context context) {
         String IPaddress;
 
-        boolean WIFI = false;
 
-        boolean MOBILE = false;
-
-        ConnectivityManager CM = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo[] networkInfo = CM.getAllNetworkInfo();
-
-        for (NetworkInfo netInfo : networkInfo) {
-            if (netInfo.getTypeName().equalsIgnoreCase("WIFI"))
-                if (netInfo.isConnected())
-                    WIFI = true;
-            if (netInfo.getTypeName().equalsIgnoreCase("MOBILE"))
-                if (netInfo.isConnected())
-                    MOBILE = true;
-        }
-
-        if (WIFI == true) {
-            return GetDeviceipWiFiData(context);
-        }
-
-        if (MOBILE == true) {
-            return GetDeviceipMobileData();
-
-        }
-
-
-       /* WifiManager wm = (WifiManager) context.getApplicationContext().getSystemService(WIFI_SERVICE);
-        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());*//*
-        try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
-                 en.hasMoreElements(); ) {
-                NetworkInterface intf = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress()) {
-                        return inetAddress.getHostAddress().toString();
-                    }
-                }
-            }
-        } catch (Exception ex) {
-            Log.e("IP Address", ex.toString());
-        }*/
         return "";
     }
 
-    public static String GetDeviceipMobileData() {
-        try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
-                 en.hasMoreElements(); ) {
-                NetworkInterface networkinterface = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = networkinterface.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress()) {
-                        return Formatter.formatIpAddress(inetAddress.hashCode());
-                    }
-                }
-            }
-        } catch (Exception ex) {
-            Log.e("Current IP", ex.toString());
-        }
-        return "";
-    }
 
-    public static String getMacAddress(Context context) throws IOException {
-//        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-//        WifiInfo wInfo = wifiManager.getConnectionInfo();
-//        Toast.makeText(context, "" + wInfo.getMacAddress(), Toast.LENGTH_SHORT).show();
-//        return wInfo.getMacAddress();
+
+    public static String getinfoaddress(Context context) throws IOException {
+
         String address = "";
-        try {
-            WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-
-            if (wifiManager.isWifiEnabled()) {
-                // WIFI ALREADY ENABLED. GRAB THE MAC ADDRESS HERE
-                WifiInfo info = wifiManager.getConnectionInfo();
-                address = info.getMacAddress();
-            } else {
-
-                try {
-                    // get all the interfaces
-                    List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
-
-                    //find network interface wlan0
-                    for (NetworkInterface networkInterface : all) {
-                        if (!networkInterface.getName().equalsIgnoreCase("wlan0")) continue;
-                        //get the hardware address (MAC) of the interface
-                        byte[] macBytes = networkInterface.getHardwareAddress();
-                        if (macBytes == null) {
-                            return "";
-                        }
 
 
-                        StringBuilder res1 = new StringBuilder();
-                        for (byte b : macBytes) {
-                            //gets the last byte of b
-                            res1.append(Integer.toHexString(b & 0xFF) + ":");
-                        }
-
-                        if (res1.length() > 0) {
-                            res1.deleteCharAt(res1.length() - 1);
-                        }
-                        address = res1.toString();
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         //Toast.makeText(context, "" + address, Toast.LENGTH_SHORT).show();
         return address;
     }
 
-    public static String GetDeviceipWiFiData(Context context) {
-
-        WifiManager wm = (WifiManager) context.getSystemService(WIFI_SERVICE);
-
-        @SuppressWarnings("deprecation")
-
-        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-
-        return ip;
-
-    }
 
 
     public static String getVersionName(Context context) {
@@ -503,74 +393,6 @@ public class Utility {
         } catch (OperationApplicationException exp) {
             //logs
         }
-    }
-
-
-    public static boolean isTheNumberExistsinContacts(Context ctx, String phoneNumber) {
-
-        Cursor cur = null;
-        ContentResolver cr = null;
-
-        try {
-            cr = ctx.getContentResolver();
-
-        } catch (Exception ex) {
-            Log.d(TAG, ex.getMessage());
-        }
-
-        try {
-            cur = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null,
-                    null, null);
-        } catch (Exception ex) {
-            Log.i(TAG, ex.getMessage());
-        }
-
-        try {
-            if (cur.getCount() > 0) {
-                while (cur.moveToNext()) {
-                    String id = cur.getString(cur
-                            .getColumnIndex(ContactsContract.Contacts._ID));
-                    String name = cur
-                            .getString(cur
-                                    .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                    // Log.i("Names", name);
-                    if (Integer
-                            .parseInt(cur.getString(cur
-                                    .getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-                        // Query phone here. Covered next
-                        Cursor phones = ctx
-                                .getContentResolver()
-                                .query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                                        null,
-                                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID
-                                                + " = " + id, null, null);
-                        while (phones.moveToNext()) {
-                            String phoneNumberX = phones
-                                    .getString(phones
-                                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                            // Log.i("Number", phoneNumber);
-
-                            phoneNumberX = phoneNumberX.replace(" ", "");
-                            phoneNumberX = phoneNumberX.replace("(", "");
-                            phoneNumberX = phoneNumberX.replace(")", "");
-                            if (phoneNumberX.contains(phoneNumber)) {
-                                phones.close();
-                                return true;
-
-                            }
-
-                        }
-                        phones.close();
-                    }
-
-                }
-            }
-        } catch (Exception ex) {
-            Log.i(TAG, ex.getMessage());
-
-        }
-
-        return false;
     }
 
 

@@ -330,7 +330,7 @@ public class DashboardRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                     String ipaddress = "0.0.0.0";
                     try {
-                        ipaddress = Utility.getMacAddress(mContext);
+                        ipaddress = Utility.getinfoaddress(mContext);
                     } catch (Exception io) {
                         ipaddress = "0.0.0.0";
                     }
@@ -381,7 +381,7 @@ public class DashboardRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                     String ipaddress = "0.0.0.0";
                     try {
-                        ipaddress = Utility.getMacAddress(mContext);
+                        ipaddress = Utility.getinfoaddress(mContext);
                     } catch (Exception io) {
                         ipaddress = "0.0.0.0";
                     }
@@ -457,7 +457,7 @@ public class DashboardRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                     String ipaddress = "0.0.0.0";
                     try {
-                        ipaddress = Utility.getMacAddress(mContext);
+                        ipaddress = Utility.getinfoaddress(mContext);
                     } catch (Exception io) {
                         ipaddress = "0.0.0.0";
                     }
@@ -496,7 +496,7 @@ public class DashboardRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                 String ipaddress = "0.0.0.0";
                 try {
-                    ipaddress = Utility.getMacAddress(mContext);
+                    ipaddress = Utility.getinfoaddress(mContext);
                 } catch (Exception io) {
                     ipaddress = "0.0.0.0";
                 }
@@ -563,7 +563,7 @@ public class DashboardRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     String invUrl = mReal.getUserConstantsData().getInvestmentUrl();
 
                     try {
-                        ipaddress = Utility.getMacAddress(mContext);
+                        ipaddress = Utility.getinfoaddress(mContext);
                     } catch (Exception io) {
                         ipaddress = "0.0.0.0";
                     }
@@ -611,7 +611,7 @@ public class DashboardRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     if (!dynamicUrl.isEmpty()) {
                         String ipaddress = "0.0.0.0";
                         try {
-                            ipaddress = Utility.getMacAddress(mContext);
+                            ipaddress = Utility.getinfoaddress(mContext);
                         } catch (Exception io) {
                             ipaddress = "0.0.0.0";
                         }

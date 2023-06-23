@@ -1665,7 +1665,7 @@ public class InputFragment extends BaseFragment implements BaseFragment.PopUpLis
             motorRequestEntity.setVehicle_insurance_subtype("" + insuranceSubtypeEntity.getCode());
 
         try {
-            motorRequestEntity.setMac_address(Utility.getMacAddress(getActivity()));
+            motorRequestEntity.setMac_address(Utility.getinfoaddress(getActivity()));
         } catch (IOException e) {
             motorRequestEntity.setMac_address("0");
         }

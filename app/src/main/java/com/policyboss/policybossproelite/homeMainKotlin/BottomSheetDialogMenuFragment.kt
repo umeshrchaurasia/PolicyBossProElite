@@ -19,12 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
 import com.policyboss.policybossproelite.R
 import com.policyboss.policybossproelite.attendance.PolicyBossAttendanceActivity
 import com.policyboss.policybossproelite.certificate.POSP_certicate_appointment
 import com.policyboss.policybossproelite.change_password.ChangePasswordActivity
-import com.policyboss.policybossproelite.contact_lead.ContactLeadActivity
 import com.policyboss.policybossproelite.databinding.FragmentBottomSheetMenuDialogBinding
 import com.policyboss.policybossproelite.generatelead.GenerateLeadActivity
 import com.policyboss.policybossproelite.helpfeedback.raiseticket.RaiseTicketActivity
@@ -33,14 +31,10 @@ import com.policyboss.policybossproelite.homeMainKotlin.menuRepository.DBMenuRep
 import com.policyboss.policybossproelite.messagecenter.messagecenteractivity
 import com.policyboss.policybossproelite.myaccount.MyAccountActivity
 import com.policyboss.policybossproelite.mybusiness.MyBusinessActivity
-import com.policyboss.policybossproelite.oauthtoken.OauthTokenActivity
+import com.policyboss.policybossproelite.appCode.appcodeActivity
 import com.policyboss.policybossproelite.posp.PospEnrollment
 import com.policyboss.policybossproelite.posp.PospListActivity
-import com.policyboss.policybossproelite.sendTemplateSms.SendTemplateSmsActivity
-import com.policyboss.policybossproelite.syncContact.Worker.SyncContactActivity
-import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivity
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityKotlin
-import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityNew
 import com.policyboss.policybossproelite.transactionhistory.nav_transactionhistoryActivity
 import com.policyboss.policybossproelite.utility.Constants
 import com.policyboss.policybossproelite.utility.NetworkUtils
@@ -296,7 +290,7 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                 }
                 "nav_ouathEnabled" -> {
 
-                    startActivity(Intent(requireContext(),OauthTokenActivity::class.java))
+                    startActivity(Intent(requireContext(),appcodeActivity::class.java))
 
                 }
 
@@ -433,7 +427,7 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                 "nav_delete" -> {
 
                     startActivity(Intent(requireContext(), PrivacyWebViewActivity::class.java)
-                        .putExtra("URL", "https://www.policyboss.com/initiate-account-deletion-elite?ssid="+userConstantEntity.getPOSPNo())
+                        .putExtra("URL", "https://www.policyboss.com/initiate-account-deletion-elite?ss_id="+userConstantEntity.getPOSPNo())
                         .putExtra("NAME", "ACCOUNT-DELETE")
                         .putExtra("TITLE", "ACCOUNT-DELETE"))
 
@@ -519,7 +513,7 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
         } else {
             var ipaddress = "0.0.0.0"
             ipaddress = try {
-                Utility.getMacAddress(requireContext())
+                Utility.getinfoaddress(requireContext())
             } catch (io: java.lang.Exception) {
                 "0.0.0.0"
             }
