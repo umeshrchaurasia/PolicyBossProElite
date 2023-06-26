@@ -151,6 +151,8 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
     Bitmap bitmapPhoto = null;
     LoginResponseEntity loginResponseEntity;
     String[] permissionsRequired = new String[]{Manifest.permission.CALL_PHONE};
+    String DeviceID = "";
+    String AppVersion = "";
 
     String[] perms = {
             "android.permission.CAMERA",
@@ -178,6 +180,9 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
         registerRequestEntity = new RegisterRequestEntity();
         registerRequestEntity.setFBAID(loginEntity.getFBAId());
         prefManager = new PrefManager(this);
+
+        DeviceID = prefManager.getDeviceID();
+        AppVersion = prefManager.getAppVersion();
         initWidgets();
         setListener();
         initLayouts();
@@ -1812,7 +1817,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
                 file = saveImageToStorage(mphoto, PHOTO_File);
                 setProfilePhoto(mphoto);
                 part = Utility.getMultipartImage(file);
-                body = Utility.getBody(this, loginEntity.getFBAId(), PROFILE, PHOTO_File );
+                body = Utility.getBody(this, loginEntity.getFBAId(), PROFILE, PHOTO_File,loginEntity.getPOSPNo(),AppVersion,DeviceID );
 
                 new RegisterController(this).uploadDocuments(part, body, this);
                 break;
@@ -1821,7 +1826,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
                 file = saveImageToStorage(mphoto, PHOTO_File);
                 setProfilePhoto(mphoto);
                 part = Utility.getMultipartImage(file);
-                body = Utility.getBody(this, loginEntity.getFBAId(), PHOTO, PHOTO_File);
+                body = Utility.getBody(this, loginEntity.getFBAId(), PHOTO, PHOTO_File,loginEntity.getPOSPNo(),AppVersion,DeviceID );
                 new RegisterController(this).uploadDocuments(part, body, this);
                 break;
             case 3:
@@ -1829,7 +1834,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
                 showDialog();
                 file = saveImageToStorage(mphoto, PAN_File);
                 part = Utility.getMultipartImage(file);
-                body = Utility.getBody(this, loginEntity.getFBAId(), PAN, PAN_File);
+                body = Utility.getBody(this, loginEntity.getFBAId(), PAN, PAN_File,loginEntity.getPOSPNo(),AppVersion,DeviceID );
                 new RegisterController(this).uploadDocuments(part, body, this);
                 break;
 
@@ -1837,14 +1842,14 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
                 showDialog();
                 file = saveImageToStorage(mphoto, CANCEL_CHQ_File);
                 part = Utility.getMultipartImage(file);
-                body = Utility.getBody(this, loginEntity.getFBAId(), CANCEL_CHQ, CANCEL_CHQ_File);
+                body = Utility.getBody(this, loginEntity.getFBAId(), CANCEL_CHQ, CANCEL_CHQ_File,loginEntity.getPOSPNo(),AppVersion,DeviceID );
                 new RegisterController(this).uploadDocuments(part, body, this);
                 break;
             case 5:
                 showDialog();
                 file = saveImageToStorage(mphoto, AADHAR_File);
                 part = Utility.getMultipartImage(file);
-                body = Utility.getBody(this, loginEntity.getFBAId(), AADHAR, AADHAR_File);
+                body = Utility.getBody(this, loginEntity.getFBAId(), AADHAR, AADHAR_File,loginEntity.getPOSPNo(),AppVersion,DeviceID );
                 new RegisterController(this).uploadDocuments(part, body, this);
                 break;
         }

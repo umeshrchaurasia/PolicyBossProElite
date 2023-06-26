@@ -158,7 +158,8 @@ public class Utility {
 //    }
 
 
-    public static HashMap<String, String> getBody(Context context, int FbaID, int DocTyp, String DocName) {
+    public static HashMap<String, String> getBody(Context context, int FbaID, int DocTyp, String DocName ,
+                                                  String ssid ,String appVersion,String deviceCode) {
         HashMap<String, String> body = new HashMap<String, String>();
 
 
@@ -166,7 +167,9 @@ public class Utility {
         body.put("DocType", String.valueOf(DocTyp));
         body.put("DocName", DocName);
 
-
+        body.put("app_version", appVersion);
+        body.put("ssid", ssid);
+        body.put("device_code", deviceCode);
         return body;
     }
 

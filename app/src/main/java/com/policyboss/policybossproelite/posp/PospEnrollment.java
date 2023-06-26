@@ -147,12 +147,15 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
     LinearLayout llMain;
     boolean IsAllImageUploaded = false, isPospNoAvailable = false, isPaymentLinkAvailable = true, isPaymentDone = false;
 
+    String DeviceID = "";
+    String AppVersion = "";
     String[] perms = {
             "android.permission.CAMERA",
             "android.permission.WRITE_EXTERNAL_STORAGE",
             "android.permission.READ_EXTERNAL_STORAGE"
 
     };
+
 
     ActivityResultLauncher<String> galleryLauncher;
     ActivityResultLauncher<Uri> cameraLauncher;
@@ -175,6 +178,8 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
         }
 
         prefManager = new PrefManager(this);
+        DeviceID = prefManager.getDeviceID();
+        AppVersion = prefManager.getAppVersion();
         initWidgets();
         setListener();
         initLayouts();
@@ -2009,7 +2014,7 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
                         showDialog();
                         file = saveImageToStorage(mphoto, "" + POSP_PHOTO);
                         part = Utility.getMultipartImage(file);
-                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PHOTO, PHOTO_File);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PHOTO, PHOTO_File,loginResponseEntity.getPOSPNo(),AppVersion,DeviceID );
                         new RegisterController(this).uploadDocuments(part, body, this);
                         break;
                     case 7:
@@ -2017,7 +2022,7 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
                         showDialog();
                         file = saveImageToStorage(mphoto, "" + POSP_PAN);
                         part = Utility.getMultipartImage(file);
-                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PAN, PAN_File);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PAN, PAN_File,loginResponseEntity.getPOSPNo(),AppVersion,DeviceID );
                         new RegisterController(this).uploadDocuments(part, body, this);
                         break;
 
@@ -2025,28 +2030,28 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
                         showDialog();
                         file = saveImageToStorage(mphoto, "" + POSP_AADHAR_FRONT);
                         part = Utility.getMultipartImage(file);
-                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_FRONT, AADHAR_FRONT_File);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_FRONT, AADHAR_FRONT_File,loginResponseEntity.getPOSPNo(),AppVersion,DeviceID );
                         new RegisterController(this).uploadDocuments(part, body, this);
                         break;
                     case 9:
                         showDialog();
                         file = saveImageToStorage(mphoto, "" + POSP_AADHAR_BACK);
                         part = Utility.getMultipartImage(file);
-                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_BACK, AADHAR_BACK_File);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_BACK, AADHAR_BACK_File,loginResponseEntity.getPOSPNo(),AppVersion,DeviceID );
                         new RegisterController(this).uploadDocuments(part, body, this);
                         break;
                     case 10:
                         showDialog();
                         file = saveImageToStorage(mphoto, "" + POSP_CANCEL_CHQ);
                         part = Utility.getMultipartImage(file);
-                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_CANCEL_CHQ, CANCEL_CHQ_File);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_CANCEL_CHQ, CANCEL_CHQ_File,loginResponseEntity.getPOSPNo(),AppVersion,DeviceID );
                         new RegisterController(this).uploadDocuments(part, body, this);
                         break;
                     case 11:
                         showDialog();
                         file = saveImageToStorage(mphoto, "" + POSP_EDU);
                         part = Utility.getMultipartImage(file);
-                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_EDU, EDU_FILE);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_EDU, EDU_FILE,loginResponseEntity.getPOSPNo(),AppVersion,DeviceID );
                         new RegisterController(this).uploadDocuments(part, body, this);
                         break;
                 }
