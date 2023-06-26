@@ -175,7 +175,7 @@ public class SyncRazorPaymentActivity  extends BaseActivity implements PaymentRe
         Log.d(TAG, "Pyment Success with RazorPaymentID  " + razorpayPaymentID);
 
         this.finish();
-        String suceessurl = "https://horizon.policyboss.com/razorpay-transaction-status/" + String.valueOf(posphorizonEnity.getSs_Id())+"/Success/"+razorpayPaymentID+"/POSP_ONBOARD";
+        String suceessurl = "https://horizon.policyboss.com/razorpay-transaction-status/" + String.valueOf(synctransactionEntity.getSs_Id())+"/Success/"+razorpayPaymentID+"/POSP_ONBOARD";
         startActivity(new Intent(SyncRazorPaymentActivity.this, SyncWebViewActivity.class)
                 .putExtra("URL",suceessurl)
                 .putExtra("NAME", "Razor Payment")
@@ -192,7 +192,7 @@ public class SyncRazorPaymentActivity  extends BaseActivity implements PaymentRe
             Log.d(TAG, "Payment failed: " + code + " " + response);
             this.finish();
 
-            String suceessurl = "https://horizon.policyboss.com/razorpay-transaction-status/" + String.valueOf(posphorizonEnity.getSs_Id())+"/Cancle/NA/POSP_ONBOARD";
+            String suceessurl = "https://horizon.policyboss.com/razorpay-transaction-status/" + String.valueOf(synctransactionEntity.getSs_Id())+"/Cancle/NA/POSP_ONBOARD";
             startActivity(new Intent(SyncRazorPaymentActivity.this, SyncWebViewActivity.class)
                     .putExtra("URL",suceessurl)
                     .putExtra("NAME", "Razor Payment")
