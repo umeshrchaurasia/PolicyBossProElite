@@ -39,7 +39,12 @@ public class SalesMaterialController implements ISalesMaterial {
 
     @Override
     public void getSalesProducts(final IResponseSubcriber iResponseSubcriber) {
-        salesMaterialNetworkService.getSalesProducts().enqueue(new Callback<SalesMaterialProductResponse>() {
+        HashMap<String, String> body = new HashMap<>();
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        salesMaterialNetworkService.getSalesProducts(body).enqueue(new Callback<SalesMaterialProductResponse>() {
             @Override
             public void onResponse(Call<SalesMaterialProductResponse> call, Response<SalesMaterialProductResponse> response) {
 

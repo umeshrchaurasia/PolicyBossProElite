@@ -140,6 +140,10 @@ public class RegisterController implements IRegister {
         HashMap<String, String> body = new HashMap<>();
         body.put("MobileNo", MobileNo);
         body.put("email",email);
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
         registerQuotesNetworkService.generateOtp(body).enqueue(new Callback<GenerateOtpResponse>() {
             @Override
             public void onResponse(Call<GenerateOtpResponse> call, Response<GenerateOtpResponse> response) {
@@ -176,6 +180,10 @@ public class RegisterController implements IRegister {
         HashMap<String, String> body = new HashMap<>();
         body.put("MobileNo", MobileNo);
         body.put("MobileOTP", MobileOTP);
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
         registerQuotesNetworkService.verifyOtp(body).enqueue(new Callback<VerifyOtpResponse>() {
             @Override
             public void onResponse(Call<VerifyOtpResponse> call, Response<VerifyOtpResponse> response) {
@@ -211,6 +219,11 @@ public class RegisterController implements IRegister {
     public void getCityState(String PinCode, final IResponseSubcriber iResponseSubcriber) {
         HashMap<String, String> body = new HashMap<>();
         body.put("PinCode", PinCode);
+
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
         registerQuotesNetworkService.getCityStateCityPincode(body).enqueue(new Callback<PincodeResponse>() {
             @Override
             public void onResponse(Call<PincodeResponse> call, Response<PincodeResponse> response) {
@@ -280,6 +293,9 @@ public class RegisterController implements IRegister {
     public void getPospDetails(final IResponseSubcriber iResponseSubcriber) {
         HashMap<String, String> body = new HashMap<>();
         body.put("FBAID", "" + dbPersistanceController.getUserData().getFBAId());
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
 
         registerQuotesNetworkService.getPospDetails(body).enqueue(new Callback<PospDetailsResponse>() {
             @Override
@@ -351,6 +367,11 @@ public class RegisterController implements IRegister {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("IFSCCode", IfscCode);
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+
         registerQuotesNetworkService.getIfscCode(body).enqueue(new Callback<IfscCodeResponse>() {
             @Override
             public void onResponse(Call<IfscCodeResponse> call, Response<IfscCodeResponse> response) {
@@ -692,6 +713,11 @@ public class RegisterController implements IRegister {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("FBAID", "" + dbPersistanceController.getUserData().getFBAId());
+
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+
         registerQuotesNetworkService.getChildPosp(body).enqueue(new Callback<ChildPospResponse>() {
             @Override
             public void onResponse(Call<ChildPospResponse> call, Response<ChildPospResponse> response) {

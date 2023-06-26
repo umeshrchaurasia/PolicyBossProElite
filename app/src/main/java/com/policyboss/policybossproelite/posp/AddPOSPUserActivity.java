@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.APIResponse;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.IResponseSubcriber;
@@ -44,7 +45,7 @@ public class AddPOSPUserActivity extends BaseActivity implements IResponseSubcri
     RegisterRequestEntity registerRequestEntity;
     String pass = "";
     DBPersistanceController dbPersistanceController;
-
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class AddPOSPUserActivity extends BaseActivity implements IResponseSubcri
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerRequestEntity = new RegisterRequestEntity();
         dbPersistanceController = new DBPersistanceController(this);
+        prefManager = new PrefManager(this);
         init_widget();
     }
 
@@ -125,7 +127,13 @@ public class AddPOSPUserActivity extends BaseActivity implements IResponseSubcri
             registerRequestEntity.setPassword(pass);
         }
         registerRequestEntity.setParentId("" + dbPersistanceController.getUserData().getFBAId());
+
+        registerRequestEntity.setApp_version("" + prefManager.getAppVersion());
+        registerRequestEntity.setVersionCode("" + prefManager.getDeviceID());
+        registerRequestEntity.setSsid("" + dbPersistanceController.getUserData().getPOSPNo());
         //registerRequestEntity.setAppSource(String.valueOf(spSource.getSelectedItemPosition() + 1));
+
+
     }
 
     private Boolean validateRegister() {

@@ -27,7 +27,7 @@ public class SalesMaterialRequestBuilder extends FinmartRetroRequestBuilder {
 
         @Headers("token:" + token)
         @POST("/quote/Postfm/sales-material-product-pb")
-        Call<SalesMaterialProductResponse> getSalesProducts();
+        Call<SalesMaterialProductResponse> getSalesProducts(@Body HashMap<String, String> body);
 
 
         @Headers("token:" + token)

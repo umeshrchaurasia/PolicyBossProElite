@@ -945,6 +945,11 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
         } else {
             registerRequestEntity.setLoan_Account_Type("CURRENT");
         }
+
+        registerRequestEntity.setApp_version("" + prefManager.getAppVersion());
+        registerRequestEntity.setVersionCode("" + prefManager.getDeviceID());
+        registerRequestEntity.setSsid("" +  dbPersistanceController.getUserData().getPOSPNo());
+
         new RegisterController(MyAccountActivity.this).saveAccDtl(registerRequestEntity, MyAccountActivity.this);
 
     }

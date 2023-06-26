@@ -234,6 +234,12 @@ public class RegisterRequestEntity {
 
     private String field_sales_uid;
 
+    private String app_version;
+
+    private String device_code;
+
+    private String ssid;
+
     public String getAppSource() {
         return AppSource;
     }
@@ -345,6 +351,9 @@ public class RegisterRequestEntity {
         ParentId="0";
         field_sales_uid="";
         posp_amount = "";
+        device_code = "";
+        app_version = "";
+        ssid = "";
     }
 
 
@@ -1173,5 +1182,29 @@ public class RegisterRequestEntity {
         this.posp_amount = posp_amount;
     }
 
+
+    public String getApp_version() {
+        return app_version;
+    }
+
+    public void setApp_version(String app_version) {
+        this.app_version = app_version;
+    }
+
+    public String getDevice_code() {
+        return device_code;
+    }
+
+    public void setDevice_code(String device_code) {
+        this.device_code = device_code;
+    }
+
+    public String getSsid() {
+        return ssid;
+    }
+
+    public void setSsid(String ssid) {
+        this.ssid = ssid;
+    }
 
 }
