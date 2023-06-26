@@ -179,7 +179,13 @@ public class MasterController implements IMasterFetch {
 
     @Override
     public void getInsuranceMaster(final IResponseSubcriber iResponseSubcriber) {
-        masterNetworkService.getInsuranceMasters().enqueue(new Callback<InsuranceMasterResponse>() {
+
+        HashMap<String, String> body = new HashMap<>();
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        masterNetworkService.getInsuranceMasters(body).enqueue(new Callback<InsuranceMasterResponse>() {
             @Override
             public void onResponse(Call<InsuranceMasterResponse> call, Response<InsuranceMasterResponse> response) {
 

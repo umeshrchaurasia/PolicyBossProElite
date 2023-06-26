@@ -50,7 +50,7 @@ public class MasterRequestBuilder extends FinmartRetroRequestBuilder {
 
         @Headers("token:" + token)
         @POST("/quote/Postfm/get-insurance-company")
-        Call<InsuranceMasterResponse> getInsuranceMasters();
+        Call<InsuranceMasterResponse> getInsuranceMasters(@Body HashMap<String, String> body);
 
         @Headers("token:" + token)
         @POST("/quote/Postfm/contact-us-PB")

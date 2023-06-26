@@ -69,8 +69,12 @@ public class RegisterController implements IRegister {
 
     @Override
     public void getRegSource(final IResponseSubcriber iResponseSubcriber) {
-
-        registerQuotesNetworkService.getRegSource().enqueue(new Callback<RegisterSourceResponse>() {
+        HashMap<String, String> body = new HashMap<>();
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        registerQuotesNetworkService.getRegSource(body).enqueue(new Callback<RegisterSourceResponse>() {
             @Override
             public void onResponse(Call<RegisterSourceResponse> call, Response<RegisterSourceResponse> response) {
                 if (response.body() != null) {
@@ -103,8 +107,12 @@ public class RegisterController implements IRegister {
 
     @Override
     public void getRegistPospAmount(final IResponseSubcriber iResponseSubcriber) {
-
-        registerQuotesNetworkService.getRegistPospAmount().enqueue(new Callback<RegisterationPospAmountResponse>() {
+        HashMap<String, String> body = new HashMap<>();
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        registerQuotesNetworkService.getRegistPospAmount(body).enqueue(new Callback<RegisterationPospAmountResponse>() {
             @Override
             public void onResponse(Call<RegisterationPospAmountResponse> call, Response<RegisterationPospAmountResponse> response) {
                 if (response.body() != null) {
@@ -607,6 +615,10 @@ public class RegisterController implements IRegister {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("UserNotificationRequestId", NotifyReqID);
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
         registerQuotesNetworkService.recieveNotificationData(body).enqueue(new Callback<NotificationUpdateResponse>() {
             @Override
             public void onResponse(Call<NotificationUpdateResponse> call, Response<NotificationUpdateResponse> response) {
@@ -643,6 +655,10 @@ public class RegisterController implements IRegister {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("UserNotificationRequestId", NotifyReqID);
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
         registerQuotesNetworkService.userClickActionOnNotification(body).enqueue(new Callback<NotificationUpdateResponse>() {
             @Override
             public void onResponse(Call<NotificationUpdateResponse> call, Response<NotificationUpdateResponse> response) {
@@ -859,6 +875,10 @@ public class RegisterController implements IRegister {
         body.put("FBAID", "" + dbPersistanceController.getUserData().getFBAId());
         body.put("url", "" + URL);
         body.put("type", "" + Type);
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+
         registerQuotesNetworkService.getEmailTemplate(body).enqueue(new Callback<PospAppointEmailResponse>() {
             @Override
             public void onResponse(Call<PospAppointEmailResponse> call, Response<PospAppointEmailResponse> response) {

@@ -105,11 +105,11 @@ public class RegisterRequestBuilder extends FinmartRetroRequestBuilder {
 
         @Headers("token:" + token)
         @POST("/quote/Postfm/get-registration-source")
-        Call<RegisterSourceResponse> getRegSource();
+        Call<RegisterSourceResponse> getRegSource(@Body HashMap<String, String> body);
 
         @Headers("token:" + token)
         @POST("/quote/Postfm/get-registration-pospamount")
-        Call<RegisterationPospAmountResponse> getRegistPospAmount();
+        Call<RegisterationPospAmountResponse> getRegistPospAmount(@Body HashMap<String, String> body);
 
         @Headers("token:" + token)
         @Multipart
