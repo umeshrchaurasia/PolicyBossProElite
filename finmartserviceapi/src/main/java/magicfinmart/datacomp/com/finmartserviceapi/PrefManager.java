@@ -26,6 +26,10 @@ public class PrefManager {
     private static final String MOTOR_VERSION = "motor_master_version";
     private static final String POPUP_COUNTER = "popup_counter_value";
     private static final String POPUP_ID = "popup_id";
+
+    private static final String device_ID = "policybossproEliteDeviceID";
+    private static final String app_Version = "policybossproAppVersion";
+
     private static final String IS_LANGUAGE = "user_language";
     private static final String IS_USER_PASSWORD = "user_password";
     private static final String NotificationTypeEnable = "NotificationType_Enable";
@@ -71,6 +75,31 @@ public class PrefManager {
         editor = pref.edit();
     }
 
+    public void setDeviceID(String deviceID) {
+
+        editor.putString(device_ID, deviceID);
+        editor.commit();
+    }
+
+    public String getDeviceID() {
+        return pref.getString(device_ID, "");
+    }
+
+    // ****** version *************
+
+    public void setAppVersion(String appVersion) {
+
+        editor.putString(app_Version, appVersion);
+        editor.commit();
+    }
+
+    public String getAppVersion() {
+        return pref.getString(app_Version, "");
+    }
+
+
+
+    ///
     public void setLanguage(String language) {
 
         editor.putString(IS_LANGUAGE, language);

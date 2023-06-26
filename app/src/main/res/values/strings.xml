@@ -30,6 +30,19 @@
     <string name="clickhere"><b><u>Click Here</u></b></string>
     <string name="noInternet">No Internet Connection</string>
 
+    <string name="popup_Profile"> PROFILE PICTURE</string>
+    <string name="popup_PanCard"> FBA PAN CARD</string>
+    <string name="popup_CancelCHQ"> CANCELLED CHQ</string>
+    <string name="popup_AadharCard"> FBA AADHAR CARD</string>
+
+
+    <string name="popup1_PHOTO"> RECENT PHOTOGRAPH</string>
+    <string name="popup1_PanCard"> RECENT PAN CARD</string>
+    <string name="popup1_AadharCardFont"> RECENT AADHAR CARD FRONT</string>
+    <string name="popup1_AadharCardBack"> RECENT AADHAR CARD BACK</string>
+    <string name="popup1_CancelCHQ"> RECENT CANCELLED CHQ</string>
+    <string name="popup1_HighestEdu"> RECENT HIGHEST EDU.  PROOF </string>
+
     <string name="threedots">&#8942;</string>
     <string name="disclosure"><b><u>DISCLOSURE</u></b></string>
 

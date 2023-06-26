@@ -1692,7 +1692,7 @@ public class BaseActivity extends AppCompatActivity {
 
             //&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.2.0&product_id=1
             String append = "&ip_address=" + ipaddress + "&mac_address=" + ipaddress
-                    + "&app_version=policyboss-" + BuildConfig.VERSION_NAME
+                    + "&app_version=policybosselite-" + BuildConfig.VERSION_NAME
                     + "&device_id=" + Utility.getDeviceId(BaseActivity.this)
                     + "&product_id=12&login_ssid=" + parent_ssid;
             cvUrl = cvUrl + append;

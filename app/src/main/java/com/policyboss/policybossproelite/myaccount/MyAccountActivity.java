@@ -667,34 +667,34 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
 
             case R.id.ivProfile:
                 type = 1;
-                galleryCamPopUp();
+                galleryCamPopUp(getString(R.string.popup_Profile));
                 break;
 
             case R.id.ivPhotoCam:
                 type = 2;
                 // launchCamera();
-                galleryCamPopUp();
+                galleryCamPopUp(getString(R.string.popup_Profile));
                 break;
 
 
             case R.id.ivPanCam:
                 type = 3;
                 // launchCamera();
-                galleryCamPopUp();
+                galleryCamPopUp(getString(R.string.popup_PanCard));
                 break;
 
 
             case R.id.ivCancelCam:
                 type = 4;
                 //launchCamera();
-                galleryCamPopUp();
+                galleryCamPopUp(getString(R.string.popup_CancelCHQ));
                 break;
 
 
             case R.id.ivAadharCam:
                 type = 5;
 //                launchCamera();
-                galleryCamPopUp();
+                galleryCamPopUp(getString(R.string.popup_AadharCard));
                 break;
 
             case R.id.ivPhotoView:
@@ -1564,7 +1564,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    private void galleryCamPopUp() {
+    private void galleryCamPopUp(String strHeader) {
 
         if (!checkPermission()) {
 
@@ -1587,25 +1587,28 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
 
         } else {
 
-            showCamerGalleryPopUp();
+            showCamerGalleryPopUp(strHeader);
         }
     }
 
 
-    private void showCamerGalleryPopUp() {
+    private void showCamerGalleryPopUp( String strHeader) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog);
 
         LinearLayout lyCamera, lyGallery;
+        TextView txtHeader;
         LayoutInflater inflater = this.getLayoutInflater();
 
         final View dialogView = inflater.inflate(R.layout.layout_cam_gallery, null);
 
         builder.setView(dialogView);
         final AlertDialog alertDialog = builder.create();
+        txtHeader = (TextView) dialogView.findViewById(R.id.txtHeader);
         // set the custom dialog components - text, image and button
         lyCamera = (LinearLayout) dialogView.findViewById(R.id.lyCamera);
         lyGallery = (LinearLayout) dialogView.findViewById(R.id.lyGallery);
 
+        txtHeader.setText("SELECT PHOTO FOR "+ strHeader);
         lyCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -2220,7 +2223,39 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
 
                     if (camera && (writeExternal || minSdk29) && readExternal) {
 
-                        showCamerGalleryPopUp();
+                        switch (type){
+
+                            case 1 :
+                                galleryCamPopUp(getString(R.string.popup_Profile));
+                                break;
+
+                            case 2:
+
+                                // launchCamera();
+                                galleryCamPopUp(getString(R.string.popup_Profile));
+                                break;
+
+
+                            case 3:
+
+                                galleryCamPopUp(getString(R.string.popup_PanCard));
+                                break;
+
+
+                            case 4:
+
+                                galleryCamPopUp(getString(R.string.popup_CancelCHQ));
+                                break;
+
+
+                            case 5:
+
+                                galleryCamPopUp(getString(R.string.popup_AadharCard));
+                                break;
+
+
+                        }
+
 
                     }
 

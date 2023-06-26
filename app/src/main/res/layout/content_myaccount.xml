@@ -50,8 +50,8 @@
                             android:layout_marginTop="10dp"
                             android:text="PROFILE PICTURE"
                             android:textAlignment="center"
-                            android:visibility="gone"
-                            android:textColor="@color/dashboard_title" />
+                            android:visibility="visible"
+                            android:textColor="@color/white" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
