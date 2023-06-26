@@ -704,7 +704,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                         break;
                     case R.id.nav_policy:
                         startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                                .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version=policyboss-1")
+                                .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID())
                                 .putExtra("NAME", "PRIVACY POLICY")
                                 .putExtra("TITLE", "PRIVACY POLICY"));
                         break;

@@ -8,6 +8,7 @@ import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.IResponseSubcriber;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.controller.masters.AsyncBikeMaster;
@@ -58,11 +59,12 @@ public class RegisterController implements IRegister {
     Context mContext;
     IResponseSubcriber iResponseSubcriber;
     DBPersistanceController dbPersistanceController;
-
+    PrefManager prefManager;
     public RegisterController(Context context) {
         registerQuotesNetworkService = new RegisterRequestBuilder().getService();
         mContext = context;
         dbPersistanceController = new DBPersistanceController(mContext);
+        prefManager = new PrefManager(mContext);
     }
 
     @Override
@@ -500,6 +502,12 @@ public class RegisterController implements IRegister {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("FBAID", FBAID);
+
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+
+
         registerQuotesNetworkService.getMyAcctDtl(body).enqueue(new Callback<MyAcctDtlResponse>() {
             @Override
             public void onResponse(Call<MyAcctDtlResponse> call, Response<MyAcctDtlResponse> response) {
@@ -536,6 +544,11 @@ public class RegisterController implements IRegister {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("FBAID", FBAID);
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+
+
         registerQuotesNetworkService.getNotificationData(body).enqueue(new Callback<NotificationResponse>() {
             @Override
             public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {

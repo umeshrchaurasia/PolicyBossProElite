@@ -7,6 +7,7 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.IResponseSubcriber;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.requestbuilder.SalesMaterialRequestBuilder;
@@ -26,12 +27,13 @@ public class SalesMaterialController implements ISalesMaterial {
     SalesMaterialRequestBuilder.SalesMaterialNetworkService salesMaterialNetworkService;
     Context mContext;
     DBPersistanceController dbPersistanceController;
-
+    PrefManager prefManager;
 
     public SalesMaterialController(Context context) {
         salesMaterialNetworkService = new SalesMaterialRequestBuilder().getService();
         mContext = context;
         dbPersistanceController = new DBPersistanceController(mContext);
+        prefManager = new PrefManager(mContext);
     }
 
 
@@ -79,6 +81,10 @@ public class SalesMaterialController implements ISalesMaterial {
 
         HashMap<String, String> body = new HashMap<String, String>();
         body.put("product_id", String.valueOf(productID));
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
+        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
 
         salesMaterialNetworkService.getProductPromotions(body).enqueue(new Callback<SalesPromotionResponse>() {
             @Override
