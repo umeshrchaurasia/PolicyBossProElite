@@ -1812,7 +1812,7 @@ public class MyAccountActivity extends BaseActivity implements View.OnClickListe
                 file = saveImageToStorage(mphoto, PHOTO_File);
                 setProfilePhoto(mphoto);
                 part = Utility.getMultipartImage(file);
-                body = Utility.getBody(this, loginEntity.getFBAId(), PROFILE, PHOTO_File);
+                body = Utility.getBody(this, loginEntity.getFBAId(), PROFILE, PHOTO_File );
 
                 new RegisterController(this).uploadDocuments(part, body, this);
                 break;

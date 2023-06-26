@@ -7,5 +7,6 @@ data class CallLogRequestEntity(
     val fba_id: Int,
     val sub_fba_id: Int,
     var device_id : String,
+    var app_version : String,
     val ss_id: Int
 )

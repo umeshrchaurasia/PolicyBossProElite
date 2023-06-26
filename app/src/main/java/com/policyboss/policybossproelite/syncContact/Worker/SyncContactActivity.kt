@@ -29,6 +29,7 @@ import com.policyboss.policybossproelite.utility.UTILITY
 
 import com.utility.finmartcontact.home.Worker.CallLogWorkManager
 import com.utility.finmartcontact.home.Worker.ContactLogWorkManager
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.LoginResponseEntity
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEntity
@@ -49,7 +50,7 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
     var progressBar: ProgressBar? = null
     var progress_circular : ProgressBar? = null
     lateinit var  txtPercent :TextView
-
+   lateinit var prefManager: PrefManager
     var perms = arrayOf(
         "android.permission.READ_CONTACTS",
         "android.permission.READ_CALL_LOG"
@@ -78,7 +79,7 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
 
         loginResponseEntity = DBPersistanceController(this).userData
         userConstantEntity = DBPersistanceController(this).userConstantsData
-
+        prefManager = PrefManager(this)
 
       //  binding.includedSyncContact.CvSync.setOnClickListener(this)
 
@@ -172,6 +173,7 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
             .putInt(Constant.KEY_fbaid, loginResponseEntity.fbaId)
             .putString(Constant.KEY_parentid, userConstantEntity.parentid)
             .putString(Constant.KEY_ssid, userConstantEntity!!.pospNo)
+            .putString(Constant.KEY_appversion, prefManager.appVersion)
             .putString(Constant.KEY_deviceid, UTILITY.getDeviceID(this@SyncContactActivity))
             .build()
 

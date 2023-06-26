@@ -14,6 +14,7 @@ object Constant {
 
     const val KEY_parentid = "parentid"
     const val KEY_deviceid = "device_id"
+    const val KEY_appversion = "appversion"
 
     const val KEY_result = "op_result"
     const val KEY_Max_Progress_result = "op_Max_Progress_result"

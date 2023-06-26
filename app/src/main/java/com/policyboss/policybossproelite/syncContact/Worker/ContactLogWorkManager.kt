@@ -78,7 +78,7 @@ class ContactLogWorkManager(
         val ssid = inputData.getString(Constant.KEY_ssid)
         val parentid = inputData.getString(Constant.KEY_parentid)
         val deviceID = inputData.getString(Constant.KEY_deviceid) ?: ""
-
+        val appVersion = inputData.getString(Constant.KEY_appversion) ?: ""
         var tfbaid = ""
         var tsub_fba_id = ""
         var getAllContactDetails :  MutableList<ContactHelper.ModelContact> = mutableListOf()
@@ -133,7 +133,9 @@ class ContactLogWorkManager(
                         sub_fba_id = tsub_fba_id,
                         contactlist = subcontactlist,
                         raw_data = Gson().toJson(getAllContactDetails),
+                        app_version = appVersion,
                         device_id = deviceID
+
                     )
 
 
