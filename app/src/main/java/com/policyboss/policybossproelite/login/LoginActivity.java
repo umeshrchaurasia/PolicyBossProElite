@@ -25,6 +25,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.policyboss.policybossproelite.BaseActivity;
+import com.policyboss.policybossproelite.BuildConfig;
 import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.helpfeedback.raiseticketDialog.RaiseTicketDialogActivity;
 import com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity;
@@ -87,6 +88,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         dbPersistanceController = new DBPersistanceController(this);
         dbPersistanceController.clearUserData();
         registerPopUp(this);
+
+        prefManager.setDeviceID( Utility.getDeviceId(LoginActivity.this.getApplicationContext()));
+
+        prefManager.setAppVersion("policybosselite-" + BuildConfig.VERSION_NAME);
+
+       // Log.d("policybosselite" , prefManager.getDeviceID() +" And " +  prefManager.getAppVersion());
+
+
         if (!checkPermission()) {
             requestPermission();
         }

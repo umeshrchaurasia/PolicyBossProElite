@@ -24,6 +24,7 @@
 
             <TextView
                 style="@style/TextViewStyle.Large"
+                android:id="@+id/txtHeader"
                 android:gravity="left"
                 android:padding="15dp"
                 android:text="SELECT PHOTO"
