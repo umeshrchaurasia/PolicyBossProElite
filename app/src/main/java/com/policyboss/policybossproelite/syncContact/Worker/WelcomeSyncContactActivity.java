@@ -21,8 +21,11 @@ import com.policyboss.policybossproelite.webviews.CommonWebViewActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
+
 public class WelcomeSyncContactActivity extends BaseActivity implements View.OnClickListener {
     private ViewPager viewPager;
+    PrefManager prefManager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
@@ -45,6 +48,7 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
 //        if(getIntent().getStringExtra("Is_Contact_Sync") != null){
 //            isContactSync = getIntent().getStringExtra("Is_Contact_Sync");
 //        }
+        prefManager = new PrefManager(this);
         init_widgets();
         setListener();
 
@@ -120,7 +124,7 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
 
             case R.id.txtprivacy:
                 startActivity(new Intent(this, CommonWebViewActivity.class)
-                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version=policyboss-1")
+                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID())
                         .putExtra("NAME", "" + "privacy-policy")
                         .putExtra("TITLE", "" + "privacy-policy"));
                 break;
@@ -128,7 +132,7 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
 
 
                 startActivity(new Intent(this, CommonWebViewActivity.class)
-                        .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version=policyboss-1")
+                        .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID())
                         .putExtra("NAME", "" + "Terms & Conditions")
                         .putExtra("TITLE", "" + "Terms & Conditions"));
                 break;
