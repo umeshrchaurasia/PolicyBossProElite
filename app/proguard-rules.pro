@@ -40,3 +40,9 @@
 -dontskipnonpubliclibraryclassmembers
 -dontpreverify
 -verbose
+
+#// For Image Croping
+-dontwarn com.yalantis.ucrop**
+-keep class com.yalantis.ucrop** { *; }
+-keep interface com.yalantis.ucrop** { *; }
+#// end here

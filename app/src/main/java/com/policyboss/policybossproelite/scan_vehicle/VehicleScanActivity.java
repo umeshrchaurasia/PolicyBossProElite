@@ -35,8 +35,7 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -325,6 +324,7 @@ public class VehicleScanActivity extends BaseActivity implements BaseActivity.Po
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case Constants.PERMISSION_CAMERA_STORACGE_CONSTANT:
                 if (grantResults.length > 0) {
@@ -389,29 +389,29 @@ public class VehicleScanActivity extends BaseActivity implements BaseActivity.Po
             startCropImageActivity(imageUri);
         }
         // handle result of CropImageActivity
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                try {
-                    cropImageUri = result.getUri();
-                    imageView.setImageBitmap(decodeBitmapUri(this, result.getUri()));//.setImageURI(result.getUri());
-                    extractTextFromImage();
-                } catch (Exception e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
-            }
-        }
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    cropImageUri = result.getUri();
+//                    imageView.setImageBitmap(decodeBitmapUri(this, result.getUri()));//.setImageURI(result.getUri());
+//                    extractTextFromImage();
+//                } catch (Exception e) {
+//                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                }
+//
+//            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+//                Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
+//            }
+//        }
     }
 
     //TODO: Crop image activity to crop capture image.
     private void startCropImageActivity(Uri imageUri) {
-        CropImage.activity(imageUri)
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setMultiTouchEnabled(true)
-                .start(this);
+//        CropImage.activity(imageUri)
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .setMultiTouchEnabled(true)
+//                .start(this);
     }
 
     private void extractTextFromImage() {

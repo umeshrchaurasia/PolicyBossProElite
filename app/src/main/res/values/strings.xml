@@ -33,7 +33,7 @@
     <string name="threedots">&#8942;</string>
     <string name="disclosure"><b><u>DISCLOSURE</u></b></string>
 
-    <string name="file_provider_authority" translatable="false">com.policyboss.policybosspro.fileprovider</string>
+    <string name="file_provider_authority" translatable="false">com.policyboss.policybossproelite.fileprovider</string>
 
     <string name="Emp_detail">Employment &amp; Income Details</string>
 

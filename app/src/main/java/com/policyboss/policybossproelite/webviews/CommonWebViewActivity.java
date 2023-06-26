@@ -38,26 +38,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
+import com.policyboss.policybossproelite.cropActivity.UcropperActivity;
 import com.policyboss.policybossproelite.file_chooser.utils.FileUtilNew;
 import com.policyboss.policybossproelite.health.HealthQuoteAppActivity;
 
 import com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity;
 import com.policyboss.policybossproelite.motor.privatecar.activity.InputQuoteBottmActivity;
 import com.policyboss.policybossproelite.motor.twowheeler.activity.TwoWheelerQuoteAppActivity;
+import com.policyboss.policybossproelite.myaccount.MyAccountActivity;
 import com.policyboss.policybossproelite.paymentEliteplan.RazorPaymentEliteActivity;
 import com.policyboss.policybossproelite.paymentEliteplan.SyncRazorPaymentActivity;
 import com.policyboss.policybossproelite.term.termselection.TermSelectionActivity;
 import com.policyboss.policybossproelite.utility.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.policyboss.policybossproelite.utility.UTILITY;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
 
 import java.io.File;
 
@@ -125,6 +128,10 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
     androidx.appcompat.app.AlertDialog alertDialog;
     //endregion
 
+    ActivityResultLauncher<String> galleryLauncher;
+    ActivityResultLauncher<Uri> cameraLauncher;
+
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,8 +183,38 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
         if (isNetworkConnected()) {
             settingWebview();
             startCountDownTimer();
-        } else
+        } else{
             Toast.makeText(this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+
+        }
+
+        // region  Camera and Gallery Launcher
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), result ->  {
+
+            Intent intent = new Intent(CommonWebViewActivity.this.getApplicationContext(), UcropperActivity.class);
+
+            intent.putExtra("SendImageData",result.toString());
+
+            startActivityForResult(intent, SELECT_PICTURE);
+        });
+
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicture(), result -> {
+            if (result) {
+                // binding.imgProfile.setImageURI(imageUri);
+
+                Intent intent = new Intent(CommonWebViewActivity.this.getApplicationContext(),UcropperActivity.class);
+
+                intent.putExtra("SendImageData",imageUri.toString());
+
+
+                startActivityForResult(intent, CAMERA_REQUEST);
+            } else {
+                // Handle failure or cancellation
+            }
+        });
+
+
+        //endregion
     }
 
     private void navigateToHome(){
@@ -594,6 +631,13 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
         return true;
    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        galleryLauncher.unregister();
+        cameraLauncher.unregister();
+    }
+
    /*
     @Override
     protected void onResume() {
@@ -647,10 +691,10 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
     }
 
     private void startCropImageActivity(Uri imageUri) {
-        CropImage.activity(imageUri)
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setMultiTouchEnabled(true)
-                .start(this);
+//        CropImage.activity(imageUri)
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .setMultiTouchEnabled(true)
+//                .start(this);
     }
 
     // region permission
@@ -805,37 +849,42 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
         }
 
 
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
-                imageUri);
-        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
+//                imageUri);
+//        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
+        cameraLauncher.launch(imageUri);
     }
 
 
     private void openGallery() {
 
-        String  mimeType = "image/*";
+        galleryLauncher.launch("image/*");
 
-        Uri collection ;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            collection =  MediaStore.Video.Media.getContentUri(
-                    MediaStore.VOLUME_EXTERNAL
-            );
-        } else {
-            collection =  MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-        }
+    //        String  mimeType = "image/*";
+//
+//        Uri collection ;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//            collection =  MediaStore.Video.Media.getContentUri(
+//                    MediaStore.VOLUME_EXTERNAL
+//            );
+//        } else {
+//            collection =  MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+//        }
+//
+//
+//        try {
+//            Intent intent = new  Intent(Intent.ACTION_PICK, collection);
+//
+//            intent.setType(mimeType);
+//            intent.resolveActivity(getPackageManager());
+//            startActivityForResult(intent, SELECT_PICTURE);
+//
+//        } catch (ActivityNotFoundException ex) {
+//            Toast.makeText(this, ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//        }
 
-
-        try {
-            Intent intent = new  Intent(Intent.ACTION_PICK, collection);
-
-            intent.setType(mimeType);
-            intent.resolveActivity(getPackageManager());
-            startActivityForResult(intent, SELECT_PICTURE);
-
-        } catch (ActivityNotFoundException ex) {
-            Toast.makeText(this, ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-        }
     }
 
     //endregion
@@ -899,11 +948,43 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
         return destinationPath;
     }
 
+    private void handleCropImage(Uri crop_uri){
+
+
+            try {
+
+                Bitmap mphoto = null;
+                try {
+                    mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), crop_uri);
+                    //  mphoto = getResizedBitmap(mphoto, 800);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                showDialog();
+
+
+                file = saveImageToStorage(mphoto, PHOTO_File);
+                // setProfilePhoto(mphoto);
+
+                part = Utility.getMultipartImage(file, "doc_type");
+
+                new ZohoController(this).uploadRaiseTicketDocWeb(part, this);
+
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+
+    }
+
     // region Event
     @Override
     @SuppressLint("NewApi")
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
 
         // Only For Pdf
         if (requestCode == PICK_PDF_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
@@ -946,56 +1027,93 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
 
                 showAlert("Select file from File Manager.");
             }
-        } else {
-
-            // Below For Cropping The Camera Image
-            if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-                //extractTextFromImage();
-                startCropImageActivity(imageUri);
-            }
-            // Below For Cropping The Gallery Image
-            else if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
-                Uri selectedImageUri = data.getData();
-                startCropImageActivity(selectedImageUri);
-            }
-
-            //region Below  handle result of CropImageActivity
-            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-                if (resultCode == RESULT_OK) {
-                    try {
-                        cropImageUri = result.getUri();
-                        Bitmap mphoto = null;
-                        try {
-                            mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
-                            //  mphoto = getResizedBitmap(mphoto, 800);
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        showDialog();
-
-
-                        file = saveImageToStorage(mphoto, PHOTO_File);
-                        // setProfilePhoto(mphoto);
-
-                        part = Utility.getMultipartImage(file, "doc_type");
-
-                        new ZohoController(this).uploadRaiseTicketDocWeb(part, this);
-
-                    } catch (Exception e) {
-                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-
-                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
-                }
-            }
-
-            //endregion
         }
+
+
+        else {
+            if(requestCode == CAMERA_REQUEST && resultCode ==101 ){
+
+                String result = data.getStringExtra("CROP");
+                Uri crop_uri = data.getData();
+
+                if(result!= null){
+                    crop_uri = Uri.parse(result);
+
+                }
+
+
+                handleCropImage(crop_uri);
+
+
+
+            }
+            else if(requestCode== SELECT_PICTURE && resultCode ==101 ){
+
+                String result = data.getStringExtra("CROP");
+                Uri crop_uri = data.getData();
+
+                if(result!= null){
+                    crop_uri = Uri.parse(result);
+                }
+
+                handleCropImage(crop_uri);
+
+
+            }
+        }
+          // region Commented Old
+//        else {
+//
+//            // Below For Cropping The Camera Image
+//            if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+//                //extractTextFromImage();
+//                startCropImageActivity(imageUri);
+//            }
+//            // Below For Cropping The Gallery Image
+//            else if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
+//                Uri selectedImageUri = data.getData();
+//                startCropImageActivity(selectedImageUri);
+//            }
+//
+//            //region Below  handle result of CropImageActivity
+//            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//
+//                if (resultCode == RESULT_OK) {
+//                    try {
+//                        cropImageUri = result.getUri();
+//                        Bitmap mphoto = null;
+//                        try {
+//                            mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
+//                            //  mphoto = getResizedBitmap(mphoto, 800);
+//
+//
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        showDialog();
+//
+//
+//                        file = saveImageToStorage(mphoto, PHOTO_File);
+//                        // setProfilePhoto(mphoto);
+//
+//                        part = Utility.getMultipartImage(file, "doc_type");
+//
+//                        new ZohoController(this).uploadRaiseTicketDocWeb(part, this);
+//
+//                    } catch (Exception e) {
+//                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                    }
+//
+//                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+//                    Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            //endregion
+//        }
+
+        //endregion
 
 
     }
