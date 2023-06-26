@@ -16,6 +16,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -47,12 +50,13 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
+import com.policyboss.policybossproelite.cropActivity.UcropperActivity;
+import com.policyboss.policybossproelite.myaccount.MyAccountActivity;
 import com.policyboss.policybossproelite.payment.RazorPaymentActivity;
 import com.policyboss.policybossproelite.utility.Constants;
 import com.policyboss.policybossproelite.utility.DateTimePicker;
 import com.policyboss.policybossproelite.webviews.MyWebViewClient;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
 
 import java.io.File;
 import java.io.InputStream;
@@ -150,7 +154,8 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
 
     };
 
-
+    ActivityResultLauncher<String> galleryLauncher;
+    ActivityResultLauncher<Uri> cameraLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,6 +190,33 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
         new RegisterController(this).getPospDetails(this);
         //setInputParameters();
 
+        // region  Camera and Gallery Launcher
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), result ->  {
+
+            Intent intent = new Intent(PospEnrollment.this.getApplicationContext(), UcropperActivity.class);
+
+            intent.putExtra("SendImageData",result.toString());
+
+            startActivityForResult(intent, SELECT_PICTURE);
+        });
+
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicture(), result -> {
+            if (result) {
+                // binding.imgProfile.setImageURI(imageUri);
+
+                Intent intent = new Intent(PospEnrollment.this.getApplicationContext(),UcropperActivity.class);
+
+                intent.putExtra("SendImageData",imageUri.toString());
+
+
+                startActivityForResult(intent, CAMERA_REQUEST);
+            } else {
+                // Handle failure or cancellation
+            }
+        });
+
+
+        //endregion
     }
 
     private void setfileView(){
@@ -1894,15 +1926,18 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
         }
 
 
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
-                imageUri);
-        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
+//                imageUri);
+//        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
+        cameraLauncher.launch(imageUri);
     }
 
 
     private void openGallery() {
 
+        galleryLauncher.launch("image/*");
 
         // region old code
         //String[] mimeTypes = {"image/jpeg", "image/png", "image/jpg"};
@@ -1915,28 +1950,28 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
 
 
 
-        String  mimeType = "image/*";
-
-        Uri collection ;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            collection =  MediaStore.Video.Media.getContentUri(
-                    MediaStore.VOLUME_EXTERNAL
-            );
-        } else {
-            collection =  MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-        }
-
-
-        try {
-            Intent intent = new  Intent(Intent.ACTION_PICK, collection);
-
-            intent.setType(mimeType);
-            intent.resolveActivity(getPackageManager());
-            startActivityForResult(intent, SELECT_PICTURE);
-
-        } catch (ActivityNotFoundException ex) {
-            Toast.makeText(this, ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-        }
+//        String  mimeType = "image/*";
+//
+//        Uri collection ;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//            collection =  MediaStore.Video.Media.getContentUri(
+//                    MediaStore.VOLUME_EXTERNAL
+//            );
+//        } else {
+//            collection =  MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+//        }
+//
+//
+//        try {
+//            Intent intent = new  Intent(Intent.ACTION_PICK, collection);
+//
+//            intent.setType(mimeType);
+//            intent.resolveActivity(getPackageManager());
+//            startActivityForResult(intent, SELECT_PICTURE);
+//
+//        } catch (ActivityNotFoundException ex) {
+//            Toast.makeText(this, ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//        }
     }
 
     /**
@@ -1944,106 +1979,211 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
      * Start crop image activity for the given image.
      */
     private void startCropImageActivity(Uri imageUri) {
-        CropImage.activity(imageUri)
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setMultiTouchEnabled(true)
-                .start(this);
+//        CropImage.activity(imageUri)
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .setMultiTouchEnabled(true)
+//                .start(this);
     }
 
+    private void handleCropImage( Uri crop_uri){
+
+
+            try {
+
+                Bitmap mphoto = null;
+                try {
+                    //mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
+                    mphoto = getBitmapFromContentResolver(crop_uri);
+                    mphoto = getResizedBitmap(mphoto, 800);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                showDialog();
+
+                switch (type) {
+
+                    case 6:
+                        showDialog();
+                        file = saveImageToStorage(mphoto, "" + POSP_PHOTO);
+                        part = Utility.getMultipartImage(file);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PHOTO, PHOTO_File);
+                        new RegisterController(this).uploadDocuments(part, body, this);
+                        break;
+                    case 7:
+
+                        showDialog();
+                        file = saveImageToStorage(mphoto, "" + POSP_PAN);
+                        part = Utility.getMultipartImage(file);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PAN, PAN_File);
+                        new RegisterController(this).uploadDocuments(part, body, this);
+                        break;
+
+                    case 8:
+                        showDialog();
+                        file = saveImageToStorage(mphoto, "" + POSP_AADHAR_FRONT);
+                        part = Utility.getMultipartImage(file);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_FRONT, AADHAR_FRONT_File);
+                        new RegisterController(this).uploadDocuments(part, body, this);
+                        break;
+                    case 9:
+                        showDialog();
+                        file = saveImageToStorage(mphoto, "" + POSP_AADHAR_BACK);
+                        part = Utility.getMultipartImage(file);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_BACK, AADHAR_BACK_File);
+                        new RegisterController(this).uploadDocuments(part, body, this);
+                        break;
+                    case 10:
+                        showDialog();
+                        file = saveImageToStorage(mphoto, "" + POSP_CANCEL_CHQ);
+                        part = Utility.getMultipartImage(file);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_CANCEL_CHQ, CANCEL_CHQ_File);
+                        new RegisterController(this).uploadDocuments(part, body, this);
+                        break;
+                    case 11:
+                        showDialog();
+                        file = saveImageToStorage(mphoto, "" + POSP_EDU);
+                        part = Utility.getMultipartImage(file);
+                        body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_EDU, EDU_FILE);
+                        new RegisterController(this).uploadDocuments(part, body, this);
+                        break;
+                }
+
+
+
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+
+    }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
+        if(requestCode == CAMERA_REQUEST && resultCode ==101 ){
+
+            String result = data.getStringExtra("CROP");
+            Uri crop_uri = data.getData();
+
+            if(result!= null){
+                crop_uri = Uri.parse(result);
+
+            }
+
+
+            handleCropImage(crop_uri);
+
+
+
+        }
+        else if(requestCode== SELECT_PICTURE && resultCode ==101 ){
+
+            String result = data.getStringExtra("CROP");
+            Uri crop_uri = data.getData();
+
+            if(result!= null){
+                crop_uri = Uri.parse(result);
+            }
+
+            handleCropImage(crop_uri);
+
+
+        }
 
 
         //region handle result of CropImageActivity
 
         //  /****** Below For Cropping The Camera Image**************************/ //
 
-        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-            //extractTextFromImage();
-            startCropImageActivity(imageUri);
-        }
-        // Below For Cropping The Gallery Image
-        else if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
-            Uri selectedImageUri = data.getData();
-            startCropImageActivity(selectedImageUri);
-        }
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-            if (resultCode == RESULT_OK) {
-                try {
-                    cropImageUri = result.getUri();
-                    Bitmap mphoto = null;
-                    try {
-                        //mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
-                        mphoto = getBitmapFromContentResolver(cropImageUri);
-                        mphoto = getResizedBitmap(mphoto, 800);
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    showDialog();
-
-                    switch (type) {
-
-                        case 6:
-                            showDialog();
-                            file = saveImageToStorage(mphoto, "" + POSP_PHOTO);
-                            part = Utility.getMultipartImage(file);
-                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PHOTO, PHOTO_File);
-                            new RegisterController(this).uploadDocuments(part, body, this);
-                            break;
-                        case 7:
-
-                            showDialog();
-                            file = saveImageToStorage(mphoto, "" + POSP_PAN);
-                            part = Utility.getMultipartImage(file);
-                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PAN, PAN_File);
-                            new RegisterController(this).uploadDocuments(part, body, this);
-                            break;
-
-                        case 8:
-                            showDialog();
-                            file = saveImageToStorage(mphoto, "" + POSP_AADHAR_FRONT);
-                            part = Utility.getMultipartImage(file);
-                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_FRONT, AADHAR_FRONT_File);
-                            new RegisterController(this).uploadDocuments(part, body, this);
-                            break;
-                        case 9:
-                            showDialog();
-                            file = saveImageToStorage(mphoto, "" + POSP_AADHAR_BACK);
-                            part = Utility.getMultipartImage(file);
-                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_BACK, AADHAR_BACK_File);
-                            new RegisterController(this).uploadDocuments(part, body, this);
-                            break;
-                        case 10:
-                            showDialog();
-                            file = saveImageToStorage(mphoto, "" + POSP_CANCEL_CHQ);
-                            part = Utility.getMultipartImage(file);
-                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_CANCEL_CHQ, CANCEL_CHQ_File);
-                            new RegisterController(this).uploadDocuments(part, body, this);
-                            break;
-                        case 11:
-                            showDialog();
-                            file = saveImageToStorage(mphoto, "" + POSP_EDU);
-                            part = Utility.getMultipartImage(file);
-                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_EDU, EDU_FILE);
-                            new RegisterController(this).uploadDocuments(part, body, this);
-                            break;
-                    }
-
-
-
-                } catch (Exception e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
-            }
-        }
+//        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+//            //extractTextFromImage();
+//            startCropImageActivity(imageUri);
+//        }
+//        // Below For Cropping The Gallery Image
+//        else if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
+//            Uri selectedImageUri = data.getData();
+//            startCropImageActivity(selectedImageUri);
+//        }
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    cropImageUri = result.getUri();
+//                    Bitmap mphoto = null;
+//                    try {
+//                        //mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
+//                        mphoto = getBitmapFromContentResolver(cropImageUri);
+//                        mphoto = getResizedBitmap(mphoto, 800);
+//
+//
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    showDialog();
+//
+//                    switch (type) {
+//
+//                        case 6:
+//                            showDialog();
+//                            file = saveImageToStorage(mphoto, "" + POSP_PHOTO);
+//                            part = Utility.getMultipartImage(file);
+//                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PHOTO, PHOTO_File);
+//                            new RegisterController(this).uploadDocuments(part, body, this);
+//                            break;
+//                        case 7:
+//
+//                            showDialog();
+//                            file = saveImageToStorage(mphoto, "" + POSP_PAN);
+//                            part = Utility.getMultipartImage(file);
+//                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_PAN, PAN_File);
+//                            new RegisterController(this).uploadDocuments(part, body, this);
+//                            break;
+//
+//                        case 8:
+//                            showDialog();
+//                            file = saveImageToStorage(mphoto, "" + POSP_AADHAR_FRONT);
+//                            part = Utility.getMultipartImage(file);
+//                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_FRONT, AADHAR_FRONT_File);
+//                            new RegisterController(this).uploadDocuments(part, body, this);
+//                            break;
+//                        case 9:
+//                            showDialog();
+//                            file = saveImageToStorage(mphoto, "" + POSP_AADHAR_BACK);
+//                            part = Utility.getMultipartImage(file);
+//                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_AADHAR_BACK, AADHAR_BACK_File);
+//                            new RegisterController(this).uploadDocuments(part, body, this);
+//                            break;
+//                        case 10:
+//                            showDialog();
+//                            file = saveImageToStorage(mphoto, "" + POSP_CANCEL_CHQ);
+//                            part = Utility.getMultipartImage(file);
+//                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_CANCEL_CHQ, CANCEL_CHQ_File);
+//                            new RegisterController(this).uploadDocuments(part, body, this);
+//                            break;
+//                        case 11:
+//                            showDialog();
+//                            file = saveImageToStorage(mphoto, "" + POSP_EDU);
+//                            part = Utility.getMultipartImage(file);
+//                            body = Utility.getBody(this, loginResponseEntity.getFBAId(), POSP_EDU, EDU_FILE);
+//                            new RegisterController(this).uploadDocuments(part, body, this);
+//                            break;
+//                    }
+//
+//
+//
+//                } catch (Exception e) {
+//                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                }
+//
+//            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+//                Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
+//            }
+//        }
 
         //endregion
 
@@ -2687,7 +2827,7 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case Constants.PERMISSION_CAMERA_STORACGE_CONSTANT:
                 if (grantResults.length > 0) {
@@ -2699,7 +2839,7 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
                     boolean readExternal = grantResults[2] == PackageManager.PERMISSION_GRANTED;
                     boolean minSdk29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
 
-                    if (camera && (writeExternal || minSdk29 ) && readExternal) {
+                    if (camera && (writeExternal || minSdk29) && readExternal) {
 
                         showCamerGalleryPopUp();
 
@@ -2708,8 +2848,6 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
 
                 }
                 break;
-
-
 
 
         }
@@ -2805,4 +2943,11 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
         super.onBackPressed();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        galleryLauncher.unregister();
+        cameraLauncher.unregister();
+    }
 }

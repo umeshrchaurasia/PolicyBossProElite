@@ -131,7 +131,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation project(path: ':finmartserviceapi')
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+//    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
@@ -173,6 +173,9 @@ dependencies {
 
     // for contact and call log
     implementation 'com.github.tamir7.contacts:contacts:1.1.7'
+
+    // Image Cropper
+    implementation 'com.github.yalantis:ucrop:2.2.6'
 
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

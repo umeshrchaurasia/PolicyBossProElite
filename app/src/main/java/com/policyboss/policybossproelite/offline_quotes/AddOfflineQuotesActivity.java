@@ -32,8 +32,6 @@ import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.home.HomeActivity;
 import com.policyboss.policybossproelite.utility.Constants;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
 import java.io.InputStream;
@@ -476,38 +474,38 @@ public class AddOfflineQuotesActivity extends BaseActivity implements IResponseS
 
         // Below  handle result of CropImageActivity
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-            if (resultCode == RESULT_OK) {
-                try {
-                    cropImageUri = result.getUri();
-                    Bitmap mphoto = null;
-                    try {
-                      //  mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
-
-                        mphoto = getBitmapFromContentResolver(cropImageUri);
-                        mphoto = getResizedBitmap(mphoto, 800);
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    showDialog();
-                    file = saveImageToStorage(mphoto, documentEntity.getDocname());
-                    part = Utility.getMultipartImage(file);
-                    body = getBody(this, documentEntity,uploadMotorEntity.getTransId());
-                    new OfflineQuotesController(this).uploadDocuments(part, body, this);
-
-                } catch (Exception e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
-            }
-        }
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    cropImageUri = result.getUri();
+//                    Bitmap mphoto = null;
+//                    try {
+//                      //  mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
+//
+//                        mphoto = getBitmapFromContentResolver(cropImageUri);
+//                        mphoto = getResizedBitmap(mphoto, 800);
+//
+//
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    showDialog();
+//                    file = saveImageToStorage(mphoto, documentEntity.getDocname());
+//                    part = Utility.getMultipartImage(file);
+//                    body = getBody(this, documentEntity,uploadMotorEntity.getTransId());
+//                    new OfflineQuotesController(this).uploadDocuments(part, body, this);
+//
+//                } catch (Exception e) {
+//                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                }
+//
+//            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+//                Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
+//            }
+//        }
     }
 
 
@@ -516,10 +514,10 @@ public class AddOfflineQuotesActivity extends BaseActivity implements IResponseS
      * Start crop image activity for the given image.
      */
     private void startCropImageActivity(Uri imageUri) {
-        CropImage.activity(imageUri)
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setMultiTouchEnabled(true)
-                .start(this);
+//        CropImage.activity(imageUri)
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .setMultiTouchEnabled(true)
+//                .start(this);
     }
     //endregion
 

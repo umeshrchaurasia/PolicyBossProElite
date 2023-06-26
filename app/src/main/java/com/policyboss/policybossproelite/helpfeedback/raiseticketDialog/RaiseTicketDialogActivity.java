@@ -1,5 +1,7 @@
 package com.policyboss.policybossproelite.helpfeedback.raiseticketDialog;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
@@ -32,12 +34,12 @@ import android.widget.Toast;
 
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
+import com.policyboss.policybossproelite.cropActivity.UcropperActivity;
 import com.policyboss.policybossproelite.file_chooser.utils.FileUtilNew;
 
+import com.policyboss.policybossproelite.helpfeedback.raiseticket.UploadRaiseActivity;
 import com.policyboss.policybossproelite.utility.Constants;
 
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
 
@@ -86,6 +88,9 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
     androidx.appcompat.app.AlertDialog alertDialog;
     //endregion
 
+    ActivityResultLauncher<String> galleryLauncher;
+    ActivityResultLauncher<Uri> cameraLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +107,36 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
 
 
         settingWebview(webView, url);
+
+
+        // region  Camera and Gallery Launcher
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), result ->  {
+
+            Intent intent = new Intent(RaiseTicketDialogActivity.this.getApplicationContext(), UcropperActivity.class);
+
+            intent.putExtra("SendImageData",result.toString());
+
+            startActivityForResult(intent, SELECT_PICTURE);
+        });
+
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicture(), result -> {
+            if (result) {
+                // binding.imgProfile.setImageURI(imageUri);
+
+                Intent intent = new Intent(RaiseTicketDialogActivity.this.getApplicationContext(),UcropperActivity.class);
+
+                intent.putExtra("SendImageData",imageUri.toString());
+
+
+                startActivityForResult(intent, CAMERA_REQUEST);
+            } else {
+                // Handle failure or cancellation
+            }
+        });
+
+
+        //endregion
+
     }
     private void init()
     {
@@ -116,6 +151,15 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
                 RaiseTicketDialogActivity.this.finish();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        galleryLauncher.unregister();
+        cameraLauncher.unregister();
+
     }
 
     private void settingWebview(WebView webView, String url) {
@@ -238,10 +282,10 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
     }
 
     private void startCropImageActivity(Uri imageUri) {
-        CropImage.activity(imageUri)
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setMultiTouchEnabled(true)
-                .start(this);
+//        CropImage.activity(imageUri)
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .setMultiTouchEnabled(true)
+//                .start(this);
     }
 
     // region permission
@@ -286,6 +330,7 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case Constants.PERMISSION_CAMERA_STORACGE_CONSTANT:
                 if (grantResults.length > 0) {
@@ -297,7 +342,7 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
                     boolean readExternal = grantResults[2] == PackageManager.PERMISSION_GRANTED;
                     boolean minSdk29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
 
-                    if (camera && (writeExternal || minSdk29 ) && readExternal) {
+                    if (camera && (writeExternal || minSdk29) && readExternal) {
 
                         showCamerGalleryPopUp();
 
@@ -394,37 +439,41 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
         }
 
 
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
-                imageUri);
-        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
+//                imageUri);
+//        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
+        cameraLauncher.launch(imageUri);
     }
 
 
     private void openGallery() {
 
-        String  mimeType = "image/*";
+        galleryLauncher.launch("image/*");
 
-        Uri collection ;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            collection =  MediaStore.Video.Media.getContentUri(
-                    MediaStore.VOLUME_EXTERNAL
-            );
-        } else {
-            collection =  MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-        }
-
-
-        try {
-            Intent intent = new  Intent(Intent.ACTION_PICK, collection);
-
-            intent.setType(mimeType);
-            intent.resolveActivity(getPackageManager());
-            startActivityForResult(intent, SELECT_PICTURE);
-
-        } catch (ActivityNotFoundException ex) {
-            Toast.makeText(this, ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-        }
+//        String  mimeType = "image/*";
+//
+//        Uri collection ;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//            collection =  MediaStore.Video.Media.getContentUri(
+//                    MediaStore.VOLUME_EXTERNAL
+//            );
+//        } else {
+//            collection =  MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+//        }
+//
+//
+//        try {
+//            Intent intent = new  Intent(Intent.ACTION_PICK, collection);
+//
+//            intent.setType(mimeType);
+//            intent.resolveActivity(getPackageManager());
+//            startActivityForResult(intent, SELECT_PICTURE);
+//
+//        } catch (ActivityNotFoundException ex) {
+//            Toast.makeText(this, ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//        }
     }
 
     //endregion
@@ -488,6 +537,36 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
         return destinationPath;
     }
 
+
+    private void handleCropImage( Uri crop_uri){
+
+        try {
+
+            Bitmap mphoto = null;
+            try {
+                //  mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
+                mphoto = getBitmapFromContentResolver(crop_uri);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            showDialog();
+
+
+            file = saveImageToStorage(mphoto, PHOTO_File);
+            // setProfilePhoto(mphoto);
+
+            part = Utility.getMultipartImage(file, "doc_type");
+
+            new ZohoController(this).uploadRaiseTicketDocWeb(part, this);
+
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+
+    }
     // region Event
     @Override
     @SuppressLint("NewApi")
@@ -535,56 +614,94 @@ public class RaiseTicketDialogActivity extends BaseActivity implements BaseActiv
 
                 showAlert("Select file from File Manager.");
             }
-        } else {
-
-            // Below For Cropping The Camera Image
-            if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-                //extractTextFromImage();
-                startCropImageActivity(imageUri);
-            }
-            // Below For Cropping The Gallery Image
-            else if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
-                Uri selectedImageUri = data.getData();
-                startCropImageActivity(selectedImageUri);
-            }
-
-            //region Below  handle result of CropImageActivity
-            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-                if (resultCode == RESULT_OK) {
-                    try {
-                        cropImageUri = result.getUri();
-                        Bitmap mphoto = null;
-                        try {
-                          //  mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
-                            mphoto = getBitmapFromContentResolver(cropImageUri);
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        showDialog();
-
-
-                        file = saveImageToStorage(mphoto, PHOTO_File);
-                        // setProfilePhoto(mphoto);
-
-                        part = Utility.getMultipartImage(file, "doc_type");
-
-                        new ZohoController(this).uploadRaiseTicketDocWeb(part, this);
-
-                    } catch (Exception e) {
-                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-
-                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
-                }
-            }
-
-            //endregion
         }
+        else{
+
+            if(requestCode == CAMERA_REQUEST && resultCode ==101 ){
+
+                String result = data.getStringExtra("CROP");
+                Uri crop_uri = data.getData();
+
+                if(result!= null){
+                    crop_uri = Uri.parse(result);
+
+                }
+
+
+                handleCropImage(crop_uri);
+
+
+
+            }
+            else if(requestCode== SELECT_PICTURE && resultCode ==101 ){
+
+                String result = data.getStringExtra("CROP");
+                Uri crop_uri = data.getData();
+
+                if(result!= null){
+                    crop_uri = Uri.parse(result);
+                }
+
+                handleCropImage(crop_uri);
+
+
+            }
+
+        }
+
+       // region commented
+//        else {
+//
+//            // Below For Cropping The Camera Image
+//            if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+//                //extractTextFromImage();
+//                startCropImageActivity(imageUri);
+//            }
+//            // Below For Cropping The Gallery Image
+//            else if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
+//                Uri selectedImageUri = data.getData();
+//                startCropImageActivity(selectedImageUri);
+//            }
+//
+//            //region Below  handle result of CropImageActivity
+//            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//
+//                if (resultCode == RESULT_OK) {
+//                    try {
+//                        cropImageUri = result.getUri();
+//                        Bitmap mphoto = null;
+//                        try {
+//                          //  mphoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), cropImageUri);
+//                            mphoto = getBitmapFromContentResolver(cropImageUri);
+//
+//
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        showDialog();
+//
+//
+//                        file = saveImageToStorage(mphoto, PHOTO_File);
+//                        // setProfilePhoto(mphoto);
+//
+//                        part = Utility.getMultipartImage(file, "doc_type");
+//
+//                        new ZohoController(this).uploadRaiseTicketDocWeb(part, this);
+//
+//                    } catch (Exception e) {
+//                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                    }
+//
+//                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+//                    Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            //endregion
+//        }
+
+        //endregion
 
 
     }

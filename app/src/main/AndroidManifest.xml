@@ -1251,13 +1251,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.policyboss.policybossproelite.homeMainKotlin.HomeMainActivity" />
         </activity>
-
         <activity
             android:name=".webviews.PrivacyWebViewActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:exported="false" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".cropActivity.UcropperActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>
