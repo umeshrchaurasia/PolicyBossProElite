@@ -35,6 +35,7 @@ public class LoginRequestEntity {
     private String DeviceOS;
     private String DeviceName;
     private String IpAdd;
+    private String ssid;
 
 
     public LoginRequestEntity() {
@@ -57,6 +58,7 @@ public class LoginRequestEntity {
         AppUSERID = "";
         AppPASSWORD = "";
         IsChildLogin = "";
+        ssid = "";
     }
 
     private String LastLog;

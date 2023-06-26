@@ -7,6 +7,7 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.IResponseSubcriber;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.requestbuilder.LoginRequestBuilder;
@@ -32,11 +33,13 @@ public class LoginController implements ILogin {
     LoginRequestBuilder.LoginNetworkService loginNetworkService;
     Context mContext;
     DBPersistanceController dbPersistanceController;
+    PrefManager prefManager;
 
     public LoginController(Context context) {
         loginNetworkService = new LoginRequestBuilder().getService();
         mContext = context;
         dbPersistanceController = new DBPersistanceController(mContext);
+        prefManager = new PrefManager(mContext);
     }
 
     @Override
@@ -117,7 +120,10 @@ public class LoginController implements ILogin {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("EmailID", emailID);
-
+        body.put("app_version", prefManager.getAppVersion());
+        body.put("ssid", "");
+        body.put("fbaid", "");
+        body.put("device_code", prefManager.getDeviceID());
         loginNetworkService.forgotPassword(body).enqueue(new Callback<ForgotResponse>() {
             @Override
             public void onResponse(Call<ForgotResponse> call, Response<ForgotResponse> response) {
@@ -268,7 +274,14 @@ public class LoginController implements ILogin {
 
     @Override
     public void Getusersignup(final IResponseSubcriber iResponseSubcriber) {
-        loginNetworkService.getusersignup().enqueue(new Callback<UsersignupResponse>() {
+
+        HashMap<String, String> body = new HashMap<>();
+        body.put("app_version", prefManager.getAppVersion());
+        body.put("ssid", "");
+        body.put("fbaid", "");
+        body.put("device_code", prefManager.getDeviceID());
+
+        loginNetworkService.getusersignup(body).enqueue(new Callback<UsersignupResponse>() {
             @Override
             public void onResponse(Call<UsersignupResponse> call, Response<UsersignupResponse> response) {
 

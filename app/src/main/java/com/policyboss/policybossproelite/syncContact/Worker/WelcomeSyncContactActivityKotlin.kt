@@ -25,6 +25,7 @@ import com.policyboss.policybossproelite.databinding.DialogLoadingBinding
 import com.policyboss.policybossproelite.databinding.ProgressdialogLoadingBinding
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
 import kotlinx.coroutines.*
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEntity
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.requestentity.syncContact.SaveCheckboxRequestEntity
@@ -66,6 +67,8 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
     var POSPNO = ""
     var FBAID = ""
 
+    lateinit var prefManager : PrefManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeSyncContactKotlinBinding.inflate(layoutInflater)
@@ -74,6 +77,7 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
         dialogAnim = Dialog(this)
         userConstantEntity = DBPersistanceController(this).userConstantsData
 
+        prefManager = PrefManager(this@WelcomeSyncContactActivityKotlin)
         POSPNO = userConstantEntity.pospNo
 
         FBAID = userConstantEntity.fbaId
@@ -238,7 +242,10 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
 
             // var url =  "https://horizon.policyboss.com:5443/sync_contacts" + "/contact_entry"
 
-            var url = "https://horizon.policyboss.com:5443/sync_contact/get_sync_contact_agreements?ss_id=" + POSPNO
+            var url = "https://horizon.policyboss.com:5443/sync_contact/get_sync_contact_agreements?ss_id=" + POSPNO +
+                    "&device_code="+prefManager.getDeviceID()+"&app_version="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID()
+
+
             val resultRespAsync = async { RetroHelper.api.getHorizonDetails(url) }
             val resultResp = resultRespAsync.await()
             if (resultResp.isSuccessful) {

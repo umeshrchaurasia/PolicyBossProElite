@@ -57,7 +57,7 @@ public class LoginRequestBuilder extends FinmartRetroRequestBuilder {
 
         @Headers("token:" + token)
         @POST("/quote/Postfm/Getusersignup")
-        Call<UsersignupResponse> getusersignup();
+        Call<UsersignupResponse> getusersignup(@Body HashMap<String, String> body);
 
     }
 }
