@@ -118,7 +118,7 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
     RegisterRequestEntity registerRequestEntity;
     Button btnSave;
     WebView webView;
-    String URL = "http://www.irdaonline.org/PublicAccess/LookUpPAN.aspx";
+    String URL = "";
     int count = 0;
     PrefManager prefManager;
     PospDetailsEntity pospDetailsEntity;

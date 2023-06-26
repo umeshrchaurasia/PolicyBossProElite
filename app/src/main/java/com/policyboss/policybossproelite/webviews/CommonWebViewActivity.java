@@ -469,7 +469,7 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
         @JavascriptInterface
         public void callPDFCREDIT(String u) {
 
-            webView.loadUrl("http://www.google.com");
+         //   webView.loadUrl("https://www.google.com");
 
 //            startActivity(new Intent(CommonWebViewActivity.this, CommonWebViewActivity.class)
 //                    .putExtra("URL", url)

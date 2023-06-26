@@ -14,7 +14,7 @@ public class SharePospDetailsEntity {
     public SharePospDetailsEntity() {
         this.pospDesg = "LandMark POSP";
         try {
-            this.pospPhotoUrl = new URL("http://qa.mgfm.in/images/profile_pic.png");
+            this.pospPhotoUrl = new URL("https://origin-cdnh.policyboss.com/website/Images/campaign/profile_pic.png");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

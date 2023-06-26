@@ -391,14 +391,14 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
                 Intent(this, CommonWebViewActivity::class.java)
                     .putExtra(
                         "URL",
-                        "https://www.policyboss.com/privacy-policy-policyboss-pro-elite"
+                        "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version=policyboss-1"
                     )
                     .putExtra("NAME", "" + "privacy-policy")
                     .putExtra("TITLE", "" + "privacy-policy")
             )
             txtterm.id -> startActivity(
                 Intent(this, CommonWebViewActivity::class.java)
-                    .putExtra("URL", "https://www.policyboss.com/terms-condition")
+                    .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version=policyboss-1")
                     .putExtra("NAME", "" + "Terms & Conditions")
                     .putExtra("TITLE", "" + "Terms & Conditions")
             )

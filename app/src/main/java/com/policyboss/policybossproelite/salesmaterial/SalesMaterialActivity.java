@@ -159,7 +159,7 @@ public class  SalesMaterialActivity extends BaseActivity implements IResponseSub
             if(userConstantEntity.getSmsTemplatesEnabled() != "0") {
 
                // menuChild.add(MenuChild("nav_sendSmsTemplate", "Sms Templates", R.drawable.sms_template))
-                tempList.add(new SalesProductEntity(110,"Sms Templates","http://api.magicfinmart.com/images/salesmaterial/sms_template.png?" + Math.round(Math.random() * 100),0));
+                tempList.add(new SalesProductEntity(110,"Sms Templates","https://origin-cdnh.policyboss.com/website/Images/campaign/sms_template.png?" + Math.round(Math.random() * 100),0));
 
             }
 
@@ -250,11 +250,11 @@ public class  SalesMaterialActivity extends BaseActivity implements IResponseSub
     public List<SalesProductEntity> getProducttList() {
         List<SalesProductEntity> EmploymentEntityList = new ArrayList<SalesProductEntity>();
 
-        EmploymentEntityList.add(new SalesProductEntity(1, "Health Insurance", "http://bo.mgfm.in/uploads/sales_material/440Your-Search.jpg", 5));
-        EmploymentEntityList.add(new SalesProductEntity(2, "Motor Insurance", "http://qa.mgfm.in/uploads/salesmaterial/motor.png", 5));
-        EmploymentEntityList.add(new SalesProductEntity(3, "Health Assure", "http://qa.mgfm.in/uploads/salesmaterial/healthassure.png", 2));
-        EmploymentEntityList.add(new SalesProductEntity(4, "Loans", "http://qa.mgfm.in/uploads/salesmaterial/loans.png", 2));
-        EmploymentEntityList.add(new SalesProductEntity(5, "Health Insurance", "http://qa.mgfm.in/uploads/salesmaterial/finpeace.png", 4));
+//        EmploymentEntityList.add(new SalesProductEntity(1, "Health Insurance", "http://bo.mgfm.in/uploads/sales_material/440Your-Search.jpg", 5));
+//        EmploymentEntityList.add(new SalesProductEntity(2, "Motor Insurance", "http://qa.mgfm.in/uploads/salesmaterial/motor.png", 5));
+//        EmploymentEntityList.add(new SalesProductEntity(3, "Health Assure", "http://qa.mgfm.in/uploads/salesmaterial/healthassure.png", 2));
+//        EmploymentEntityList.add(new SalesProductEntity(4, "Loans", "http://qa.mgfm.in/uploads/salesmaterial/loans.png", 2));
+//        EmploymentEntityList.add(new SalesProductEntity(5, "Health Insurance", "http://qa.mgfm.in/uploads/salesmaterial/finpeace.png", 4));
 
         return EmploymentEntityList;
     }
@@ -425,7 +425,7 @@ public class  SalesMaterialActivity extends BaseActivity implements IResponseSub
         pospEmail = "XXXXXX@finmart.com";
         pospDesg = "LandMark POSP";
         PospMobNo = "98XXXXXXXX";
-        pospPhotoUrl = new URL("http://qa.mgfm.in/images/profile_pic.png");
+        pospPhotoUrl = new URL("https://origin-cdnh.policyboss.com/website/Images/campaign/profile_pic.png");
         if (userConstantEntity != null) {
             if (userConstantEntity.getPospsendname() != null && !userConstantEntity.getPospsendname().equals("")) {
                 pospNAme = userConstantEntity.getPospsendname();
@@ -452,7 +452,7 @@ public class  SalesMaterialActivity extends BaseActivity implements IResponseSub
         fbaEmail = "XXXXXX@finmart.com";
         fbaDesg = "FBA SUPPORT ASSISTANT";
         fbaMobNo = "98XXXXXXXX";
-        fbaPhotoUrl = new URL("http://qa.mgfm.in/images/profile_pic.png");
+        fbaPhotoUrl = new URL("https://origin-cdnh.policyboss.com/website/Images/campaign/profile_pic.png");
         if (userConstantEntity != null) {
             if (userConstantEntity.getLoansendname() != null && !userConstantEntity.getLoansendname().equals("")) {
                 fbaNAme = userConstantEntity.getLoansendname();

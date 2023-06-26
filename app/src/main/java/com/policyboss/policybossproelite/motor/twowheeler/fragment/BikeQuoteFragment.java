@@ -993,7 +993,7 @@ public class BikeQuoteFragment extends BaseFragment implements IResponseSubcribe
 
                 int fbaID = new DBPersistanceController(getActivity()).getUserData().getFBAId();
 
-                String url = "http://qa.policyboss.com/";
+                String url = "https://policyboss.com/";
                 //String url = "http://policyboss.com/";
                 String title = "";
                 String name = "";
@@ -1001,7 +1001,7 @@ public class BikeQuoteFragment extends BaseFragment implements IResponseSubcribe
                 title = "Two Wheeler";
 
                 //convert quote to application server
-                String imgPath = "http://qa.policyboss.com/Images/insurer_logo/" + entity.getInsurer().getInsurer_Logo_Name();
+                String imgPath = "https://policyboss.com/Images/insurer_logo/" + entity.getInsurer().getInsurer_Logo_Name();
 
                 new QuoteApplicationController(getActivity()).convertQuoteToApp(
                         "" + saveQuoteEntity.getVehicleRequestID(),

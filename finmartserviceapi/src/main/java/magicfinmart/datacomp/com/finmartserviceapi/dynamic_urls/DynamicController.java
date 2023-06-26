@@ -58,7 +58,7 @@ public class DynamicController implements IDynamic {
     @Override
     public void checkAppAccess(String deviceID, String deviceToken, String uid, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://202.131.96.101:3333/AttendanceDetails.svc/CheckAppAccess";
+        String url = "";
 
         HashMap<String, String> body = new HashMap<>();
         body.put("DeviceId", deviceID);
@@ -98,7 +98,7 @@ public class DynamicController implements IDynamic {
     @Override
     public void indoorAttendance(RegisterRequestEntity entity, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://202.131.96.101:3333/AttendanceDetails.svc/EmployeeSwipe";
+        String url = "";
 
         genericUrlNetworkService.indoorAttendance(url, entity).enqueue(new Callback<SwipeDetailResponse>() {
             @Override
@@ -135,7 +135,7 @@ public class DynamicController implements IDynamic {
     @Override
     public void outdoorAttendance(RegisterRequestEntity entity, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://202.131.96.101:3333/AttendanceDetails.svc/EmployeeOutdoorSwipe";
+        String url = "";
 
         genericUrlNetworkService.indoorAttendance(url, entity).enqueue(new Callback<SwipeDetailResponse>() {
             @Override
@@ -172,7 +172,7 @@ public class DynamicController implements IDynamic {
     @Override
     public void attendanceRegister(RegisterRequestEntity entity, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://202.131.96.101:3333/AttendanceDetails.svc/UpdateEmployeeProfile";
+        String url = "";
 
         genericUrlNetworkService.saveNewRegestration(url, entity).enqueue(new Callback<SwipeDetailResponse>() {
             @Override
@@ -209,7 +209,7 @@ public class DynamicController implements IDynamic {
     @Override
     public void getAttendanceReport(String uid, long fdate, long tdate, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://202.131.96.101:3333/AttendanceDetails.svc/EmployeeSwipeDetails";
+        String url = "";
 
         HashMap<String, String> body = new HashMap<>();
         body.put("uid", uid);
@@ -250,7 +250,7 @@ public class DynamicController implements IDynamic {
     @Override
     public void swipeDetailsTop(String deviceID, String deviceToken, String uid, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://202.131.96.101:3333/AttendanceDetails.svc/EmployeeSwipeDetails";
+        String url = "";
 
         HashMap<String, String> body = new HashMap<>();
         body.put("DeviceId", deviceID);
@@ -391,9 +391,9 @@ public class DynamicController implements IDynamic {
 
     @Override
     public void getVehicleByVehicleNo(final String vehicleNo, final IResponseSubcriber iResponseSubcriber) {
-        String url = "http://inspection.policyboss.com/api/vehicle-info?v=" + vehicleNo;
+        String url = "" + vehicleNo;
         //MH43BE6262
-        //String url = "http://202.131.96.98:8041/PolicyBossRegNoService.svc/GetRegNoData?v=" + vehicleNo;
+        //String url = "" + vehicleNo;
 
         genericUrlNetworkService.getVehicleByVehicleNo(url).enqueue(new Callback<VehicleInfoEntity>() {
             @Override
@@ -429,7 +429,7 @@ public class DynamicController implements IDynamic {
     @Override
     public void getVehicleByMobileNo(final String mobileNo, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://inspection.policyboss.com/api/generic-info?m=" + mobileNo;
+        String url = "" + mobileNo;
 
         genericUrlNetworkService.getVehicleByMobNo(url).enqueue(new Callback<VehicleMobileResponse>() {
             @Override
@@ -564,7 +564,7 @@ public class DynamicController implements IDynamic {
 
     @Override
     public void getMyBusiness(String id, final IResponseSubcriber iResponseSubcriber) {
-        String url = "http://202.131.96.101:3333/LeadCollection.svc/GetEncryptedErpId";
+        String url = "";
 
         HashMap<String, String> body = new HashMap<>();
 
@@ -610,7 +610,7 @@ public class DynamicController implements IDynamic {
 
     @Override
     public void getBankdetail_personalloan(final String cityid, String Productid, final IResponseSubcriber iResponseSubcriber) {
-        String url = "http://api.rupeeboss.com/BankAPIService.svc/GetCitywiseBankList?City_Id=" + cityid + "&Product_Id=" + Productid;
+        String url = "" + cityid + "&Product_Id=" + Productid;
 
 
         genericUrlNetworkService.getBankdetail_personalloan(url).enqueue(new Callback<personal_bank_list_Response>() {
@@ -649,7 +649,7 @@ public class DynamicController implements IDynamic {
     @Override
     public void getBankdetail_homeloan(final String cityid, String Productid, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://api.rupeeboss.com/BankAPIService.svc/GetCitywiseBankList?City_Id=" + cityid + "&Product_Id=" + Productid;
+        String url = "";
 
         genericUrlNetworkService.getBankdetail_homeloan(url).enqueue(new Callback<home_bank_list_Response>() {
             @Override
@@ -719,7 +719,7 @@ public class DynamicController implements IDynamic {
 
     @Override
     public void getSync_trascat_Cancle(String transaction_Id,final IResponseSubcriber iResponseSubcriber) {
-        String url = "http://horizon.policyboss.com/razorpay-transaction-status/" + transaction_Id+"/Cancle";
+        String url = "https://horizon.policyboss.com/razorpay-transaction-status/" + transaction_Id+"/Cancle";
 
 
         genericUrlNetworkService.getSync_trascat_detail(url).enqueue(new Callback<synctransactionDetailReponse>() {

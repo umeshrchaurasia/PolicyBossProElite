@@ -40,7 +40,7 @@ public class CreditCardController implements ICreditCard {
     @Override
     public void getICICICompany(String companyName, final IResponseSubcriber iResponseSubcriber) {
 
-        String url = "http://www.rupeeboss.com/api/icici-company-master?search_company=" + companyName;
+        String url = "" + companyName;
         creditCardNetworkService.getICICICompany(url).enqueue(new Callback<ICICICompanyResponse>() {
             @Override
             public void onResponse(Call<ICICICompanyResponse> call, Response<ICICICompanyResponse> response) {

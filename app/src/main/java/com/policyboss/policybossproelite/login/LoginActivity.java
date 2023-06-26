@@ -287,14 +287,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(new Intent(this, PrivacyWebViewActivity.class)
                         .putExtra(
                                 "URL",
-                                "https://www.policyboss.com/privacy-policy-policyboss-pro-elite"
+                                "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version=policyboss-1"
                         )
                         .putExtra("NAME", "" + "privacy-policy")
                         .putExtra("TITLE", "" + "privacy-policy"));
                 break;
             case R.id.txtterm:
                 startActivity(new Intent(this, PrivacyWebViewActivity.class)
-                        .putExtra("URL", "https://www.policyboss.com/terms-condition")
+                        .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version=policyboss-1")
                         .putExtra("NAME", "" + "Terms & Conditions")
                         .putExtra("TITLE", "" + "Terms & Conditions"));
                 break;

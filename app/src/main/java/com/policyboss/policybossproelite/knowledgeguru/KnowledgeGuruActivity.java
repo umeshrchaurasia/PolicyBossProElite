@@ -52,30 +52,30 @@ public class KnowledgeGuruActivity extends BaseActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.loan:
-                startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
-                        .putExtra("URL", "http://erp.rupeeboss.com/loansrepository/Loans-repository.html")
-                        .putExtra("NAME", "LOAN REPOSITORY")
-                        .putExtra("TITLE", "LOAN REPOSITORY"));
+//                startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
+//                        .putExtra("URL", "http://erp.rupeeboss.com/loansrepository/Loans-repository.html")
+//                        .putExtra("NAME", "LOAN REPOSITORY")
+//                        .putExtra("TITLE", "LOAN REPOSITORY"));
                 break;
             case R.id.insurance:
-                if (new DBPersistanceController(this).getUserConstantsData().getInsurancerepositorylink() == null) {
-                    startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
-                            .putExtra("URL", "http://www.policyboss.com/repository/page.html")
-                            .putExtra("NAME", "INSURANCE REPOSITORY")
-                            .putExtra("TITLE", "INSURANCE REPOSITORY"));
-                } else {
+//                if (new DBPersistanceController(this).getUserConstantsData().getInsurancerepositorylink() == null) {
+//                    startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
+//                            .putExtra("URL", "http://www.policyboss.com/repository/page.html")
+//                            .putExtra("NAME", "INSURANCE REPOSITORY")
+//                            .putExtra("TITLE", "INSURANCE REPOSITORY"));
+//                } else {
 
                     startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
                             .putExtra("URL", new DBPersistanceController(this).getUserConstantsData().getInsurancerepositorylink())
                             .putExtra("NAME", "INSURANCE REPOSITORY")
                             .putExtra("TITLE", "INSURANCE REPOSITORY"));
-                }
+              //  }
                 break;
             case R.id.other:
-                startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
-                        .putExtra("URL", "http://www.myfinpeace.com/hostedpages/finmart/KnowledgeGuru.html")
-                        .putExtra("NAME", "OTHER PRODUCTS")
-                        .putExtra("TITLE", "OTHER PRODUCTS"));
+//                startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
+//                        .putExtra("URL", "http://www.myfinpeace.com/hostedpages/finmart/KnowledgeGuru.html")
+//                        .putExtra("NAME", "OTHER PRODUCTS")
+//                        .putExtra("TITLE", "OTHER PRODUCTS"));
                 break;
 
         }

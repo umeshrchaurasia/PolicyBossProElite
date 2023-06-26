@@ -522,10 +522,10 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                                 .putExtra("TITLE", "" + "Lead DashBoard"));
                         break;
                     case R.id.nav_gift:
-                        startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                                .putExtra("URL", "http://labs.firsthive.com/magicfinmart/#!/redeem?fbaid=" + String.valueOf(loginResponseEntity.getFBAId()))
-                                .putExtra("NAME", "" + "Gift Voucher")
-                                .putExtra("TITLE", "" + "Gift Voucher"));
+//                        startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
+//                                .putExtra("URL", "http://labs.firsthive.com/magicfinmart/#!/redeem?fbaid=" + String.valueOf(loginResponseEntity.getFBAId()))
+//                                .putExtra("NAME", "" + "Gift Voucher")
+//                                .putExtra("TITLE", "" + "Gift Voucher"));
                         break;
 /*
                     case R.id.nav_offlineQuotes:
@@ -570,10 +570,10 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                        // dialogCoBrowser();
                         break;
                     case R.id.nav_franchise:
-                        startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                                .putExtra("URL", "http://erp.rupeeboss.com/FM/Franchise_Agreement.pdf")
-                                .putExtra("NAME", "Referral AGREEMENT")
-                                .putExtra("TITLE", "Referral AGREEMENT"));
+//                        startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
+//                                .putExtra("URL", "http://erp.rupeeboss.com/FM/Franchise_Agreement.pdf")
+//                                .putExtra("NAME", "Referral AGREEMENT")
+//                                .putExtra("TITLE", "Referral AGREEMENT"));
                        // new TrackingController(HomeActivity.this).sendData(new TrackingRequestEntity(new TrackingData("Whats New : Whats New button in menu "), Constants.WHATSNEW), null);
 
                         break;
@@ -678,9 +678,9 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                         break;
 
                     case R.id.nav_FreeCreditReport:
-                        Utility.loadWebViewUrlInBrowser(HomeActivity.this,
-                                "http://www.rupeeboss.com/equifax-finmart?fbaid="
-                                        + String.valueOf(loginResponseEntity.getFBAId()));
+//                        Utility.loadWebViewUrlInBrowser(HomeActivity.this,
+//                                "http://www.rupeeboss.com/equifax-finmart?fbaid="
+//                                        + String.valueOf(loginResponseEntity.getFBAId()));
                         break;
 
                     case R.id.nav_mybusinessLoan:
@@ -704,7 +704,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                         break;
                     case R.id.nav_policy:
                         startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                                .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite")
+                                .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version=policyboss-1")
                                 .putExtra("NAME", "PRIVACY POLICY")
                                 .putExtra("TITLE", "PRIVACY POLICY"));
                         break;
@@ -2950,10 +2950,10 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
             cvFreeCreditReport.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LoanDialog.dismiss();
-                    Utility.loadWebViewUrlInBrowser(HomeActivity.this,
-                            "http://www.rupeeboss.com/equifax-finmart?fbaid="
-                                    + String.valueOf(loginResponseEntity.getFBAId()));
+//                    LoanDialog.dismiss();
+//                    Utility.loadWebViewUrlInBrowser(HomeActivity.this,
+//                            "http://www.rupeeboss.com/equifax-finmart?fbaid="
+//                                    + String.valueOf(loginResponseEntity.getFBAId()));
                 }
             });
 
@@ -2980,11 +2980,11 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
             cvCashLoan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LoanDialog.dismiss();
-                    startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                            .putExtra("URL", "http://www.rupeeboss.com/gopaysense?fbaid=" + String.valueOf(loginResponseEntity.getFBAId()) + "&type=finmart&loan_id=" + String.valueOf(loginResponseEntity.getLoanId()))
-                            .putExtra("NAME", "" + "Cash Loan")
-                            .putExtra("TITLE", "" + "Cash Loan"));
+//                    LoanDialog.dismiss();
+//                    startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
+//                            .putExtra("URL", "http://www.rupeeboss.com/gopaysense?fbaid=" + String.valueOf(loginResponseEntity.getFBAId()) + "&type=finmart&loan_id=" + String.valueOf(loginResponseEntity.getLoanId()))
+//                            .putExtra("NAME", "" + "Cash Loan")
+//                            .putExtra("TITLE", "" + "Cash Loan"));
                 }
             });
 
@@ -3157,12 +3157,12 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
             cvMyTrainingCalender.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MyUtilitiesDialog.dismiss();
-
-                    startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                            .putExtra("URL", " http://bo.magicfinmart.com/training-schedule-calendar/" + String.valueOf(loginResponseEntity.getFBAId()))
-                            .putExtra("NAME", "" + "My Training Calender")
-                            .putExtra("TITLE", "" + "My Training Calender"));
+//                    MyUtilitiesDialog.dismiss();
+//
+//                    startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
+//                            .putExtra("URL", " http://bo.magicfinmart.com/training-schedule-calendar/" + String.valueOf(loginResponseEntity.getFBAId()))
+//                            .putExtra("NAME", "" + "My Training Calender")
+//                            .putExtra("TITLE", "" + "My Training Calender"));
 
                 }
             });

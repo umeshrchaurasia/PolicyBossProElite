@@ -469,7 +469,7 @@ public class PremiumBreakUpActivity extends BaseActivity implements View.OnClick
 
     public void redirectToBuy(String Service_Log_Unique_Id) {
         if (Utility.checkShareStatus(this) == 1) {
-            String imgPath = "http://qa.policyboss.com/Images/insurer_logo/" + responseEntity.getInsurer().getInsurer_Logo_Name();
+            String imgPath = "https://policyboss.com/Images/insurer_logo/" + responseEntity.getInsurer().getInsurer_Logo_Name();
             //convert quote to application server
             new QuoteApplicationController(this).convertQuoteToApp(
                     "" + vechileRequestId,

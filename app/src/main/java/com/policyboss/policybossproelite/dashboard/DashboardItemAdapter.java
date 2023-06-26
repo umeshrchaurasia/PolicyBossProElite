@@ -535,15 +535,15 @@ public class DashboardItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                 break;
 
             case 13:
-                Utility.loadWebViewUrlInBrowser(mContext.getActivity(),
-                        "http://www.rupeeboss.com/equifax-finmart?fbaid="
-                                + String.valueOf(dbPersistanceController.getUserData().getFBAId()));
+//                Utility.loadWebViewUrlInBrowser(mContext.getActivity(),
+//                        "http://www.rupeeboss.com/equifax-finmart?fbaid="
+//                                + String.valueOf(dbPersistanceController.getUserData().getFBAId()));
                 break;
 
 
             case 14:
-                Utility.loadWebViewUrlInBrowser(mContext.getActivity(),
-                        "https://yesbankbot.buildquickbots.com/chat/rupeeboss/staff/?userid=" + String.valueOf(dbPersistanceController.getUserData().getFBAId()) + "&usertype=FBA&vkey=b34f02e9-8f1c");
+//                Utility.loadWebViewUrlInBrowser(mContext.getActivity(),
+//                        "https://yesbankbot.buildquickbots.com/chat/rupeeboss/staff/?userid=" + String.valueOf(dbPersistanceController.getUserData().getFBAId()) + "&usertype=FBA&vkey=b34f02e9-8f1c");
                /* mContext.startActivity(new Intent(mContext, CommonWebViewActivity.class)
                         .putExtra(                break;
 "URL", "https://yesbankbot.buildquickbots.com/chat/rupeeboss/staff/?userid=" + String.valueOf(dbPersistanceController.getUserData().getFBAId()) + "&usertype=FBA&vkey=b34f02e9-8f1c")

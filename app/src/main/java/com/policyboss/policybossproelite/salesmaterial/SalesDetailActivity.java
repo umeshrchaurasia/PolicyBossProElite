@@ -194,7 +194,7 @@ public class SalesDetailActivity extends BaseActivity implements IResponseSubcri
         pospEmail = "XXXXXX@finmart.com";
         pospDesg = "LandMark POSP";
         PospMobNo = "98XXXXXXXX";
-        pospPhotoUrl = new URL("http://api.magicfinmart.com/images/profile_pic.png");
+        pospPhotoUrl = new URL("https://origin-cdnh.policyboss.com/website/Images/campaign/profile_pic.png");
         if (userConstantEntity != null) {
             if (userConstantEntity.getPospsendname() != null && !userConstantEntity.getPospsendname().equals("")) {
                 pospNAme = userConstantEntity.getPospsendname();
@@ -221,7 +221,7 @@ public class SalesDetailActivity extends BaseActivity implements IResponseSubcri
         fbaEmail = "XXXXXX@finmart.com";
         fbaDesg = "FBA SUPPORT ASSISTANT";
         fbaMobNo = "98XXXXXXXX";
-        fbaPhotoUrl = new URL("http://api.magicfinmart.com/images/profile_pic.png");
+        fbaPhotoUrl = new URL("https://origin-cdnh.policyboss.com/website/Images/campaign/profile_pic.png");
         if (userConstantEntity != null) {
             if (userConstantEntity.getLoansendname() != null && !userConstantEntity.getLoansendname().equals("")) {
                 fbaNAme = userConstantEntity.getLoansendname();

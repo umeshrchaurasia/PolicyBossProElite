@@ -284,10 +284,10 @@ public class BaseActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     MyUtilitiesDialog.dismiss();
 
-                    startActivity(new Intent(BaseActivity.this, CommonWebViewActivity.class)
-                            .putExtra("URL", " http://bo.magicfinmart.com/training-schedule-calendar/" + String.valueOf(loginEntity.getFBAId()))
-                            .putExtra("NAME", "" + "My Training Calender")
-                            .putExtra("TITLE", "" + "My Training Calender"));
+//                    startActivity(new Intent(BaseActivity.this, CommonWebViewActivity.class)
+//                            .putExtra("URL", " http://bo.magicfinmart.com/training-schedule-calendar/" + String.valueOf(loginEntity.getFBAId()))
+//                            .putExtra("NAME", "" + "My Training Calender")
+//                            .putExtra("TITLE", "" + "My Training Calender"));
 
                 }
             });

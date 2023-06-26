@@ -1033,7 +1033,7 @@ public class QuoteFragment extends BaseFragment implements IResponseSubcriber, B
                 String title = "";
                 String name = "";
                 title = "Motor Insurance";
-                String imgPath = "http://qa.policyboss.com/Images/insurer_logo/" + entity.getInsurer().getInsurer_Logo_Name();
+                String imgPath = "https://policyboss.com/Images/insurer_logo/" + entity.getInsurer().getInsurer_Logo_Name();
                 //convert quote to application server
                 new QuoteApplicationController(getActivity()).convertQuoteToApp(
                         "" + saveQuoteEntity.getVehicleRequestID(),

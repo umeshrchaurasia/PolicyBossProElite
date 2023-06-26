@@ -23,13 +23,13 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "FINMART_URL", '"https://horizon.policyboss.com:5443"'
-            buildConfigField "String", "HEALTH_CHECKUP_URL", '"http://www.healthassure.in"'
-            buildConfigField "String", "INSPECTION_URL", '"http://inspection.policyboss.com"'
-            buildConfigField "String", "ERP_URL", '"http://services.rupeeboss.com/LoginDtls.svc/"'
-            buildConfigField "String", "LOAN_URL", '"http://www.rupeeboss.com"'
+            buildConfigField "String", "HEALTH_CHECKUP_URL", '"https://www.healthassure.in"'
+            buildConfigField "String", "INSPECTION_URL", '"https://inspection.policyboss.com"'
+            buildConfigField "String", "ERP_URL", '"https://services.rupeeboss.com/LoginDtls.svc/"'
+            buildConfigField "String", "LOAN_URL", '"https://www.rupeeboss.com"'
             buildConfigField "String", "NODE_URL", '"https://horizon.policyboss.com:5443"'
             buildConfigField "String", "PROPOSAL_BASE_URL", '"https://www.policyboss.com/"'
-            buildConfigField "String", "POSP_URL", '"http://edu.policyboss.com"'
+            buildConfigField "String", "POSP_URL", '"https://edu.policyboss.com"'
             signingConfig signingConfigs.release
         }
         debug {
@@ -44,13 +44,13 @@ android {
               buildConfigField "String", "POSP_URL", '"http://edu.policyboss.com"'*/
 
                buildConfigField "String", "FINMART_URL", '"https://horizon.policyboss.com:5443"'
-              buildConfigField "String", "HEALTH_CHECKUP_URL", '"http://www.healthassure.in"'
-              buildConfigField "String", "INSPECTION_URL", '"http://inspection.policyboss.com"'
-              buildConfigField "String", "ERP_URL", '"http://services.rupeeboss.com/LoginDtls.svc/"'
-              buildConfigField "String", "LOAN_URL", '"http://www.rupeeboss.com"'
+              buildConfigField "String", "HEALTH_CHECKUP_URL", '"https://www.healthassure.in"'
+              buildConfigField "String", "INSPECTION_URL", '"https://inspection.policyboss.com"'
+              buildConfigField "String", "ERP_URL", '"https://services.rupeeboss.com/LoginDtls.svc/"'
+              buildConfigField "String", "LOAN_URL", '"https://www.rupeeboss.com"'
               buildConfigField "String", "NODE_URL", '"https://horizon.policyboss.com:5443"'
               buildConfigField "String", "PROPOSAL_BASE_URL", '"https://www.policyboss.com/"'
-              buildConfigField "String", "POSP_URL", '"http://edu.policyboss.com"'
+              buildConfigField "String", "POSP_URL", '"https://edu.policyboss.com"'
 
         }
         uat {
@@ -67,13 +67,13 @@ android {
 //            signingConfig signingConfigs.debug
 
             buildConfigField "String", "FINMART_URL", '"https://horizon.policyboss.com:5443"'
-            buildConfigField "String", "HEALTH_CHECKUP_URL", '"http://www.healthassure.in"'
-            buildConfigField "String", "INSPECTION_URL", '"http://inspection.policyboss.com"'
-            buildConfigField "String", "ERP_URL", '"http://services.rupeeboss.com/LoginDtls.svc/"'
-            buildConfigField "String", "LOAN_URL", '"http://www.rupeeboss.com"'
+            buildConfigField "String", "HEALTH_CHECKUP_URL", '"https://www.healthassure.in"'
+            buildConfigField "String", "INSPECTION_URL", '"https://inspection.policyboss.com"'
+            buildConfigField "String", "ERP_URL", '"https://services.rupeeboss.com/LoginDtls.svc/"'
+            buildConfigField "String", "LOAN_URL", '"https://www.rupeeboss.com"'
             buildConfigField "String", "NODE_URL", '"https://horizon.policyboss.com:5443"'
             buildConfigField "String", "PROPOSAL_BASE_URL", '"https://www.policyboss.com/"'
-            buildConfigField "String", "POSP_URL", '"http://edu.policyboss.com"'
+            buildConfigField "String", "POSP_URL", '"https://edu.policyboss.com"'
             signingConfig signingConfigs.debug
 
         }
