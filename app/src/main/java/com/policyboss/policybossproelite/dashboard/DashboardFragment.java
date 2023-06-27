@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.policyboss.policybossproelite.BaseFragment;
+import com.policyboss.policybossproelite.BuildConfig;
 import com.policyboss.policybossproelite.MyApplication;
 import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.home.HomeActivity;
@@ -128,7 +129,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         }
 
-
+        prefManager.setAppVersion("policybosselite-" + BuildConfig.VERSION_NAME);
         showDialog();
         new MasterController(getActivity()).geUserConstantSync(this);
         new MasterController(getActivity()).getMenuMaster(this);
