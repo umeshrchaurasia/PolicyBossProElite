@@ -42,6 +42,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.Utility;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.APIResponse;
@@ -84,6 +85,7 @@ public class UploadRaiseActivity extends BaseActivity implements BaseActivity.Po
 
     ActivityResultLauncher<String> galleryLauncher;
     ActivityResultLauncher<Uri> cameraLauncher;
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +99,7 @@ public class UploadRaiseActivity extends BaseActivity implements BaseActivity.Po
         dbPersistanceController = new DBPersistanceController(this);
         loginResponseEntity = dbPersistanceController.getUserData();
         registerPopUp(this);
-
+        prefManager = new PrefManager(this);
         initView();
         setOnClickListener();
 
@@ -439,7 +441,7 @@ public class UploadRaiseActivity extends BaseActivity implements BaseActivity.Po
             file = saveImageToStorage(mphoto, PHOTO_File);
             setProfilePhoto(mphoto);
             part = Utility.getMultipartImage(file);
-            body = Utility.getBody(this, loginResponseEntity.getFBAId(), PROFILE, PHOTO_File);
+            body = Utility.getBody(this, loginResponseEntity.getFBAId(), PROFILE, PHOTO_File, loginResponseEntity.getPOSPNo(),prefManager.getAppVersion(),prefManager.getDeviceID() );
 
             new ZohoController(this).uploadDocuments(part, body, this);
 

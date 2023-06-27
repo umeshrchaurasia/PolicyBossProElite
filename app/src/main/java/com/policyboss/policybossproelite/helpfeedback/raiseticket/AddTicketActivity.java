@@ -563,7 +563,8 @@ public class AddTicketActivity extends BaseActivity implements IResponseSubcribe
                 showDialog();
                 file = saveImageToStorage(mphoto, "" + 12);
                 part = Utility.getMultipartImage(file);
-                body = Utility.getBody(this, loginResponseEntity.getFBAId(), 12, "Tiket");
+                body = Utility.getBody(this, loginResponseEntity.getFBAId(), 12, "Tiket" ,loginResponseEntity.getPOSPNo(),prefManager.getAppVersion(),prefManager.getDeviceID() );
+
                 new RegisterController(this).uploadDocuments(part, body, this);
 
             } catch (IOException e) {
