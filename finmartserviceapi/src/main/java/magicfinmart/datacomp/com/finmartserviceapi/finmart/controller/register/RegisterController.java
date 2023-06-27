@@ -915,6 +915,10 @@ public class RegisterController implements IRegister {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("campaignid", "" + campaignid);
+        body.put("app_version", prefManager.getAppVersion());
+        body.put("ssid", "");
+        body.put("fbaid", "");
+        body.put("device_code", prefManager.getDeviceID());
 
         registerQuotesNetworkService.getfieldsales(body).enqueue(new Callback<RegisterSaleResponse>() {
             @Override
