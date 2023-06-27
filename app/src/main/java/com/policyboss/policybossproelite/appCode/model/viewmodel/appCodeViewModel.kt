@@ -41,13 +41,15 @@ class appCodeViewModel(val oauthTokenRepository: appcodeRepository) : ViewModel(
 
 
 
-    fun getAuthToken(ss_id : String, deviceID : String) = viewModelScope.launch {
+    fun getAuthToken(ss_id : String, deviceID : String,app_version : String,fbaid : String) = viewModelScope.launch {
 
 
         var body = HashMap<String,String>()
         body.put("ss_id",ss_id)
         body.put("device_id",deviceID)
         body.put("user_agent","")
+        body.put("app_version",app_version)
+        body.put("fbaid",fbaid)
 
         oauthMutuableStateFlow.value = APIState.Loading()
        // delay(8000)

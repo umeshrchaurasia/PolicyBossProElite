@@ -579,13 +579,18 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                         break;
                     case R.id.nav_raiseTicket:
 
-                        if (userConstantEntity.getRaiseTickitEnabled().equals("0")) {
-                            startActivity(new Intent(HomeActivity.this, RaiseTicketActivity.class));
-                        } else {
+//                        if (userConstantEntity.getRaiseTickitEnabled().equals("0")) {
+//                            startActivity(new Intent(HomeActivity.this, RaiseTicketActivity.class));
+//                        } else
+                        {
 
                             startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
                                     .putExtra("URL", userConstantEntity.getRaiseTickitUrl() + "&mobile_no=" + userConstantEntity.getMangMobile()
-                                            + "&UDID=" + userConstantEntity.getUserid())
+                                            + "&UDID=" + userConstantEntity.getUserid()+"&app_version="+prefManager.getAppVersion()
+                                            +"&device_code="+prefManager.getDeviceID()+"&ssid="+userConstantEntity.getPOSPNo()
+                                            +"&fbaid="+userConstantEntity.getFBAId())
+
+
                                     .putExtra("NAME", "RAISE_TICKET")
                                     .putExtra("TITLE", "RAISE TICKET"));
                         }
@@ -704,7 +709,7 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
                         break;
                     case R.id.nav_policy:
                         startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
-                                .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID())
+                                .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid="+userConstantEntity.getPospsendid()+"&fbaid="+userConstantEntity.getFBAId())
                                 .putExtra("NAME", "PRIVACY POLICY")
                                 .putExtra("TITLE", "PRIVACY POLICY"));
                         break;
@@ -1896,7 +1901,10 @@ public class HomeActivity extends BaseActivity implements IResponseSubcriber, Ba
 
                         startActivity(new Intent(HomeActivity.this, CommonWebViewActivity.class)
                                 .putExtra("URL", userConstantEntity.getRaiseTickitUrl() + "&mobile_no=" + userConstantEntity.getMangMobile()
-                                        + "&UDID=" + userConstantEntity.getUserid())
+                                        + "&UDID=" + userConstantEntity.getUserid()+"&app_version="+prefManager.getAppVersion()
+                                        +"&device_code="+prefManager.getDeviceID()+"&ssid="+userConstantEntity.getPOSPNo()
+                                        +"&fbaid="+userConstantEntity.getFBAId())
+
                                 .putExtra("NAME", "RAISE_TICKET")
                                 .putExtra("TITLE", "RAISE TICKET"));
                     }

@@ -14,6 +14,7 @@ import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.helpfeedback.raiseticketDialog.RaiseTicketDialogActivity;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEntity;
 
@@ -22,6 +23,8 @@ public class TermSelectionActivity extends BaseActivity {
     TermSelectionItemAdapter mAdapter;
     DBPersistanceController db;
     UserConstantEntity userConstantEntity;
+
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +35,7 @@ public class TermSelectionActivity extends BaseActivity {
 
         db = new DBPersistanceController(this);
         userConstantEntity = db.getUserConstantsData();
-
+        prefManager = new PrefManager(this);
         init();
     }
 
@@ -69,8 +72,13 @@ public class TermSelectionActivity extends BaseActivity {
 
             case R.id.action_raise:
                 // Toast.makeText(this,"Popup",Toast.LENGTH_SHORT).show();
+
                 String url = userConstantEntity.getRaiseTickitUrl() + "&mobile_no=" + userConstantEntity.getMangMobile()
-                        + "&UDID=" + userConstantEntity.getUserid();
+                        + "&UDID=" + userConstantEntity.getUserid()+"&app_version="+prefManager.getAppVersion()
+                        +"&device_code="+prefManager.getDeviceID()+"&ssid="+userConstantEntity.getPOSPNo()+"&fbaid="+userConstantEntity.getFBAId();
+
+
+
                 Log.d("URL", "Raise Ticket URL: "+url);
 
                 startActivity(new Intent(this, RaiseTicketDialogActivity.class)

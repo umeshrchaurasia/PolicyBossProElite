@@ -21,9 +21,9 @@ open class DBMenuRepository() {
 
             menuEntities.add(MenuHeader("MY ACCOUNT", false, R.drawable.user_menu, getMenuMyAccountList(loginResponseEntity,userConstantEntity, prefManager)))
 
-            menuEntities.add(MenuHeader("MY DOCUMENTS", false, R.drawable.document_menu, getMenuMyDocumentList(userConstantEntity, prefManager)))
+         //   menuEntities.add(MenuHeader("MY DOCUMENTS", false, R.drawable.document_menu, getMenuMyDocumentList(userConstantEntity, prefManager)))
 
-            menuEntities.add(MenuHeader("MY TRANSACTIONS", false, R.drawable.transaction_menu, getMenuTransactionList(userConstantEntity, prefManager)))
+        //    menuEntities.add(MenuHeader("MY TRANSACTIONS", false, R.drawable.transaction_menu, getMenuTransactionList(userConstantEntity, prefManager)))
             menuEntities.add(MenuHeader("MY UTILITIES", false, R.drawable.utility_menu, getMenuUtilityList(userConstantEntity, prefManager)))
 
             menuEntities.add(MenuHeader("SYNC CONTACTS", false, R.drawable.leads_menu, getMenuMyLeadsList(userConstantEntity, prefManager)))

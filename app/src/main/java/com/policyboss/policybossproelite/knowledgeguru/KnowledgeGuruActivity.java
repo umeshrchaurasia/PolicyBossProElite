@@ -13,12 +13,13 @@ import android.view.View;
 import com.policyboss.policybossproelite.BaseActivity;
 import com.policyboss.policybossproelite.R;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 
 public class KnowledgeGuruActivity extends BaseActivity implements View.OnClickListener {
 
     CardView loan, insurance, other;
-
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class KnowledgeGuruActivity extends BaseActivity implements View.OnClickL
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init_views();
         setListener();
+        prefManager = new PrefManager(this);
     }
 
     private void setListener() {
@@ -65,8 +67,12 @@ public class KnowledgeGuruActivity extends BaseActivity implements View.OnClickL
 //                            .putExtra("TITLE", "INSURANCE REPOSITORY"));
 //                } else {
 
+
+                String Knowledgeurl = new DBPersistanceController(this).getUserConstantsData().getInsurancerepositorylink();
+                String KnowledgeGuruurl  = Knowledgeurl + "?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid=&fbaid=";
+
                     startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
-                            .putExtra("URL", new DBPersistanceController(this).getUserConstantsData().getInsurancerepositorylink())
+                            .putExtra("URL",KnowledgeGuruurl )
                             .putExtra("NAME", "INSURANCE REPOSITORY")
                             .putExtra("TITLE", "INSURANCE REPOSITORY"));
               //  }

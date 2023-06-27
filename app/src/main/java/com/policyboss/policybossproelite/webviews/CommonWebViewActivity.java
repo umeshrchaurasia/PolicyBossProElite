@@ -64,6 +64,7 @@ import com.policyboss.policybossproelite.utility.UTILITY;
 
 import java.io.File;
 
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager;
 import magicfinmart.datacomp.com.finmartserviceapi.Utility;
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController;
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.DynamicController;
@@ -130,7 +131,7 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
 
     ActivityResultLauncher<String> galleryLauncher;
     ActivityResultLauncher<Uri> cameraLauncher;
-
+    PrefManager prefManager;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -162,6 +163,7 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
         db = new DBPersistanceController(this);
         loginResponseEntity = db.getUserData();
         userConstantEntity = db.getUserConstantsData();
+        prefManager = new PrefManager(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (name.equals("ICICI PRUDENTIAL DOWNLOAD")
@@ -609,11 +611,14 @@ public class CommonWebViewActivity extends BaseActivity implements BaseActivity.
             case R.id.action_raise:
                 // Toast.makeText(this,"Popup",Toast.LENGTH_SHORT).show();
                 String url = userConstantEntity.getRaiseTickitUrl() + "&mobile_no=" + userConstantEntity.getMangMobile()
-                        + "&UDID=" + userConstantEntity.getUserid();
+                        + "&UDID=" + userConstantEntity.getUserid()+"&app_version="+prefManager.getAppVersion()
+                        +"&device_code="+prefManager.getDeviceID()+"&ssid="+userConstantEntity.getPOSPNo()+"&fbaid="+userConstantEntity.getFBAId();
                 Log.d("URL", "Raise Ticket URL: " + url);
                 //  openWebViewPopUp(webView,  url, true, CommonWebViewActivity.this);
                 openWebViewPopUp(webView, url, true, "Raise Ticket");
                 return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }

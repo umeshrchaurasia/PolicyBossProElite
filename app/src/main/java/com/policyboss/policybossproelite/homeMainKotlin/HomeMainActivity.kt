@@ -1325,7 +1325,14 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
           R.id.txtknwyour -> {
 
               if (userConstantEntity != null) {
-                  openWebViewPopUp(viewPager2, userConstantEntity!!.notif_popupurl_elite, true, "")
+                  // Toast.makeText(this,"Popup",Toast.LENGTH_SHORT).show();
+                  val notif_popupurl_eliteurl =
+                      (userConstantEntity!!.notif_popupurl_elite + "&app_version=" + prefManager.appVersion
+                              + "&device_code=" + prefManager.deviceID + "&ssid=" + userConstantEntity!!.pospNo + "&fbaid=" + userConstantEntity!!.fbaId)
+
+
+
+                  openWebViewPopUp(viewPager2, notif_popupurl_eliteurl, true, "")
 
               }
 
@@ -1426,7 +1433,11 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
                     if (userConstantEntity!!.notificationpopupurltype.uppercase() == "SM") {
                         if (userConstantEntity!!.notificationpopupurl != "") {
                             if (prefManager.isSeasonal) {
-                                openWebViewPopUp(viewPager2, userConstantEntity!!.notif_popupurl_elite, true, "")
+                                val notif_popupurl_eliteurl =
+                                    (userConstantEntity!!.notif_popupurl_elite + "&app_version=" + prefManager.appVersion
+                                            + "&device_code=" + prefManager.deviceID + "&ssid=" + userConstantEntity!!.pospNo + "&fbaid=" + userConstantEntity!!.fbaId)
+
+                                openWebViewPopUp(viewPager2, notif_popupurl_eliteurl, true, "")
                                 prefManager.isSeasonal = false
                             }
                         }
@@ -1434,7 +1445,11 @@ class HomeMainActivity : BaseActivity() , IResponseSubcriber , View.OnClickListe
                         // prefManager.updatePopUpId("" + serverId);
                         if (userConstantEntity!!.notif_popupurl_elite != "") {
                             if (prefManager.isSeasonal) {
-                                openWebViewPopUp(viewPager2, userConstantEntity!!.notif_popupurl_elite, true, "")
+                                val notif_popupurl_eliteurl =
+                                    (userConstantEntity!!.notif_popupurl_elite + "&app_version=" + prefManager.appVersion
+                                            + "&device_code=" + prefManager.deviceID + "&ssid=" + userConstantEntity!!.pospNo + "&fbaid=" + userConstantEntity!!.fbaId)
+
+                                openWebViewPopUp(viewPager2, notif_popupurl_eliteurl, true, "")
                                 prefManager.isSeasonal = false
                             }
                         }

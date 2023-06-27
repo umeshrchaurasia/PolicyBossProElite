@@ -12,7 +12,8 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.policyboss.policybossproelite.R
+import com.policyboss.policybossproelite.appCode.appcodeActivity
 import com.policyboss.policybossproelite.attendance.PolicyBossAttendanceActivity
 import com.policyboss.policybossproelite.certificate.POSP_certicate_appointment
 import com.policyboss.policybossproelite.change_password.ChangePasswordActivity
@@ -31,7 +33,6 @@ import com.policyboss.policybossproelite.homeMainKotlin.menuRepository.DBMenuRep
 import com.policyboss.policybossproelite.messagecenter.messagecenteractivity
 import com.policyboss.policybossproelite.myaccount.MyAccountActivity
 import com.policyboss.policybossproelite.mybusiness.MyBusinessActivity
-import com.policyboss.policybossproelite.appCode.appcodeActivity
 import com.policyboss.policybossproelite.posp.PospEnrollment
 import com.policyboss.policybossproelite.posp.PospListActivity
 import com.policyboss.policybossproelite.syncContact.Worker.WelcomeSyncContactActivityKotlin
@@ -50,7 +51,6 @@ import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEnt
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.response.UserConstatntResponse
 import magicfinmart.datacomp.com.finmartserviceapi.model.MenuChild
 import org.json.JSONObject
-import java.util.*
 
 
 open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IResponseSubcriber ,View.OnClickListener {
@@ -309,8 +309,19 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
 
                 "nav_leaddetail" -> {
 
+                    //                if (new DBPersistanceController(this).getUserConstantsData().getInsurancerepositorylink() == null) {
+//                    startActivity(new Intent(this, KnowledgeGuruWebviewActivity.class)
+//                            .putExtra("URL", "http://www.policyboss.com/repository/page.html")
+//                            .putExtra("NAME", "INSURANCE REPOSITORY")
+//                            .putExtra("TITLE", "INSURANCE REPOSITORY"));
+//                } else {
+                    val leadDashUrlurl =  userConstantEntity.leadDashUrl
+                    val leadDashUrl =
+                        leadDashUrlurl + "&app_version=" + prefManager.appVersion + "&device_code=" + prefManager.deviceID
+
+
                     startActivity(Intent(requireContext(), CommonWebViewActivity::class.java) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
-                            .putExtra("URL", "" + userConstantEntity.leadDashUrl)
+                            .putExtra("URL", "" + leadDashUrl )
                             .putExtra("NAME", "" + "Sync Contact DashBoard")
                             .putExtra("TITLE", "" + "Sync Contact DashBoard"))
 
@@ -323,7 +334,8 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                     } else {
                         startActivity(Intent(requireContext(), CommonWebViewActivity::class.java)
                                 .putExtra("URL", userConstantEntity.raiseTickitUrl + "&mobile_no=" + userConstantEntity.mangMobile
-                                        + "&UDID=" + userConstantEntity.userid)
+                                        + "&UDID=" + userConstantEntity.userid+"&app_version="+prefManager.getAppVersion()
+                                        +"&device_code="+prefManager.getDeviceID()+"&ssid="+userConstantEntity.pospNo+"&fbaid="+loginResponseEntity.fbaId)
                                 .putExtra("NAME", "RAISE_TICKET")
                                 .putExtra("TITLE", "RAISE TICKET"))
                     }

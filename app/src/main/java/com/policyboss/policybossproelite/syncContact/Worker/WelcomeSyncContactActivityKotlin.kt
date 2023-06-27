@@ -243,7 +243,7 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
             // var url =  "https://horizon.policyboss.com:5443/sync_contacts" + "/contact_entry"
 
             var url = "https://horizon.policyboss.com:5443/sync_contact/get_sync_contact_agreements?ss_id=" + POSPNO +
-                    "&device_code="+prefManager.getDeviceID()+"&app_version="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID()
+                    "&device_code="+prefManager.getDeviceID()+"&app_version="+prefManager.getAppVersion()+"&fbaid="+FBAID
 
 
             val resultRespAsync = async { RetroHelper.api.getHorizonDetails(url) }

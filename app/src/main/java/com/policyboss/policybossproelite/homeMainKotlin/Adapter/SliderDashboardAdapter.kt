@@ -531,7 +531,7 @@ class SliderDashboardAdapter(
                         .putExtra("TITLE", "Commercial Vehicle Insurance"))
                 MyApplication.getInstance().trackEvent(Constants.CV, "Clicked", "Health CheckUp tab on home page")
             }
-            13 -> Utility.loadWebViewUrlInBrowser(mContext, "http://www.rupeeboss.com/equifax-finmart?fbaid="
+            13 -> Utility.loadWebViewUrlInBrowser(mContext, "https://www.rupeeboss.com/equifax-finmart?fbaid="
                     + dbPersistanceController.getUserData().getFBAId().toString())
             14 -> {
                 Utility.loadWebViewUrlInBrowser(mContext,
