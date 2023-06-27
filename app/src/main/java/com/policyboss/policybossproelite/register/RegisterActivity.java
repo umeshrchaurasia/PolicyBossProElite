@@ -634,6 +634,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         registerRequestEntity.setReferedby_code(etRefererCode.getText().toString().trim());
         registerRequestEntity.setVersionCode(Utility.getVersionName(this));
         registerRequestEntity.setApp_version("" + prefManager.getAppVersion());
+        registerRequestEntity.setDevice_code("" + prefManager.getDeviceID());
 
         registerRequestEntity.setSsid("");
     }

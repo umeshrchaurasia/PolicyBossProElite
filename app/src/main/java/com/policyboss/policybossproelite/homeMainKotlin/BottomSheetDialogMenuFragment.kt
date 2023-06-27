@@ -419,7 +419,7 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                 "nav_policy" -> {
 
                     startActivity(Intent(requireContext(), CommonWebViewActivity::class.java)
-                            .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite")
+                            .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?ss_id="+userConstantEntity.getPOSPNo()+"&app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&fbaid="+userConstantEntity.fbaId)
                             .putExtra("NAME", "PRIVACY POLICY")
                             .putExtra("TITLE", "PRIVACY POLICY"))
 
@@ -427,7 +427,7 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                 "nav_delete" -> {
 
                     startActivity(Intent(requireContext(), PrivacyWebViewActivity::class.java)
-                        .putExtra("URL", "https://www.policyboss.com/initiate-account-deletion-elite?ss_id="+userConstantEntity.getPOSPNo())
+                        .putExtra("URL", "https://www.policyboss.com/initiate-account-deletion-elite?ss_id="+userConstantEntity.getPOSPNo()+"&app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&fbaid="+userConstantEntity.fbaId)
                         .putExtra("NAME", "ACCOUNT-DELETE")
                         .putExtra("TITLE", "ACCOUNT-DELETE"))
 

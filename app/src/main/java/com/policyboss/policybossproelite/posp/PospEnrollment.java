@@ -657,7 +657,7 @@ public class PospEnrollment extends BaseActivity implements View.OnClickListener
         if (isPospInfo && isAddress && isBankDetails) {
             registerRequestEntity.setFBAID(dbPersistanceController.getUserData().getFBAId());
             registerRequestEntity.setApp_version("" + prefManager.getAppVersion());
-            registerRequestEntity.setVersionCode("" + prefManager.getDeviceID());
+            registerRequestEntity.setDevice_code("" + prefManager.getDeviceID());
             registerRequestEntity.setSsid("" + dbPersistanceController.getUserData().getPOSPNo());
 
             showDialog();

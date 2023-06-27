@@ -129,8 +129,9 @@ public class AddPOSPUserActivity extends BaseActivity implements IResponseSubcri
         registerRequestEntity.setParentId("" + dbPersistanceController.getUserData().getFBAId());
 
         registerRequestEntity.setApp_version("" + prefManager.getAppVersion());
-        registerRequestEntity.setVersionCode("" + prefManager.getDeviceID());
+
         registerRequestEntity.setSsid("" + dbPersistanceController.getUserData().getPOSPNo());
+        registerRequestEntity.setDevice_code("" + prefManager.getDeviceID());
         //registerRequestEntity.setAppSource(String.valueOf(spSource.getSelectedItemPosition() + 1));
 
 
