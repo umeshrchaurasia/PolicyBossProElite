@@ -23,6 +23,7 @@ import com.policyboss.policybossproelite.databinding.DialogLoadingBinding
 
 import com.utility.finmartcontact.core.requestentity.CallLogRequestEntity
 import kotlinx.coroutines.*
+import magicfinmart.datacomp.com.finmartserviceapi.PrefManager
 import magicfinmart.datacomp.com.finmartserviceapi.database.DBPersistanceController
 import magicfinmart.datacomp.com.finmartserviceapi.dynamic_urls.response.CheckboxsaveResponse
 import magicfinmart.datacomp.com.finmartserviceapi.finmart.model.UserConstantEntity
@@ -57,7 +58,7 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
     var isContactSync_msg = 0
     lateinit var userConstantEntity: UserConstantEntity
 
-
+    lateinit var prefManager : PrefManager
     lateinit var shareProdSyncDialog: AlertDialog
     var POSPNO = ""
     var FBAID = ""
@@ -112,7 +113,7 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
         POSPNO = userConstantEntity.pospNo
 
         FBAID = userConstantEntity.fbaId
-
+        prefManager = PrefManager(this@WelcomeSyncContactActivityNew)
         init_widgets()
         setListener()
         //   showAnimDialog("")
@@ -323,7 +324,10 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
                 is_sms = smschk,
                 is_call = telechk,
                 online_agreement = "online_agreement",
-                ss_id = Integer.parseInt(POSPNO)
+                ss_id = Integer.parseInt(POSPNO),
+                app_version = prefManager.appVersion,
+                device_code = prefManager.deviceID
+
 
             )
 

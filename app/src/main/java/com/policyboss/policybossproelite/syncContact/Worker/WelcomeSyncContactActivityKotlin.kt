@@ -343,7 +343,9 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
                 is_sms = smschk,
                 is_call = telechk,
                 online_agreement = "online_agreement",
-                ss_id = Integer.parseInt(POSPNO)
+                ss_id = Integer.parseInt(POSPNO),
+                app_version = prefManager.appVersion,
+                device_code = prefManager.deviceID
 
             )
 
