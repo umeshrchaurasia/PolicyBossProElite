@@ -91,7 +91,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         prefManager.setDeviceID( Utility.getDeviceId(LoginActivity.this.getApplicationContext()));
 
-        prefManager.setAppVersion("policybosselite-" + BuildConfig.VERSION_NAME);
+        prefManager.setAppVersion("policyboss-elite-" + BuildConfig.VERSION_NAME);
 
        // Log.d("policybosselite" , prefManager.getDeviceID() +" And " +  prefManager.getAppVersion());
 

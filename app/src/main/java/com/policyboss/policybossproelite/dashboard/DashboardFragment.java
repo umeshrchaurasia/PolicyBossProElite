@@ -129,7 +129,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         }
 
-        prefManager.setAppVersion("policybosselite-" + BuildConfig.VERSION_NAME);
+        prefManager.setAppVersion("policyboss-elite-" + BuildConfig.VERSION_NAME);
         showDialog();
         new MasterController(getActivity()).geUserConstantSync(this);
         new MasterController(getActivity()).getMenuMaster(this);
