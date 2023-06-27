@@ -72,8 +72,8 @@ public class RegisterController implements IRegister {
         HashMap<String, String> body = new HashMap<>();
         body.put("app_version", "" + prefManager.getAppVersion());
         body.put("device_code", "" +  prefManager.getDeviceID());
-        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
-        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        body.put("ssid", "");
+        body.put("fbaid", "");
         registerQuotesNetworkService.getRegSource(body).enqueue(new Callback<RegisterSourceResponse>() {
             @Override
             public void onResponse(Call<RegisterSourceResponse> call, Response<RegisterSourceResponse> response) {
@@ -110,8 +110,8 @@ public class RegisterController implements IRegister {
         HashMap<String, String> body = new HashMap<>();
         body.put("app_version", "" + prefManager.getAppVersion());
         body.put("device_code", "" +  prefManager.getDeviceID());
-        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
-        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        body.put("ssid","");
+        body.put("fbaid", "");
         registerQuotesNetworkService.getRegistPospAmount(body).enqueue(new Callback<RegisterationPospAmountResponse>() {
             @Override
             public void onResponse(Call<RegisterationPospAmountResponse> call, Response<RegisterationPospAmountResponse> response) {
@@ -150,8 +150,8 @@ public class RegisterController implements IRegister {
         body.put("email",email);
         body.put("app_version", "" + prefManager.getAppVersion());
         body.put("device_code", "" +  prefManager.getDeviceID());
-        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
-        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        body.put("ssid", "");
+        body.put("fbaid", "");
         registerQuotesNetworkService.generateOtp(body).enqueue(new Callback<GenerateOtpResponse>() {
             @Override
             public void onResponse(Call<GenerateOtpResponse> call, Response<GenerateOtpResponse> response) {
@@ -190,8 +190,8 @@ public class RegisterController implements IRegister {
         body.put("MobileOTP", MobileOTP);
         body.put("app_version", "" + prefManager.getAppVersion());
         body.put("device_code", "" +  prefManager.getDeviceID());
-        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
-        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        body.put("ssid", "");
+        body.put("fbaid", "");
         registerQuotesNetworkService.verifyOtp(body).enqueue(new Callback<VerifyOtpResponse>() {
             @Override
             public void onResponse(Call<VerifyOtpResponse> call, Response<VerifyOtpResponse> response) {
@@ -230,8 +230,8 @@ public class RegisterController implements IRegister {
 
         body.put("app_version", "" + prefManager.getAppVersion());
         body.put("device_code", "" +  prefManager.getDeviceID());
-        body.put("ssid", "" + dbPersistanceController.getUserData().getPOSPNo());
-        body.put("fbaid", "" + dbPersistanceController.getUserData().getFBAId());
+        body.put("ssid", "" + "");
+        body.put("fbaid", "" + "");
         registerQuotesNetworkService.getCityStateCityPincode(body).enqueue(new Callback<PincodeResponse>() {
             @Override
             public void onResponse(Call<PincodeResponse> call, Response<PincodeResponse> response) {

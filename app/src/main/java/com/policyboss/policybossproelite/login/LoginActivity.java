@@ -284,7 +284,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
             case R.id.lyRaiseTicket:
                // String url = "http://qa.policyboss.com/Finmart/Ticketing/ticket_login.html?landing_page=login_page";
-                String url = "https://origin-cdnh.policyboss.com/fmweb/Ticketing/ticket_login.html?landing_page=login_page";
+                String url = "https://origin-cdnh.policyboss.com/fmweb/Ticketing/ticket_login.html?landing_page=login_page&app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid=&fbaid=";
                 Log.d("URL", "Raise Ticket URL: " + url);
 
 
@@ -294,13 +294,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.txtprivacy:
 
                 startActivity(new Intent(this, PrivacyWebViewActivity.class)
-                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID())
+                        .putExtra("URL", "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid=&fbaid=")
                         .putExtra("NAME", "" + "privacy-policy")
                         .putExtra("TITLE", "" + "privacy-policy"));
                 break;
             case R.id.txtterm:
                 startActivity(new Intent(this, PrivacyWebViewActivity.class)
-                        .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID())
+                        .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid=&fbaid=")
                         .putExtra("NAME", "" + "Terms & Conditions")
                         .putExtra("TITLE", "" + "Terms & Conditions"));
                 break;
