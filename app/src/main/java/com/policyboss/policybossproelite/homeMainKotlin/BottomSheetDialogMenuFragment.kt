@@ -315,13 +315,15 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
 //                            .putExtra("NAME", "INSURANCE REPOSITORY")
 //                            .putExtra("TITLE", "INSURANCE REPOSITORY"));
 //                } else {
-                    val leadDashUrlurl =  userConstantEntity.leadDashUrl
-                    val leadDashUrl =
-                        leadDashUrlurl + "&app_version=" + prefManager.appVersion + "&device_code=" + prefManager.deviceID
+                    var leaddetail = ""
+                    val append_lead =
+                        "&ip_address=&mac_address=&app_version=" + prefManager.appVersion + "&device_id="+prefManager.deviceID+ "&login_ssid="
+                    leaddetail = userConstantEntity.leadDashUrl + append_lead
+
 
 
                     startActivity(Intent(requireContext(), CommonWebViewActivity::class.java) // .putExtra("URL", "http://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
-                            .putExtra("URL", "" + leadDashUrl )
+                            .putExtra("URL", "" + leaddetail )
                             .putExtra("NAME", "" + "Sync Contact DashBoard")
                             .putExtra("TITLE", "" + "Sync Contact DashBoard"))
 

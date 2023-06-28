@@ -456,8 +456,14 @@ class SyncContactActivity : BaseActivity(), View.OnClickListener {
             alertDialog.dismiss()
 
             this@SyncContactActivity.finish()
+
+            var leaddetail = ""
+            val append_lead =
+                "&ip_address=&mac_address=&app_version=" + prefManager.appVersion + "&device_id="+prefManager.deviceID+ "&login_ssid="
+            leaddetail = userConstantEntity.leadDashUrl + append_lead
+
             startActivity(Intent(this, CommonWebViewActivity::class.java) // .putExtra("URL", "https://bo.magicfinmart.com/motor-lead-details/" + String.valueOf(loginResponseEntity.getFBAId()))
-                .putExtra("URL", "" + userConstantEntity.leadDashUrl)
+                .putExtra("URL", "" + leaddetail)
                 .putExtra("NAME", "" + "Sync Contact DashBoard")
                 .putExtra("TITLE", "" + "Sync Contact DashBoard"))
 
