@@ -400,16 +400,16 @@ class WelcomeSyncContactActivityNew : BaseActivity() , OnClickListener {
                 Intent(this, CommonWebViewActivity::class.java)
                     .putExtra(
                         "URL",
-                        "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version=policyboss-1"
-                    )
+                        "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version=" + prefManager.appVersion + "&device_code=" + prefManager.deviceID + "&ssid=" +POSPNO + "&fbaid=" + FBAID)
                     .putExtra("NAME", "" + "privacy-policy")
                     .putExtra("TITLE", "" + "privacy-policy")
             )
             txtterm.id -> startActivity(
                 Intent(this, CommonWebViewActivity::class.java)
-                    .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version=policyboss-1")
+                    .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version=" + prefManager.appVersion + "&device_code=" + prefManager.deviceID + "&ssid=" +POSPNO + "&fbaid=" + FBAID)
                     .putExtra("NAME", "" + "Terms & Conditions")
                     .putExtra("TITLE", "" + "Terms & Conditions")
+
             )
             tvClickHere.id -> SyncTermPopUp()
 

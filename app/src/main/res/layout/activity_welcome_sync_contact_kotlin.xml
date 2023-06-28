@@ -35,12 +35,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginTop="-10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/txtsetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+
+                android:text="@string/settings"
+                android:textAppearance="@style/TextStyle.TextMedium" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:id="@+id/ll_term"
             android:visibility="visible">
+
 
 
             <LinearLayout
@@ -113,26 +132,30 @@
                 android:layout_height="wrap_content"
                 android:text="I would like to avail of communication support (SMS/Email/Whatsapp/Other Comm. modes) for my Sync Contact Leads"
                 android:checked="false"/>
+
             <CheckBox
-                android:layout_marginTop="5dp"
-                style="@style/TextViewStyle.Medium"
                 android:id="@+id/chktele_call"
-                android:gravity="top"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I would like to avail of tele-calling support for my Sync Contact Leads"
-                android:checked="false"/>
-            <CheckBox
-                android:layout_marginTop="5dp"
                 style="@style/TextViewStyle.Medium"
-                android:id="@+id/chkagree"
-                android:gravity="top"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I hereby agree to the terms &amp; conditions for using Sync Contacts"
-                android:checked="false"/>
+
+                android:layout_marginTop="5dp"
+                android:checked="false"
+                android:gravity="top"
+                android:minHeight="48dp"
+                android:text="I would like to avail of tele-calling support for my Sync Contact Leads" />
+
+            <CheckBox
+                android:id="@+id/chkagree"
+                style="@style/TextViewStyle.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="5dp"
+                android:checked="false"
+                android:gravity="top"
+                android:minHeight="48dp"
+                android:text="I hereby agree to the terms &amp; conditions for using Sync Contacts" />
 
 
         </LinearLayout>

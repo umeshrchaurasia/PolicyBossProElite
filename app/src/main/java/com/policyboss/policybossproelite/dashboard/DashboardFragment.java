@@ -30,6 +30,7 @@ import com.policyboss.policybossproelite.MyApplication;
 import com.policyboss.policybossproelite.R;
 import com.policyboss.policybossproelite.home.HomeActivity;
 import com.policyboss.policybossproelite.knowledgeguru.KnowledgeGuruActivity;
+import com.policyboss.policybossproelite.login.LoginActivity;
 import com.policyboss.policybossproelite.pendingcases.PendingCasesActivity;
 import com.policyboss.policybossproelite.salesmaterial.SalesMaterialActivity;
 import com.policyboss.policybossproelite.utility.Constants;
@@ -130,6 +131,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         }
 
         prefManager.setAppVersion("policyboss-elite-" + BuildConfig.VERSION_NAME);
+        prefManager.setDeviceID( Utility.getDeviceId(this.getContext().getApplicationContext()));
+
+
         showDialog();
         new MasterController(getActivity()).geUserConstantSync(this);
         new MasterController(getActivity()).getMenuMaster(this);

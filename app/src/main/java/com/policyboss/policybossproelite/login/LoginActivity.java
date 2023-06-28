@@ -458,7 +458,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 }
                 else
                 {
-                    Utility.loadWebViewUrlInBrowser(LoginActivity.this, enable_elite_signupurl);
+                    String signupurl=  ((UsersignupResponse) response).getMasterData().get(0).getEnableEliteSignupurl() + "&app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid=&fbaid=";
+
+                    Utility.loadWebViewUrlInBrowser(LoginActivity.this, signupurl);
                 }
             }else
             {

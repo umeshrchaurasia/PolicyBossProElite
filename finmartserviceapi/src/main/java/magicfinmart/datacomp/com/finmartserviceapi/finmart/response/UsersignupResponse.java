@@ -30,7 +30,7 @@ public class UsersignupResponse extends APIResponse {
 		}
 
 		public String getEnableProSignupurl(){
-			return enable_elite_signupurl;
+			return enable_pro_signupurl;
 		}
 	}
 }

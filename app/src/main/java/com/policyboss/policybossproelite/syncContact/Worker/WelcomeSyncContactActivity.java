@@ -132,7 +132,7 @@ public class WelcomeSyncContactActivity extends BaseActivity implements View.OnC
 
 
                 startActivity(new Intent(this, CommonWebViewActivity.class)
-                        .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid="+prefManager.getDeviceID()+"&fbaid="+prefManager.getDeviceID())
+                        .putExtra("URL", "https://www.policyboss.com/terms-condition?app_version="+prefManager.getAppVersion()+"&device_code="+prefManager.getDeviceID()+"&ssid=&fbaid=")
                         .putExtra("NAME", "" + "Terms & Conditions")
                         .putExtra("TITLE", "" + "Terms & Conditions"));
                 break;

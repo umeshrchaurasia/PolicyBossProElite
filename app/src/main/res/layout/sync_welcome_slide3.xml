@@ -18,8 +18,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="4dp"
         android:orientation="horizontal">
 
@@ -29,15 +29,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="Remember, upon sync, any new numbers will be fetched from your call logs and marches found will get shown in your lead dashboard."
+            android:text="Remember, upon sync, any new numbers will be fetched from your call logs and matches found will get shown in your lead dashboard."
             android:textAppearance="@style/TextStyle.TextMedium" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="4dp"
         android:orientation="horizontal">
 
@@ -56,8 +56,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="4dp"
         android:orientation="horizontal">
 
@@ -67,8 +67,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="If you still wish to stop or discontinue sync of new contacts, please go to settings."
+            android:text="If you still wish to stop or discontinue sync of new contacts,"
             android:textAppearance="@style/TextStyle.TextMedium" />
+
+
     </LinearLayout>
 
 

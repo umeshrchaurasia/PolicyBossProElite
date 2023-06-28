@@ -17,12 +17,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
 import com.policyboss.policybossproelite.BaseActivity
 import com.policyboss.policybossproelite.R
 import com.policyboss.policybossproelite.databinding.ActivityWelcomeSyncContactKotlinBinding
-import com.policyboss.policybossproelite.databinding.DialogLoadingBinding
-import com.policyboss.policybossproelite.databinding.ProgressdialogLoadingBinding
+import com.policyboss.policybossproelite.myaccount.MyAccountActivity
 import com.policyboss.policybossproelite.webviews.CommonWebViewActivity
 import kotlinx.coroutines.*
 import magicfinmart.datacomp.com.finmartserviceapi.PrefManager
@@ -59,6 +57,8 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
     lateinit var btnchktele_call: CheckBox
 
     lateinit  var ll_term: LinearLayout
+    lateinit var  txtsetting:TextView
+
     var isContactSync_msg = 0
     lateinit var userConstantEntity: UserConstantEntity
 
@@ -130,12 +130,14 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
                     btnNext.alpha = 0.4f
                     btnNext.tag = 0
                     ll_term.visibility = View.VISIBLE
+                    txtsetting.visibility = View.VISIBLE
 
 
                     // btnSkip.setVisibility(View.VISIBLE);
                 } else {
                     // still pages are left
                     ll_term.visibility = View.GONE
+                    txtsetting.visibility = View.GONE
                     //btnNext.setVisibility(View.VISIBLE);
                     btnNext.tag = 1
                     btnNext.alpha = 1f
@@ -183,6 +185,8 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
 
 
         ll_term = binding.llTerm
+        txtsetting = binding.txtsetting
+
         btnchkagree!!.tag = 0
 
         btnchkcommunication_sms!!.tag = 0
@@ -193,6 +197,7 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
         btnNext.tag = 0
 
         ll_term.visibility = View.GONE
+        txtsetting.visibility =View.GONE
     }
 
     private fun setListener() {
@@ -206,6 +211,8 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
 
         txtprivacy.setOnClickListener(this)
         txtterm.setOnClickListener(this)
+
+        txtsetting.setOnClickListener(this)
 
        // ll_term.setOnClickListener(this)
         //  ll_term.visibility = View.GONE
@@ -412,16 +419,27 @@ class WelcomeSyncContactActivityKotlin : BaseActivity() , View.OnClickListener {
                 Intent(this, CommonWebViewActivity::class.java)
                     .putExtra(
                         "URL",
-                        "https://www.policyboss.com/privacy-policy-policyboss-pro-elite"
+                        "https://www.policyboss.com/privacy-policy-policyboss-pro-elite?app_version=" + prefManager.appVersion + "&device_code=" + prefManager.deviceID + "&ssid=" +POSPNO + "&fbaid=" + FBAID
                     )
                     .putExtra("NAME", "" + "privacy-policy")
                     .putExtra("TITLE", "" + "privacy-policy")
             )
             txtterm.id -> startActivity(
                 Intent(this, CommonWebViewActivity::class.java)
-                    .putExtra("URL", "https://www.policyboss.com/terms-condition")
+                    .putExtra(
+                        "URL",
+                        "https://www.policyboss.com/terms-condition?app_version=" + prefManager.appVersion + "&device_code=" + prefManager.deviceID + "&ssid=" +POSPNO + "&fbaid=" + FBAID
+                    )
                     .putExtra("NAME", "" + "Terms & Conditions")
                     .putExtra("TITLE", "" + "Terms & Conditions")
+
+
+
+            )
+
+            txtsetting.id -> startActivity(
+                      (Intent(this, MyAccountActivity::class.java))
+
             )
 //            tvClickHere.id -> SyncTermPopUp()
 

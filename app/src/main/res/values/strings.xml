@@ -30,6 +30,8 @@
     <string name="clickhere"><b><u>Click Here</u></b></string>
     <string name="noInternet">No Internet Connection</string>
 
+    <string name="settings">please go to  <b><u>settings.</u></b></string>
+
     <string name="popup_Profile"> PROFILE PICTURE</string>
     <string name="popup_PanCard"> FBA PAN CARD</string>
     <string name="popup_CancelCHQ"> CANCELLED CHQ</string>
