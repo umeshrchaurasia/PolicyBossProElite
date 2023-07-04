@@ -204,7 +204,10 @@ public class LoginController implements ILogin {
         HashMap<String, String> body = new HashMap<>();
         body.put("ref_type", refType);
         body.put("ref_code", refCode);
-
+        body.put("app_version", prefManager.getAppVersion());
+        body.put("ssid", "");
+        body.put("fbaid", "");
+        body.put("device_code", prefManager.getDeviceID());
         loginNetworkService.referFriend(body).enqueue(new Callback<ReferFriendResponse>() {
             @Override
             public void onResponse(Call<ReferFriendResponse> call, Response<ReferFriendResponse> response) {
