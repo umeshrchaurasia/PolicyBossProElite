@@ -163,6 +163,10 @@ public class LoginController implements ILogin {
         body.put("FBAID", String.valueOf(new DBPersistanceController(mContext).getUserData().getFBAId()));
         body.put("Old_Password", oldPass);
         body.put("New_Password", newPass);
+        body.put("app_version", prefManager.getAppVersion());
+        body.put("ssid", "");
+        body.put("fbaid", "");
+        body.put("device_code", prefManager.getDeviceID());
 
         loginNetworkService.changePassword(body).enqueue(new Callback<ChangePasswordResponse>() {
             @Override

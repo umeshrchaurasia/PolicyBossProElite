@@ -54,7 +54,7 @@ public class MasterRequestBuilder extends FinmartRetroRequestBuilder {
 
         @Headers("token:" + token)
         @POST("/quote/Postfm/contact-us-PB")
-        Call<ContactUsResponse> getContactUs();
+        Call<ContactUsResponse> getContactUs(@Body HashMap<String, String> body);
 
         @Headers("token:" + token)
         @POST("/quote/Postfm/whats-new")

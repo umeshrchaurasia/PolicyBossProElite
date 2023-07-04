@@ -226,7 +226,12 @@ public class MasterController implements IMasterFetch {
 
     @Override
     public void getContactList(final IResponseSubcriber iResponseSubcriber) {
-        masterNetworkService.getContactUs().enqueue(new Callback<ContactUsResponse>() {
+        HashMap<String, String> body = new HashMap<>();
+        body.put("app_version", "" + prefManager.getAppVersion());
+        body.put("device_code", "" +  prefManager.getDeviceID());
+        body.put("ssid", "" + "");
+        body.put("fbaid", "" + "");
+        masterNetworkService.getContactUs(body).enqueue(new Callback<ContactUsResponse>() {
             @Override
             public void onResponse(Call<ContactUsResponse> call, Response<ContactUsResponse> response) {
 
