@@ -170,7 +170,9 @@ open class BottomSheetDialogMenuFragment : BottomSheetDialogFragment() , IRespon
                 txtReferalCode.text = "Referral Code - "
             }
 
+
         }
+
 
         if (this::userConstantEntity.isInitialized)
          {
